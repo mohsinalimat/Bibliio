@@ -9,14 +9,17 @@
 import UIKit
 
 class Progress: NSObject {
-
-     var book: Book?
+    
+    var book: Book
     var currentPage: Int
-    var finishDate: Date?
+    var startDate: Date
+    var finishDate: Date
     
     init(book: Book, currentPage: Int) {
         self.book = book
         self.currentPage = currentPage
+        startDate = Date()
+        finishDate = Date()
         super.init()
     }
 }

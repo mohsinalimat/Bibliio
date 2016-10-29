@@ -8,28 +8,39 @@
 
 import UIKit
 
-class BookListViewController: UIViewController {
+class BookListViewController: UIViewController, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
+    var books: [Book] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        books = [Book.init(title: "Huck Finn", pages: 200), Book.init(title: "Notha book", pages: 30)]
+        
+        tableView.register(UINib.init(nibName: "BookTableViewCell", bundle: nil), forCellReuseIdentifier: "BookTableViewCell")
+        tableView.dataSource = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         let cell = tableView.dequeueReusableCell(withIdentifier: "BookTableViewCell", for: indexPath) as! BookTableViewCell
+        
+        cell.book = books[indexPath.row]
+        
+        return cell
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return books.count
     }
-    */
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddBookViewController")
+            else { return }
+        present(vc, animated: true, completion: nil)
+        
+    }
 
 }

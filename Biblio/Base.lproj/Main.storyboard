@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ua8-1Z-yup">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZiG-U6-IDA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,7 +14,7 @@
         <!--New Book-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="AddBookViewController" customModule="Biblio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddBookViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="AddBookViewController" customModule="Biblio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -23,14 +23,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRe-gd-EU5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="Lpd-S4-XxM">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="T9l-ST-Dpb">
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" id="eLZ-Lv-9XZ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="fXA-j6-7zy">
+                                            <connections>
+                                                <action selector="saveButtonPressed:" destination="BYZ-38-t0r" id="jJP-oy-kgX"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What are you reading?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zo-we-dDw">
-                                <rect key="frame" x="52" y="83" width="271.5" height="33.5"/>
+                                <rect key="frame" x="52" y="67" width="271.5" height="33.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IGp-1v-vUv" customClass="TextField" customModule="Biblio" customModuleProvider="target">
-                                <rect key="frame" x="16" y="255" width="343" height="17"/>
+                                <rect key="frame" x="16" y="239" width="343" height="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -41,7 +58,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Author" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UbD-Z7-Plh" customClass="TextField" customModule="Biblio" customModuleProvider="target">
-                                <rect key="frame" x="16" y="305" width="343" height="17"/>
+                                <rect key="frame" x="16" y="289" width="343" height="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -52,7 +69,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Page" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ooy-id-X2B" customClass="TextField" customModule="Biblio" customModuleProvider="target">
-                                <rect key="frame" x="16" y="355" width="127.5" height="17"/>
+                                <rect key="frame" x="16" y="339" width="127.5" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -63,14 +80,14 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQb-vF-kWf">
-                                <rect key="frame" x="150" y="149" width="75" height="75"/>
+                                <rect key="frame" x="150" y="133" width="75" height="75"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="CI9-C1-GxS"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Total Pages" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eGy-87-tEk" customClass="TextField" customModule="Biblio" customModuleProvider="target">
-                                <rect key="frame" x="226.5" y="354" width="132.5" height="17"/>
+                                <rect key="frame" x="226" y="338" width="132.5" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -85,16 +102,19 @@
                         <constraints>
                             <constraint firstItem="eGy-87-tEk" firstAttribute="trailing" secondItem="UbD-Z7-Plh" secondAttribute="trailing" id="5PJ-Gm-SCh"/>
                             <constraint firstItem="eGy-87-tEk" firstAttribute="leading" secondItem="ooy-id-X2B" secondAttribute="trailing" constant="83" id="9fJ-Ze-Qd0"/>
+                            <constraint firstItem="bRe-gd-EU5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="DGE-25-PP7"/>
+                            <constraint firstItem="bRe-gd-EU5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="I6m-s6-GfV"/>
                             <constraint firstItem="7zo-we-dDw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="I8H-L9-Q5m"/>
-                            <constraint firstItem="7zo-we-dDw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="19" id="Kc5-hN-Zey"/>
                             <constraint firstItem="IGp-1v-vUv" firstAttribute="top" secondItem="AQb-vF-kWf" secondAttribute="bottom" constant="31" id="M2J-5q-Rwk"/>
                             <constraint firstItem="AQb-vF-kWf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OAe-cR-h9s"/>
                             <constraint firstItem="AQb-vF-kWf" firstAttribute="top" secondItem="7zo-we-dDw" secondAttribute="bottom" constant="32.5" id="Qra-T9-lI2"/>
                             <constraint firstItem="UbD-Z7-Plh" firstAttribute="top" secondItem="IGp-1v-vUv" secondAttribute="bottom" constant="33" id="WWz-kj-Zag"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AQb-vF-kWf" secondAttribute="trailing" constant="134" id="YD1-EA-uzq"/>
                             <constraint firstItem="ooy-id-X2B" firstAttribute="leading" secondItem="UbD-Z7-Plh" secondAttribute="leading" id="cFn-9o-7lJ"/>
+                            <constraint firstAttribute="trailing" secondItem="bRe-gd-EU5" secondAttribute="trailing" id="cOK-S0-CPf"/>
                             <constraint firstItem="UbD-Z7-Plh" firstAttribute="leading" secondItem="IGp-1v-vUv" secondAttribute="leading" id="duU-Y2-QUB"/>
                             <constraint firstItem="UbD-Z7-Plh" firstAttribute="trailing" secondItem="IGp-1v-vUv" secondAttribute="trailing" id="kaQ-YF-grb"/>
+                            <constraint firstItem="7zo-we-dDw" firstAttribute="top" secondItem="bRe-gd-EU5" secondAttribute="bottom" constant="23" id="o2o-Aj-xuN"/>
                             <constraint firstAttribute="leadingMargin" secondItem="IGp-1v-vUv" secondAttribute="leading" id="qCr-1f-cIK"/>
                             <constraint firstItem="ooy-id-X2B" firstAttribute="top" secondItem="UbD-Z7-Plh" secondAttribute="bottom" constant="33" id="r8v-7L-MRK"/>
                             <constraint firstItem="ooy-id-X2B" firstAttribute="trailing" secondItem="UbD-Z7-Plh" secondAttribute="trailing" multiplier="0.4" id="rcV-kh-Wqg"/>
@@ -108,9 +128,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="authorTextField" destination="UbD-Z7-Plh" id="1XL-KI-6re"/>
-                        <outlet property="cancelButton" destination="XxN-He-tNb" id="MFm-8f-wPV"/>
+                        <outlet property="cancelButton" destination="T9l-ST-Dpb" id="cmv-zF-G8a"/>
                         <outlet property="currentPageTextField" destination="ooy-id-X2B" id="9j4-n7-IcM"/>
-                        <outlet property="saveButton" destination="62q-CO-DQk" id="LCy-hb-x3P"/>
+                        <outlet property="saveButton" destination="fXA-j6-7zy" id="Rlk-fm-PIK"/>
                         <outlet property="titleLabel" destination="7zo-we-dDw" id="8UG-4t-dYa"/>
                         <outlet property="titleTextField" destination="IGp-1v-vUv" id="yjo-hx-dd6"/>
                         <outlet property="totalPagesTextField" destination="eGy-87-tEk" id="JfA-Lj-3gJ"/>
@@ -136,6 +156,15 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aaw-Vv-DJo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Books" id="Qd1-VI-gGm">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="bMT-qy-b98"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -163,36 +192,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="o14-e0-fZI">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deY-4r-v32">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Books" id="KD3-05-Ono">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oBn-aw-Bd0">
+                                            <connections>
+                                                <action selector="addButtonPressed:" destination="ElQ-RB-c3W" id="cNG-4Q-rxh"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qJP-E7-2Dg">
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UPZ-Tj-Ttz">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Bwp-I1-III">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CBM-08-72W">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CBM-08-72W" id="qcw-Hy-g8o">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                        </view>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iCe-hF-880" firstAttribute="top" secondItem="o14-e0-fZI" secondAttribute="bottom" id="0sz-99-ote"/>
-                            <constraint firstItem="o14-e0-fZI" firstAttribute="top" secondItem="bmc-A4-w9p" secondAttribute="bottom" id="5ET-qM-DFB"/>
-                            <constraint firstAttribute="trailing" secondItem="o14-e0-fZI" secondAttribute="trailing" id="Cna-Rj-svu"/>
-                            <constraint firstItem="o14-e0-fZI" firstAttribute="leading" secondItem="oBm-sQ-wEI" secondAttribute="leading" id="kqr-8H-Qsm"/>
+                            <constraint firstItem="qJP-E7-2Dg" firstAttribute="leading" secondItem="oBm-sQ-wEI" secondAttribute="leading" id="1b5-eS-GQH"/>
+                            <constraint firstItem="deY-4r-v32" firstAttribute="top" secondItem="oBm-sQ-wEI" secondAttribute="top" id="BqP-5a-7Yo"/>
+                            <constraint firstItem="iCe-hF-880" firstAttribute="top" secondItem="qJP-E7-2Dg" secondAttribute="bottom" id="FZc-xz-tri"/>
+                            <constraint firstAttribute="trailing" secondItem="deY-4r-v32" secondAttribute="trailing" id="TBx-5c-BbJ"/>
+                            <constraint firstItem="qJP-E7-2Dg" firstAttribute="top" secondItem="bmc-A4-w9p" secondAttribute="bottom" constant="24" id="eGy-I4-N9U"/>
+                            <constraint firstAttribute="trailing" secondItem="qJP-E7-2Dg" secondAttribute="trailing" id="hI0-sS-OAI"/>
+                            <constraint firstItem="deY-4r-v32" firstAttribute="leading" secondItem="oBm-sQ-wEI" secondAttribute="leading" id="nDt-c5-qRT"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="86q-Jc-5zP"/>
+                    <connections>
+                        <outlet property="addButton" destination="oBn-aw-Bd0" id="Xhf-7G-eL1"/>
+                        <outlet property="tableView" destination="qJP-E7-2Dg" id="l9d-Jo-hp8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xVW-LF-Qd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -263,24 +305,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IRU-j7-E4S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2" y="1117"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="4Ox-0t-Bdb">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ua8-1Z-yup" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Kq-gS-7bR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Rfj-4v-H0E"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Svw-cG-nSh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="65" y="139"/>
         </scene>
     </scenes>
 </document>

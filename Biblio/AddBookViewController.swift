@@ -42,5 +42,13 @@ class AddBookViewController: UIViewController, UITextFieldDelegate {
         
     }
 
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        save()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
