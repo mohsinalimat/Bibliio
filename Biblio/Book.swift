@@ -7,18 +7,19 @@
 //
 
 import UIKit
+import RealmSwift
 
-class Book: NSObject {
+class Book: Object {
     
-    var title: String
+    var title: String = ""
     var author: String?
-    var pages: Int
-    var progress: Progress?
+    var pages: Int = 0
+    var image: NSData?
     
-    init(title: String, author: String = "", pages: Int) {
+    convenience init(title: String, author: String = "", pages: Int) {
+        self.init()
         self.title = title
         self.author = author
         self.pages = pages
-        super.init()
     }
 }

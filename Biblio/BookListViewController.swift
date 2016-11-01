@@ -8,33 +8,25 @@
 
 import UIKit
 
-class BookListViewController: UIViewController, UITableViewDataSource {
+class BookListViewController: UIViewController, UICollectionViewDataSource, BookListCellDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
-    var books: [Book] = []
+    private var willDeleteIndexPath: IndexPath?
+    private let cellMargin: CGFloat = 14.0
+    
+    var books: [Book] = [Book.init(title: "Hatchet", pages: 200), Book.init(title: "Candide", pages: 100)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        books = [Book.init(title: "Huck Finn", pages: 200), Book.init(title: "Notha book", pages: 30)]
         
-        tableView.register(UINib.init(nibName: "BookTableViewCell", bundle: nil), forCellReuseIdentifier: "BookTableViewCell")
-        tableView.dataSource = self
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: "BookTableViewCell", for: indexPath) as! BookTableViewCell
+        automaticallyAdjustsScrollViewInsets = false
         
-        cell.book = books[indexPath.row]
-        
-        return cell
+        setupCollectionView()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books.count
-    }
+    // MARK: - Action
     
     @IBAction func addButtonPressed(_ sender: Any) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddBookViewController")
@@ -43,4 +35,62 @@ class BookListViewController: UIViewController, UITableViewDataSource {
         
     }
 
+    // MARK: - BookListCellDelegate
+    
+    func moreButtonPressed(cell: BookListCollectionViewCell) {
+        
+        let indexPath = collectionView.indexPath(for: cell)!
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [unowned self] (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(cancelAction)
+        
+        let destroyAction = UIAlertAction(title: "Destroy", style: .destructive) { [unowned self] (action) in
+            self.books = self.books.arrayByRemoving(object: cell.book!)
+            self.collectionView.deleteItems(at: [indexPath])
+            self.collectionView.reloadData()
+        }
+        
+        alertController.addAction(destroyAction)
+        
+        present(alertController, animated: true)
+    }
+    
+    // MARK: - UICollectionViewDataSource
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookListCollectionViewCell", for: indexPath) as! BookListCollectionViewCell
+        
+        cell.delegate = self
+        
+        cell.book = books[indexPath.row]
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return books.count
+    }
+    
+    // MARK: - Setup
+    
+    func setupCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let width = UIScreen.main.bounds.width - (cellMargin * 2)
+        let height = UIScreen.main.bounds.height * 0.3
+        layout.itemSize = CGSize(width: width, height: height)
+        
+        collectionView.contentInset = UIEdgeInsets(top: 14, left: 0, bottom: 14, right: 0)
+        collectionView.setCollectionViewLayout(layout, animated: false)
+        collectionView.register(UINib.init(nibName: "BookListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "BookListCollectionViewCell")
+        collectionView.dataSource = self
+        collectionView.alwaysBounceVertical = true
+        collectionView.delaysContentTouches = false
+    }
 }

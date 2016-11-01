@@ -7,19 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-class Progress: NSObject {
+class Progress: Object {
     
-    var book: Book
-    var currentPage: Int
-    var startDate: Date
-    var finishDate: Date
-    
-    init(book: Book, currentPage: Int) {
-        self.book = book
-        self.currentPage = currentPage
-        startDate = Date()
-        finishDate = Date()
-        super.init()
-    }
+  
 }
