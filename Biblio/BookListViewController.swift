@@ -7,14 +7,14 @@
 //
 
 import UIKit
-
+import RealmSwift
 
 class BookListViewController: UIViewController, UICollectionViewDataSource, BookListCellDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addButton: UIBarButtonItem!
-        
-    private var books: [Book] = [Book.init(title: "Hatchet", pages: 200), Book.init(title: "Candide", pages: 100)]
+    
+    private var books: Results<Book>?
     
     private var willDeleteIndexPath: IndexPath?
     
@@ -22,13 +22,23 @@ class BookListViewController: UIViewController, UICollectionViewDataSource, Book
     
     let slideAnimationController = VerticalSlideAnimationController()
     
+    let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        books = (realm.objects(Book.self))
+        
         automaticallyAdjustsScrollViewInsets = false
         
         setupCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        books = realm.objects(Book.self)
+        collectionView.reloadData()
     }
     
     // MARK: - Action
@@ -58,10 +68,11 @@ class BookListViewController: UIViewController, UICollectionViewDataSource, Book
         
         alertController.addAction(cancelAction)
         
+        //
         let destroyAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] (action) in
-            self.books = self.books.arrayByRemoving(object: cell.book!)
-            self.collectionView.deleteItems(at: [indexPath])
-            self.collectionView.reloadData()
+           //self.books = self.books.arrayByRemoving(object: cell.book!)
+           self.collectionView.deleteItems(at: [indexPath])
+           self.collectionView.reloadData()
         }
         
         alertController.addAction(destroyAction)
@@ -77,12 +88,16 @@ class BookListViewController: UIViewController, UICollectionViewDataSource, Book
         
         cell.delegate = self
         
-        cell.book = books[indexPath.row]
+        let book = books?[indexPath.row]
+        
+        cell.book = book
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let books = self.books
+            else { return 0 }
         return books.count
     }
     
@@ -113,11 +128,8 @@ extension BookListViewController: UIViewControllerTransitioningDelegate {
         return slideAnimationController;
     }
     
-    
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         slideAnimationController.isPresenting = false
         return slideAnimationController
     }
-
-    
 }

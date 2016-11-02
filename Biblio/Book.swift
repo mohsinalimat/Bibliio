@@ -11,10 +11,10 @@ import RealmSwift
 
 class Book: Object {
     
-    var title: String = ""
-    var author: String?
-    var pages: Int = 0
-    var image: NSData?
+    dynamic var title: String = ""
+    dynamic var author: String = ""
+    dynamic var pages: Int = 0
+    dynamic var imageData: Data? = nil
     
     convenience init(title: String, author: String = "", pages: Int) {
         self.init()

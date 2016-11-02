@@ -46,14 +46,22 @@ class BookListCollectionViewCell: UICollectionViewCell {
     // MARK: - UI
     
     func updateAppearance() {
-        titleLabel.text = book?.title
         
-        if let _ = book?.image {
-            
+        guard let book = self.book
+            else { return }
+        
+        titleLabel.text = book.title
+        
+        if let imageData = book.imageData {
+            let image = UIImage.init(data: imageData)
+            let imageView = UIImageView.init(image: image)
+            imageView.clipsToBounds = true
+            imageView.contentMode = .scaleAspectFit
+            progressView.centralView = imageView
         } else {
             letterLabel.font = UIFont.systemFont(ofSize: 50)
             letterLabel.textColor = UIColor.gray
-            let firstLetter: Character = book!.title.characters.first!
+            let firstLetter: Character = book.title.uppercased().characters.first!
             letterLabel.text = String(firstLetter)
             letterLabel.sizeToFit()
             progressView.fillColor = UIColor.separator()
