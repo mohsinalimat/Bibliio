@@ -165,7 +165,7 @@
             <size key="customSize" width="417" height="240"/>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                    <integer key="value" value="12"/>
+                    <integer key="value" value="16"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>

@@ -23,7 +23,7 @@ class BookListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lastReadLabel: UILabel!
     @IBOutlet weak var finishByLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
-    private let shadowView = UIView()
+    private let shadowLayer = CALayer()
     private let letterLabel = UILabel()
     weak var book: Book? {
         didSet {
@@ -33,6 +33,7 @@ class BookListCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
     
     //MARK: - IBAction

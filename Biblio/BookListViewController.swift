@@ -8,15 +8,20 @@
 
 import UIKit
 
-class BookListViewController: UIViewController, UICollectionViewDataSource, BookListCellDelegate {
 
+class BookListViewController: UIViewController, UICollectionViewDataSource, BookListCellDelegate {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addButton: UIBarButtonItem!
+        
+    private var books: [Book] = [Book.init(title: "Hatchet", pages: 200), Book.init(title: "Candide", pages: 100)]
     
     private var willDeleteIndexPath: IndexPath?
+    
     private let cellMargin: CGFloat = 14.0
     
-    var books: [Book] = [Book.init(title: "Hatchet", pages: 200), Book.init(title: "Candide", pages: 100)]
+    let slideAnimationController = VerticalSlideAnimationController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +36,14 @@ class BookListViewController: UIViewController, UICollectionViewDataSource, Book
     @IBAction func addButtonPressed(_ sender: Any) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddBookViewController")
             else { return }
-        present(vc, animated: true, completion: nil)
         
+        let navigationController = UINavigationController.init(rootViewController: vc)
+        navigationController.isNavigationBarHidden = true
+        navigationController.modalPresentationStyle = .custom
+        navigationController.transitioningDelegate = self
+        present(navigationController, animated: true, completion: nil)
     }
-
+    
     // MARK: - BookListCellDelegate
     
     func moreButtonPressed(cell: BookListCollectionViewCell) {
@@ -49,7 +58,7 @@ class BookListViewController: UIViewController, UICollectionViewDataSource, Book
         
         alertController.addAction(cancelAction)
         
-        let destroyAction = UIAlertAction(title: "Destroy", style: .destructive) { [unowned self] (action) in
+        let destroyAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] (action) in
             self.books = self.books.arrayByRemoving(object: cell.book!)
             self.collectionView.deleteItems(at: [indexPath])
             self.collectionView.reloadData()
@@ -93,4 +102,22 @@ class BookListViewController: UIViewController, UICollectionViewDataSource, Book
         collectionView.alwaysBounceVertical = true
         collectionView.delaysContentTouches = false
     }
+}
+
+extension BookListViewController: UIViewControllerTransitioningDelegate {
+    
+    // MARK: - UIViewControllerTransitioningDelegate
+    
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        slideAnimationController.isPresenting = true
+        return slideAnimationController;
+    }
+    
+    
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        slideAnimationController.isPresenting = false
+        return slideAnimationController
+    }
+
+    
 }
