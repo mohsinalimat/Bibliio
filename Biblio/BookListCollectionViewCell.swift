@@ -14,17 +14,24 @@ protocol BookListCellDelegate: NSObjectProtocol {
 }
 
 class BookListCollectionViewCell: UICollectionViewCell {
-
+    
     weak open var delegate: BookListCellDelegate?
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var progressView: CircularProgressView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var pagesReadLabel: UILabel!
     @IBOutlet weak var lastReadLabel: UILabel!
     @IBOutlet weak var finishByLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
-    private let shadowLayer = CALayer()
+    
+    @IBOutlet weak var topView: UIView!
+    
+    var maskPath: UIBezierPath? = nil
+    let maskLayer = CAShapeLayer()
+    
     private let letterLabel = UILabel()
+    
     weak var book: Book? {
         didSet {
             updateAppearance()
@@ -33,7 +40,26 @@ class BookListCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setup()
+   
+        containerView.layer.cornerRadius = 17
+    
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
+        maskPath = UIBezierPath.init(roundedRect: topView.bounds, byRoundingCorners: [.topRight, .topLeft], cornerRadii: CGSize(width: 16, height: 16))
+        maskLayer.path = maskPath!.cgPath;
+        topView.layer.mask = maskLayer;
+    }
+    
+    func setup() {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 1, height: 3)
+        layer.shadowOpacity = 0.3
+        layer.shadowRadius = 1
     }
     
     //MARK: - IBAction
@@ -68,5 +94,5 @@ class BookListCollectionViewCell: UICollectionViewCell {
             progressView.centralView = letterLabel
         }
     }
-
+    
 }

@@ -16,6 +16,7 @@ import UIKit
             borderLayer.lineWidth = borderWidth
         }
     }
+    
     /// The width of the progress bar. Defaults to 2px.
     @IBInspectable dynamic open var progressWidth: CGFloat = 2 {
         didSet {
@@ -98,7 +99,7 @@ import UIKit
     
     func setup() {
         backgroundColor = .clear
-        
+    
         progressLayer.lineWidth = progressWidth
         borderLayer.lineWidth = progressWidth
         
@@ -194,7 +195,7 @@ import UIKit
     
     func progressStrokePath(bounds: CGRect) -> CGPath {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
-        let radius = bounds.midX - borderWidth
+        let radius = bounds.midX
         
         let path = UIBezierPath.init(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         return path.cgPath

@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class Book: Object {
+public class Book: Object {
     
     dynamic var title: String = ""
     dynamic var author: String = ""

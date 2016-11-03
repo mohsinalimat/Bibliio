@@ -9,11 +9,18 @@
 import UIKit
 import RealmSwift
 
-class AddBookViewController: UIViewController {
+public protocol AddBookViewControllerDelegate: class {
     
-    override var prefersStatusBarHidden: Bool {
+    func addBookViewController(_ vc: AddBookViewController, _ didSave: Book)
+}
+
+public class AddBookViewController: BaseInputViewController {
+    
+    override public var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    weak var delegate: AddBookViewControllerDelegate?
     
     var imagePicker = UIImagePickerController()
     
@@ -21,33 +28,21 @@ class AddBookViewController: UIViewController {
 
     var book: Book = Book()
     
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var authorTextField: TextField!
-    @IBOutlet weak var titleTextField: TextField!
-    @IBOutlet weak var totalPagesTextField: TextField!
-    @IBOutlet weak var currentPageTextField: TextField!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var imagePickerButton: UIButton!
+    var addBookView = AddBookView()
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
-        imagePickerButton.clipsToBounds = true
+        addBookView.imagePickerButton.clipsToBounds = true
         imagePicker.delegate = self
         scrollView.delaysContentTouches = false
-        authorTextField.delegate = self
-        titleTextField.delegate = self
-        currentPageTextField.delegate = self
-        totalPagesTextField.delegate = self
+        addBookView.authorTextField.delegate = self
+        addBookView.titleTextField.delegate = self
+        addBookView.currentPageTextField.delegate = self
+        addBookView.totalPagesTextField.delegate = self
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        imagePickerButton.layer.cornerRadius = imagePickerButton.layer.bounds.width / 2.0
-    }
-    
-    // MARK: - IBAction
+    // MARK: - Actions
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         if shouldSave() == true {
@@ -61,11 +56,12 @@ class AddBookViewController: UIViewController {
         }
     }
     
-    @IBAction func cancelButtonPressed(_ sender: Any) {
+    func cancelButtonPressed(_ sender: Any) {
+        dismissKeyboard()
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func imagePickerButtonPressed(_ sender: Any) {
+    func imagePickerButtonPressed(_ sender: Any) {
         let takePicture = UIAlertAction.init(title: "Take Picture", style: .default, handler: { [unowned self] (alert: UIAlertAction!) in
             self.openCamera()
         })
@@ -85,21 +81,29 @@ class AddBookViewController: UIViewController {
 
     // MARK: - Helper
     
+    func dismissKeyboard() {
+        addBookView.titleTextField.resignFirstResponder()
+        addBookView.titleTextField.resignFirstResponder()
+        addBookView.currentPageTextField.resignFirstResponder()
+        addBookView.totalPagesTextField.resignFirstResponder()
+    }
+    
     func save() {
         let realm = try! Realm()
         try! realm.write {
             realm.add(book)
         }
+        delegate?.addBookViewController(self, book)
     }
     
     func shouldSave() -> Bool {
-        guard let title = titleTextField.text
+        guard let title = addBookView.titleTextField.text
             else { return false }
         
         guard title.characters.count != 0
             else { return false }
         
-        guard let totalPages = totalPagesTextField.text
+        guard let totalPages = addBookView.totalPagesTextField.text
             else { return false }
         
         guard totalPages.characters.count != 0
@@ -107,11 +111,11 @@ class AddBookViewController: UIViewController {
         
         book = Book(title: title, pages: Int(totalPages)!)
         
-        if let author = authorTextField.text {
+        if let author = addBookView.authorTextField.text {
             book.author = author
         }
         
-        if let image = imagePickerButton.currentImage, choseImage == true {
+        if let image = addBookView.imagePickerButton.currentImage, choseImage == true {
   
             if let data = UIImageJPEGRepresentation(image, 1.0) {
                 book.imageData = data
@@ -126,14 +130,14 @@ extension AddBookViewController: UITextFieldDelegate {
     
     // MARK: - UITextFieldDelegate
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        if textField == titleTextField {
-            authorTextField.becomeFirstResponder()
-        } else if textField == authorTextField {
-            currentPageTextField.becomeFirstResponder()
-        } else if textField == currentPageTextField {
-            totalPagesTextField.becomeFirstResponder()
+        if textField == addBookView.titleTextField {
+            addBookView.authorTextField.becomeFirstResponder()
+        } else if textField == addBookView.authorTextField {
+            addBookView.currentPageTextField.becomeFirstResponder()
+        } else if textField == addBookView.currentPageTextField {
+            addBookView.totalPagesTextField.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
         }
@@ -166,14 +170,14 @@ extension AddBookViewController: UIImagePickerControllerDelegate, UINavigationCo
     
     // MARK: - UIImagePickerControllerDelegate
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+   public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        imagePickerButton.contentMode = .scaleAspectFit
-        imagePickerButton.setImage(chosenImage, for: .normal)
+        addBookView.imagePickerButton.contentMode = .scaleAspectFit
+        addBookView.imagePickerButton.setImage(chosenImage, for: .normal)
         choseImage = true
         dismiss(animated: true, completion: nil)
     }

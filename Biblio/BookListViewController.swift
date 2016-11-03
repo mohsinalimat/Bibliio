@@ -9,12 +9,14 @@
 import UIKit
 import RealmSwift
 
-class BookListViewController: UIViewController, UICollectionViewDataSource, BookListCellDelegate {
+class BookListViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, BookListCellDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
-    private var books: Results<Book>?
+    let backgroundView = UIView()
+    
+    var books: Results<Book>?
     
     private var willDeleteIndexPath: IndexPath?
     
@@ -26,19 +28,26 @@ class BookListViewController: UIViewController, UICollectionViewDataSource, Book
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        automaticallyAdjustsScrollViewInsets = false
         
         books = (realm.objects(Book.self))
-        
-        automaticallyAdjustsScrollViewInsets = false
         
         setupCollectionView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        books = realm.objects(Book.self)
-        collectionView.reloadData()
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "BookDetailViewController")
+            else { return }
+        
+        let navigationController = UINavigationController.init(rootViewController: vc)
+        navigationController.isNavigationBarHidden = true
+        navigationController.modalPresentationStyle = .custom
+        navigationController.transitioningDelegate = self
+        
+        DispatchQueue.main.async { [unowned self] in
+            self.present(navigationController, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Action
@@ -47,11 +56,16 @@ class BookListViewController: UIViewController, UICollectionViewDataSource, Book
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddBookViewController")
             else { return }
         
+        let addBookVC = vc as! AddBookViewController
+        addBookVC.delegate = self
         let navigationController = UINavigationController.init(rootViewController: vc)
         navigationController.isNavigationBarHidden = true
         navigationController.modalPresentationStyle = .custom
         navigationController.transitioningDelegate = self
-        present(navigationController, animated: true, completion: nil)
+        
+        DispatchQueue.main.async { [unowned self] in
+            self.present(navigationController, animated: true, completion: nil)
+        }
     }
     
     // MARK: - BookListCellDelegate
@@ -59,6 +73,7 @@ class BookListViewController: UIViewController, UICollectionViewDataSource, Book
     func moreButtonPressed(cell: BookListCollectionViewCell) {
         
         let indexPath = collectionView.indexPath(for: cell)!
+        let book = books?[indexPath.row]
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -68,17 +83,24 @@ class BookListViewController: UIViewController, UICollectionViewDataSource, Book
         
         alertController.addAction(cancelAction)
         
-        //
         let destroyAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] (action) in
-           //self.books = self.books.arrayByRemoving(object: cell.book!)
-           self.collectionView.deleteItems(at: [indexPath])
-           self.collectionView.reloadData()
+            guard let bookToDelete = book
+                else { return }
+            
+            self.realm.beginWrite()
+            self.realm.delete(bookToDelete)
+            try! self.realm.commitWrite()
+            self.books = self.realm.objects(Book.self)
+            self.collectionView.deleteItems(at: [indexPath])
+            self.collectionView.reloadData()
         }
         
         alertController.addAction(destroyAction)
         
         present(alertController, animated: true)
     }
+    
+    
     
     // MARK: - UICollectionViewDataSource
     
@@ -114,6 +136,7 @@ class BookListViewController: UIViewController, UICollectionViewDataSource, Book
         collectionView.setCollectionViewLayout(layout, animated: false)
         collectionView.register(UINib.init(nibName: "BookListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "BookListCollectionViewCell")
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.alwaysBounceVertical = true
         collectionView.delaysContentTouches = false
     }
@@ -131,5 +154,16 @@ extension BookListViewController: UIViewControllerTransitioningDelegate {
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         slideAnimationController.isPresenting = false
         return slideAnimationController
+    }
+}
+
+extension BookListViewController: AddBookViewControllerDelegate {
+   
+    public func addBookViewController(_ vc: AddBookViewController, _ didSave: Book) {
+        books = realm.objects(Book.self)
+        collectionView.performBatchUpdates({ [unowned self] in
+            let indexSet = IndexSet(integer: 0)
+            self.collectionView.reloadSections(indexSet)
+            }, completion: nil)
     }
 }

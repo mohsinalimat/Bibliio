@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		667DA0A31DC8F1F5003E55F9 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667DA0A21DC8F1F5003E55F9 /* UIColorExtensions.swift */; };
 		667DA0B01DC94EEA003E55F9 /* VerticalSlideAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667DA0AF1DC94EEA003E55F9 /* VerticalSlideAnimationController.swift */; };
+		66A22CED1DCBEBAC008A8077 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A22CEC1DCBEBAC008A8077 /* AddBookView.swift */; };
 		66AE73C91DBFB72F00BC1260 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE73C81DBFB72F00BC1260 /* AppDelegate.swift */; };
 		66AE73CB1DBFB72F00BC1260 /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE73CA1DBFB72F00BC1260 /* AddBookViewController.swift */; };
 		66AE73CE1DBFB72F00BC1260 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66AE73CC1DBFB72F00BC1260 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 		66AE73E11DBFB73000BC1260 /* BiblioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE73E01DBFB73000BC1260 /* BiblioTests.swift */; };
 		66AE73F01DBFBDF300BC1260 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE73EF1DBFBDF300BC1260 /* Book.swift */; };
 		66AE73F21DBFBDFE00BC1260 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE73F11DBFBDFE00BC1260 /* Progress.swift */; };
+		66BDFFE21DCB958F000F43CC /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BDFFE11DCB958F000F43CC /* BookDetailViewController.swift */; };
 		66CB697D1DC3E4280054B5DE /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB697C1DC3E4280054B5DE /* TextField.swift */; };
 		66CB697F1DC3E7DB0054B5DE /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB697E1DC3E7DB0054B5DE /* BookListViewController.swift */; };
 		66CB69811DC3E8570054B5DE /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB69801DC3E8570054B5DE /* ArchiveViewController.swift */; };
@@ -25,6 +27,8 @@
 		66D7F0DF1DC7C8A30098AD2D /* BookListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D7F0DD1DC7C8A30098AD2D /* BookListCollectionViewCell.swift */; };
 		66D7F0E01DC7C8A30098AD2D /* BookListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66D7F0DE1DC7C8A30098AD2D /* BookListCollectionViewCell.xib */; };
 		66D7F0E71DC8E3E90098AD2D /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D7F0E61DC8E3E90098AD2D /* ArrayExtensions.swift */; };
+		66EAB75D1DCBB06000E9192D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB75C1DCBB06000E9192D /* BaseViewController.swift */; };
+		66EAB75F1DCBD9B800E9192D /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */; };
 		66F638981DC8F1C200039FB8 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F638971DC8F1C200039FB8 /* UIFontExtensions.swift */; };
 		9CEE82EDBB2A860C1ABF06D3 /* Pods_Biblio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAF77AB82E3280CFA74B4DF /* Pods_Biblio.framework */; };
 /* End PBXBuildFile section */
@@ -42,6 +46,7 @@
 /* Begin PBXFileReference section */
 		667DA0A21DC8F1F5003E55F9 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		667DA0AF1DC94EEA003E55F9 /* VerticalSlideAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalSlideAnimationController.swift; sourceTree = "<group>"; };
+		66A22CEC1DCBEBAC008A8077 /* AddBookView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 		66AE73C51DBFB72F00BC1260 /* Biblio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Biblio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66AE73C81DBFB72F00BC1260 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66AE73CA1DBFB72F00BC1260 /* AddBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +60,7 @@
 		66AE73E21DBFB73000BC1260 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66AE73EF1DBFBDF300BC1260 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		66AE73F11DBFBDFE00BC1260 /* Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
+		66BDFFE11DCB958F000F43CC /* BookDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		66CB697C1DC3E4280054B5DE /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		66CB697E1DC3E7DB0054B5DE /* BookListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
 		66CB69801DC3E8570054B5DE /* ArchiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +68,8 @@
 		66D7F0DD1DC7C8A30098AD2D /* BookListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListCollectionViewCell.swift; sourceTree = "<group>"; };
 		66D7F0DE1DC7C8A30098AD2D /* BookListCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListCollectionViewCell.xib; sourceTree = "<group>"; };
 		66D7F0E61DC8E3E90098AD2D /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		66EAB75C1DCBB06000E9192D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInputViewController.swift; sourceTree = "<group>"; };
 		66F638971DC8F1C200039FB8 /* UIFontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtensions.swift; sourceTree = "<group>"; };
 		71C46E5F82BFFC4D7F8237E1 /* Pods-Biblio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Biblio.release.xcconfig"; path = "Pods/Target Support Files/Pods-Biblio/Pods-Biblio.release.xcconfig"; sourceTree = "<group>"; };
 		CAAF77AB82E3280CFA74B4DF /* Pods_Biblio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Biblio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +153,9 @@
 				66CB697E1DC3E7DB0054B5DE /* BookListViewController.swift */,
 				66AE73CA1DBFB72F00BC1260 /* AddBookViewController.swift */,
 				66CB69801DC3E8570054B5DE /* ArchiveViewController.swift */,
+				66BDFFE11DCB958F000F43CC /* BookDetailViewController.swift */,
+				66EAB75C1DCBB06000E9192D /* BaseViewController.swift */,
+				66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -155,6 +166,7 @@
 				66CB69821DC3F1E50054B5DE /* Cells */,
 				66D7F0D91DC7C8050098AD2D /* CircularProgressView.swift */,
 				66CB697C1DC3E4280054B5DE /* TextField.swift */,
+				66A22CEC1DCBEBAC008A8077 /* AddBookView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -381,11 +393,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				66AE73F01DBFBDF300BC1260 /* Book.swift in Sources */,
+				66A22CED1DCBEBAC008A8077 /* AddBookView.swift in Sources */,
 				667DA0A31DC8F1F5003E55F9 /* UIColorExtensions.swift in Sources */,
 				66AE73F21DBFBDFE00BC1260 /* Progress.swift in Sources */,
 				66F638981DC8F1C200039FB8 /* UIFontExtensions.swift in Sources */,
 				66AE73CB1DBFB72F00BC1260 /* AddBookViewController.swift in Sources */,
 				66CB697D1DC3E4280054B5DE /* TextField.swift in Sources */,
+				66EAB75F1DCBD9B800E9192D /* BaseInputViewController.swift in Sources */,
 				66D7F0DF1DC7C8A30098AD2D /* BookListCollectionViewCell.swift in Sources */,
 				66AE73C91DBFB72F00BC1260 /* AppDelegate.swift in Sources */,
 				66AE73D11DBFB72F00BC1260 /* Biblio.xcdatamodeld in Sources */,
@@ -393,7 +407,9 @@
 				66CB697F1DC3E7DB0054B5DE /* BookListViewController.swift in Sources */,
 				66D7F0DA1DC7C8050098AD2D /* CircularProgressView.swift in Sources */,
 				66CB69811DC3E8570054B5DE /* ArchiveViewController.swift in Sources */,
+				66EAB75D1DCBB06000E9192D /* BaseViewController.swift in Sources */,
 				667DA0B01DC94EEA003E55F9 /* VerticalSlideAnimationController.swift in Sources */,
+				66BDFFE21DCB958F000F43CC /* BookDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
