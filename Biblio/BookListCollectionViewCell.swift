@@ -79,8 +79,8 @@ class BookListCollectionViewCell: UICollectionViewCell {
         titleLabel.text = book.title
         
         if let imageData = book.imageData {
-            let image = UIImage.init(data: imageData)
-            let imageView = UIImageView.init(image: image)
+            let image = UIImage(data: imageData)
+            let imageView = UIImageView(image: image)
             imageView.clipsToBounds = true
             imageView.contentMode = .scaleAspectFit
             progressView.centralView = imageView

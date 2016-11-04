@@ -30,7 +30,7 @@ public class BookDetailView: UIView {
     }
     
     func setup() {
-        backgroundColor = .white
+        backgroundColor = UIColor.deepBlue()
         configureTitleLabel()
         configureAuthorLabel()
         configureProgressView()
@@ -45,12 +45,13 @@ public class BookDetailView: UIView {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = .center
         titleLabel.text = "Title"
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        titleLabel.textColor = .white
         addSubview(titleLabel)
         
-        let top = NSLayoutConstraint.init(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 20)
-        let leading = NSLayoutConstraint.init(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 14)
-        let trailing = NSLayoutConstraint.init(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
+        let top = NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 20)
+        let leading = NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 14)
+        let trailing = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
 
         addConstraints([top, leading, trailing])
     }
@@ -60,10 +61,11 @@ public class BookDetailView: UIView {
         authorLabel.textAlignment = .center
         authorLabel.text = "Author"
         authorLabel.font = UIFont.systemFont(ofSize: 18)
+        authorLabel.textColor = .white
         addSubview(authorLabel)
         
-        let top = NSLayoutConstraint.init(item: authorLabel, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 8)
-        let centerX = NSLayoutConstraint.init(item: authorLabel, attribute: .centerX, relatedBy: .equal, toItem: titleLabel, attribute: .centerX, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: authorLabel, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 4)
+        let centerX = NSLayoutConstraint(item: authorLabel, attribute: .centerX, relatedBy: .equal, toItem: titleLabel, attribute: .centerX, multiplier: 1, constant: 0)
         
         addConstraints([top, centerX])
     }
@@ -77,35 +79,37 @@ public class BookDetailView: UIView {
         progressView.progress = 0.5
         addSubview(progressView)
         
-        let top = NSLayoutConstraint.init(item: progressView, attribute: .top, relatedBy: .equal, toItem: authorLabel, attribute: .bottom, multiplier: 1, constant: 20)
-        let centerX = NSLayoutConstraint.init(item: progressView, attribute: .centerX, relatedBy: .equal, toItem: authorLabel, attribute: .centerX, multiplier: 1, constant: 0)
-        let width = NSLayoutConstraint.init(item: progressView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.25, constant: 0)
-        let height = NSLayoutConstraint.init(item: progressView, attribute: .height, relatedBy: .equal, toItem: progressView, attribute: .width, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: progressView, attribute: .top, relatedBy: .equal, toItem: authorLabel, attribute: .bottom, multiplier: 1, constant: 20)
+        let centerX = NSLayoutConstraint(item: progressView, attribute: .centerX, relatedBy: .equal, toItem: authorLabel, attribute: .centerX, multiplier: 1, constant: 0)
+        let width = NSLayoutConstraint(item: progressView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.25, constant: 0)
+        let height = NSLayoutConstraint(item: progressView, attribute: .height, relatedBy: .equal, toItem: progressView, attribute: .width, multiplier: 1, constant: 0)
         
         addConstraints([top, centerX, width, height])
     }
     
     func configurePagesReadLabel() {
         pagesReadLabel.translatesAutoresizingMaskIntoConstraints = false
-        pagesReadLabel.font = UIFont.systemFont(ofSize: 18)
+        pagesReadLabel.font = UIFont.systemFont(ofSize: 20)
         pagesReadLabel.text = "132 of 200"
+        pagesReadLabel.textColor = .white
         addSubview(pagesReadLabel)
         
-        let top = NSLayoutConstraint.init(item: pagesReadLabel, attribute: .top, relatedBy: .equal, toItem: progressView, attribute: .bottom, multiplier: 1, constant: 20)
-        let centerX = NSLayoutConstraint.init(item: pagesReadLabel, attribute: .centerX, relatedBy: .equal, toItem: progressView, attribute: .centerX, multiplier: 1, constant: 0)
-       // let trailing = NSLayoutConstraint.init(item: pagesReadLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
+        let top = NSLayoutConstraint(item: pagesReadLabel, attribute: .top, relatedBy: .equal, toItem: progressView, attribute: .bottom, multiplier: 1, constant: 20)
+        let centerX = NSLayoutConstraint(item: pagesReadLabel, attribute: .centerX, relatedBy: .equal, toItem: progressView, attribute: .centerX, multiplier: 1, constant: 0)
+       // let trailing = NSLayoutConstraint(item: pagesReadLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
         
         addConstraints([top, centerX])
     }
     
     func configureCurrentPageLabel() {
         currentPageLabel.translatesAutoresizingMaskIntoConstraints = false
-        currentPageLabel.font = UIFont.systemFont(ofSize: 18)
+        currentPageLabel.font = UIFont.systemFont(ofSize: 20)
         currentPageLabel.text = "I'm on page"
+        currentPageLabel.textColor = .white
         addSubview(currentPageLabel)
 
-        let top = NSLayoutConstraint.init(item: currentPageLabel, attribute: .top, relatedBy: .equal, toItem: pagesReadLabel, attribute: .bottom, multiplier: 1, constant: 20)
-        let leading = NSLayoutConstraint.init(item: currentPageLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 14)
+        let top = NSLayoutConstraint(item: currentPageLabel, attribute: .top, relatedBy: .equal, toItem: pagesReadLabel, attribute: .bottom, multiplier: 1, constant: 20)
+        let leading = NSLayoutConstraint(item: currentPageLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 14)
         
         addConstraints([top, leading])
     }
@@ -114,10 +118,12 @@ public class BookDetailView: UIView {
         currentPageTextField.translatesAutoresizingMaskIntoConstraints = false
         currentPageTextField.font = UIFont.systemFont(ofSize: 20)
         currentPageTextField.placeholder = "Page"
+        currentPageTextField.textColor = .white
+        currentPageTextField.tintColor = .white
         addSubview(currentPageTextField)
         
-        let top = NSLayoutConstraint.init(item: currentPageTextField, attribute: .top, relatedBy: .equal, toItem: currentPageLabel, attribute: .top, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint.init(item: currentPageTextField, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
+        let top = NSLayoutConstraint(item: currentPageTextField, attribute: .top, relatedBy: .equal, toItem: currentPageLabel, attribute: .top, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: currentPageTextField, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
         
         addConstraints([top, trailing])
     }
@@ -125,9 +131,9 @@ public class BookDetailView: UIView {
     func configureSeparator() {
         addSubview(separator)
         
-        let top = NSLayoutConstraint.init(item: separator, attribute: .top, relatedBy: .equal, toItem: currentPageLabel, attribute: .bottom, multiplier: 1, constant: 6)
-        let leading = NSLayoutConstraint.init(item: separator, attribute: .leading, relatedBy: .equal, toItem: currentPageLabel, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint.init(item: separator, attribute: .trailing, relatedBy: .equal, toItem: currentPageTextField, attribute: .trailing, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: separator, attribute: .top, relatedBy: .equal, toItem: currentPageLabel, attribute: .bottom, multiplier: 1, constant: 6)
+        let leading = NSLayoutConstraint(item: separator, attribute: .leading, relatedBy: .equal, toItem: currentPageLabel, attribute: .leading, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: separator, attribute: .trailing, relatedBy: .equal, toItem: currentPageTextField, attribute: .trailing, multiplier: 1, constant: 0)
         
         addConstraints([top, leading, trailing])
     }
@@ -139,11 +145,11 @@ public class BookDetailView: UIView {
         tableView.separatorStyle = .none
         addSubview(tableView)
 
-        let top = NSLayoutConstraint.init(item: tableView, attribute: .top, relatedBy: .equal, toItem: separator, attribute: .bottom, multiplier: 1, constant: 20)
-        let leading = NSLayoutConstraint.init(item: tableView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint.init(item: tableView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-        let bottom = NSLayoutConstraint.init(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -20)
-        let height = NSLayoutConstraint.init(item: tableView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
+        let top = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: separator, attribute: .bottom, multiplier: 1, constant: 20)
+        let leading = NSLayoutConstraint(item: tableView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: tableView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -20)
+        let height = NSLayoutConstraint(item: tableView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
         
         addConstraints([top, leading, trailing, bottom, height])
     }

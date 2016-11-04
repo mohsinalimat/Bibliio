@@ -1,5 +1,5 @@
 //
-//  SeparatorView.swift
+//  EditScheduleView.swift
 //  Biblio
 //
 //  Created by Adam on 11/4/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class SeparatorView: UIView {
+public class EditScheduleView: UIView {
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,14 +21,10 @@ public class SeparatorView: UIView {
     }
     
     func setup() {
-        backgroundColor = UIColor.softGrey()
-        configureHeight()
-    }
-    
-    func configureHeight() {
+        backgroundColor = UIColor.deepBlue()
         translatesAutoresizingMaskIntoConstraints = false
-        let heightConstant = 2.0/UIScreen.main.scale
-        let height = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: heightConstant)
+        let height = NSLayoutConstraint.init(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
+        
         addConstraint(height)
     }
 }

@@ -47,10 +47,10 @@ public class BaseInputViewController: UIViewController {
         scrollView.delaysContentTouches = false
         view.addSubview(scrollView)
         
-        let top = NSLayoutConstraint.init(item: scrollView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
-        let leading = NSLayoutConstraint.init(item: scrollView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint.init(item: scrollView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        let bottom = NSLayoutConstraint.init(item: scrollView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: scrollView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint(item: scrollView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: scrollView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint(item: scrollView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
         
         view.addConstraints([top, leading, trailing, bottom])
     }
@@ -59,11 +59,11 @@ public class BaseInputViewController: UIViewController {
         outerView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(outerView)
         
-        let top = NSLayoutConstraint.init(item: outerView, attribute: .top, relatedBy: .equal, toItem: scrollView, attribute: .top, multiplier: 1, constant: 60)
-        let leading = NSLayoutConstraint.init(item: outerView, attribute: .leading, relatedBy: .equal, toItem: scrollView, attribute: .leading, multiplier: 1, constant: 14)
-        let trailing = NSLayoutConstraint.init(item: outerView, attribute: .trailing, relatedBy: .equal, toItem: scrollView, attribute: .trailing, multiplier: 1, constant: -14)
-        let bottom = NSLayoutConstraint.init(item: outerView, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, multiplier: 1, constant: 0)
-        let centerX = NSLayoutConstraint.init(item: outerView, attribute: .centerX, relatedBy: .equal, toItem: scrollView, attribute: .centerX, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: outerView, attribute: .top, relatedBy: .equal, toItem: scrollView, attribute: .top, multiplier: 1, constant: 60)
+        let leading = NSLayoutConstraint(item: outerView, attribute: .leading, relatedBy: .equal, toItem: scrollView, attribute: .leading, multiplier: 1, constant: 14)
+        let trailing = NSLayoutConstraint(item: outerView, attribute: .trailing, relatedBy: .equal, toItem: scrollView, attribute: .trailing, multiplier: 1, constant: -14)
+        let bottom = NSLayoutConstraint(item: outerView, attribute: .bottom, relatedBy: .equal, toItem: scrollView, attribute: .bottom, multiplier: 1, constant: 0)
+        let centerX = NSLayoutConstraint(item: outerView, attribute: .centerX, relatedBy: .equal, toItem: scrollView, attribute: .centerX, multiplier: 1, constant: 0)
         
         scrollView.addConstraints([top, leading, trailing, bottom, centerX])
     }
@@ -73,10 +73,10 @@ public class BaseInputViewController: UIViewController {
         containerView.clipsToBounds = true
         outerView.addSubview(containerView)
         
-        let top = NSLayoutConstraint.init(item: containerView, attribute: .top, relatedBy: .equal, toItem: outerView, attribute: .top, multiplier: 1, constant: 0)
-        let leading = NSLayoutConstraint.init(item: containerView, attribute: .leading, relatedBy: .equal, toItem: outerView, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint.init(item: containerView, attribute: .trailing, relatedBy: .equal, toItem: outerView, attribute: .trailing, multiplier: 1, constant: 0)
-        let bottom = NSLayoutConstraint.init(item: containerView, attribute: .bottom, relatedBy: .equal, toItem: outerView, attribute: .bottom, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: containerView, attribute: .top, relatedBy: .equal, toItem: outerView, attribute: .top, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint(item: containerView, attribute: .leading, relatedBy: .equal, toItem: outerView, attribute: .leading, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: containerView, attribute: .trailing, relatedBy: .equal, toItem: outerView, attribute: .trailing, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint(item: containerView, attribute: .bottom, relatedBy: .equal, toItem: outerView, attribute: .bottom, multiplier: 1, constant: 0)
         
         outerView.addConstraints([top, leading, trailing, bottom])
     }
@@ -85,9 +85,9 @@ public class BaseInputViewController: UIViewController {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(contentView)
         
-        let top = NSLayoutConstraint.init(item: contentView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: 0)
-        let leading = NSLayoutConstraint.init(item: contentView, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint.init(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: contentView, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint(item: contentView, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: 0)
         
         containerView.addConstraints([top, leading, trailing])
     }
@@ -100,13 +100,13 @@ public class BaseInputViewController: UIViewController {
         cancelButton.setTitle("Cancel", for: .normal)
         containerView.addSubview(cancelButton)
         
-        let top = NSLayoutConstraint.init(item: cancelButton, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: 0)
-        let leading = NSLayoutConstraint.init(item: cancelButton, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: 0)
-        let bottom = NSLayoutConstraint.init(item: cancelButton, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1, constant: 0)
-        let width = NSLayoutConstraint.init(item: cancelButton, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 0.5, constant: 0)
-        //let height = NSLayoutConstraint.init(item: cancelButton, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .height, multiplier: 0.1, constant: 0)
+        let top = NSLayoutConstraint(item: cancelButton, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint(item: cancelButton, attribute: .leading, relatedBy: .equal, toItem: containerView, attribute: .leading, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint(item: cancelButton, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1, constant: 0)
+        let width = NSLayoutConstraint(item: cancelButton, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 0.5, constant: 0)
+        let height = NSLayoutConstraint(item: cancelButton, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 0.13, constant: 0)
         
-        containerView.addConstraints([top, leading, bottom, width])
+        containerView.addConstraints([top, leading, bottom, width, height])
     }
     
     func configureSaveButton() {
@@ -117,11 +117,11 @@ public class BaseInputViewController: UIViewController {
         saveButton.setTitle("Save", for: .normal)
         containerView.addSubview(saveButton)
         
-        let leading = NSLayoutConstraint.init(item: saveButton, attribute: .leading, relatedBy: .equal, toItem: cancelButton, attribute: .trailing, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint.init(item: saveButton, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: 0)
-        let top = NSLayoutConstraint.init(item: saveButton, attribute: .top, relatedBy: .equal, toItem: cancelButton, attribute: .top, multiplier: 1, constant: 0)
-        let width = NSLayoutConstraint.init(item: saveButton, attribute: .width, relatedBy: .equal, toItem: cancelButton, attribute: .width, multiplier: 1, constant: 0)
-        let height = NSLayoutConstraint.init(item: saveButton, attribute: .height, relatedBy: .equal, toItem: cancelButton, attribute: .height, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint(item: saveButton, attribute: .leading, relatedBy: .equal, toItem: cancelButton, attribute: .trailing, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: saveButton, attribute: .trailing, relatedBy: .equal, toItem: containerView, attribute: .trailing, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: saveButton, attribute: .top, relatedBy: .equal, toItem: cancelButton, attribute: .top, multiplier: 1, constant: 0)
+        let width = NSLayoutConstraint(item: saveButton, attribute: .width, relatedBy: .equal, toItem: cancelButton, attribute: .width, multiplier: 1, constant: 0)
+        let height = NSLayoutConstraint(item: saveButton, attribute: .height, relatedBy: .equal, toItem: cancelButton, attribute: .height, multiplier: 1, constant: 0)
         
         containerView.addConstraints([leading, top, trailing, width, height])
     }

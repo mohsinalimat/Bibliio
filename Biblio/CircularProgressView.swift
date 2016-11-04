@@ -189,7 +189,7 @@ import UIKit
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = bounds.midX
         
-        let path = UIBezierPath.init(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         return path.cgPath
     }
     
@@ -197,7 +197,7 @@ import UIKit
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = bounds.midX
         
-        let path = UIBezierPath.init(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         return path.cgPath
     }
     
@@ -213,7 +213,7 @@ import UIKit
     func createDisplayLink() {
         guard displayLink == nil
             else { return }
-        displayLink = CADisplayLink.init(target: self, selector: #selector(displayLinkDidFire(_:)))
+        displayLink = CADisplayLink(target: self, selector: #selector(displayLinkDidFire(_:)))
         displayLink?.isPaused = false
         displayLink?.add(to: .main, forMode: .commonModes)
     }

@@ -39,7 +39,7 @@ class BookListViewController: BaseViewController, UICollectionViewDataSource, UI
         
         let vc = BookDetailViewController()
         
-        let navigationController = UINavigationController.init(rootViewController: vc)
+        let navigationController = NavigationController(rootViewController: vc)
         navigationController.isNavigationBarHidden = true
         navigationController.modalPresentationStyle = .custom
         navigationController.transitioningDelegate = self
@@ -53,7 +53,7 @@ class BookListViewController: BaseViewController, UICollectionViewDataSource, UI
     
     @IBAction func addButtonPressed(_ sender: Any) {
         let addBookVC = AddBookViewController()
-        let navigationController = UINavigationController.init(rootViewController: addBookVC)
+        let navigationController = NavigationController(rootViewController: addBookVC)
         navigationController.isNavigationBarHidden = true
         navigationController.modalPresentationStyle = .custom
         navigationController.transitioningDelegate = self
@@ -66,7 +66,6 @@ class BookListViewController: BaseViewController, UICollectionViewDataSource, UI
     // MARK: - BookListCellDelegate
     
     func moreButtonPressed(cell: BookListCollectionViewCell) {
-        
         let indexPath = collectionView.indexPath(for: cell)!
         let book = books?[indexPath.row]
         
@@ -95,18 +94,13 @@ class BookListViewController: BaseViewController, UICollectionViewDataSource, UI
         present(alertController, animated: true)
     }
     
-    
-    
     // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+        let book = books?[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookListCollectionViewCell", for: indexPath) as! BookListCollectionViewCell
         
         cell.delegate = self
-        
-        let book = books?[indexPath.row]
-        
         cell.book = book
         
         return cell
@@ -129,7 +123,7 @@ class BookListViewController: BaseViewController, UICollectionViewDataSource, UI
         
         collectionView.contentInset = UIEdgeInsets(top: 14, left: 0, bottom: 14, right: 0)
         collectionView.setCollectionViewLayout(layout, animated: false)
-        collectionView.register(UINib.init(nibName: "BookListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "BookListCollectionViewCell")
+        collectionView.register(UINib(nibName: "BookListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "BookListCollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.alwaysBounceVertical = true

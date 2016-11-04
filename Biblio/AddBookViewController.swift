@@ -43,8 +43,8 @@ public class AddBookViewController: BaseInputViewController {
             save()
             dismiss(animated: true, completion: nil)
         } else {
-            let alert = UIAlertController.init(title: "Oops", message: "Fill in at least the title and the number of pages!", preferredStyle: .alert)
-            let okButton = UIAlertAction.init(title: "OK", style: .default, handler: nil)
+            let alert = UIAlertController(title: "Oops", message: "Fill in at least the title and the number of pages!", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(okButton)
             present(alert, animated: true, completion: nil)
         }
@@ -56,17 +56,17 @@ public class AddBookViewController: BaseInputViewController {
     }
     
     func imagePickerButtonPressed(_ sender: Any) {
-        let takePicture = UIAlertAction.init(title: "Take Picture", style: .default, handler: { [unowned self] (alert: UIAlertAction!) in
+        let takePicture = UIAlertAction(title: "Take Picture", style: .default, handler: { [unowned self] (alert: UIAlertAction!) in
             self.openCamera()
         })
         
-        let choosePicture = UIAlertAction.init(title: "Choose From Gallery", style: .default, handler: { [unowned self] (alert: UIAlertAction!) in
+        let choosePicture = UIAlertAction(title: "Choose From Gallery", style: .default, handler: { [unowned self] (alert: UIAlertAction!) in
             self.openGallery()
         })
         
-        let cancel = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
-        let actionSheet = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(takePicture)
         actionSheet.addAction(choosePicture)
         actionSheet.addAction(cancel)
@@ -92,10 +92,10 @@ public class AddBookViewController: BaseInputViewController {
         addBookView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(addBookView)
         
-        let top = NSLayoutConstraint.init(item: addBookView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 0)
-        let leading = NSLayoutConstraint.init(item: addBookView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint.init(item: addBookView, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1, constant: 0)
-        let bottom = NSLayoutConstraint.init(item: addBookView, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: addBookView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint(item: addBookView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: addBookView, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint(item: addBookView, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: 0)
         
         contentView.addConstraints([top, leading, trailing, bottom])
     }

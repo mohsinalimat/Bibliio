@@ -31,7 +31,7 @@ public class AddBookView: UIView {
         backgroundColor = .white
         
 //        translatesAutoresizingMaskIntoConstraints = false
-//        let height = NSLayoutConstraint.init(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
+//        let height = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
 //        
 //        addConstraint(height)
         configureTitleLabel()
@@ -55,24 +55,24 @@ public class AddBookView: UIView {
         titleLabel.textAlignment = .center
         addSubview(titleLabel)
         
-        let top = NSLayoutConstraint.init(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 14)
-        let leading = NSLayoutConstraint.init(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 14)
-        let trailing = NSLayoutConstraint.init(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
+        let top = NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 14)
+        let leading = NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 14)
+        let trailing = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
         addConstraints([top, leading, trailing])
     }
     
     func configureImagePickerButton() {
         imagePickerButton.translatesAutoresizingMaskIntoConstraints = false
-        imagePickerButton.setImage(UIImage.init(named: "camera"), for: .normal)
+        imagePickerButton.setImage(UIImage(named: "camera"), for: .normal)
         imagePickerButton.contentMode = .scaleAspectFit
         imagePickerButton.backgroundColor = UIColor.softGrey()
         imagePickerButton.clipsToBounds = true
         addSubview(imagePickerButton)
         
-        let top = NSLayoutConstraint.init(item: imagePickerButton, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 14)
-        let centerX = NSLayoutConstraint.init(item: imagePickerButton, attribute: .centerX, relatedBy: .equal, toItem: titleLabel, attribute: .centerX, multiplier: 1, constant: 0)
-        let width = NSLayoutConstraint.init(item: imagePickerButton, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.25, constant: 0)
-        let height = NSLayoutConstraint.init(item: imagePickerButton, attribute: .height, relatedBy: .equal, toItem: imagePickerButton, attribute: .width, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: imagePickerButton, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 14)
+        let centerX = NSLayoutConstraint(item: imagePickerButton, attribute: .centerX, relatedBy: .equal, toItem: titleLabel, attribute: .centerX, multiplier: 1, constant: 0)
+        let width = NSLayoutConstraint(item: imagePickerButton, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.3, constant: 0)
+        let height = NSLayoutConstraint(item: imagePickerButton, attribute: .height, relatedBy: .equal, toItem: imagePickerButton, attribute: .width, multiplier: 1, constant: 0)
         
         addConstraints([top, centerX, width, height])
     }
@@ -87,9 +87,9 @@ public class AddBookView: UIView {
         
         addSubview(titleTextField)
         
-        let top = NSLayoutConstraint.init(item: titleTextField, attribute: .top, relatedBy: .equal, toItem: imagePickerButton, attribute: .bottom, multiplier: 1, constant: 8)
-        let leading = NSLayoutConstraint.init(item: titleTextField, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 14)
-        let trailing = NSLayoutConstraint.init(item: titleTextField, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
+        let top = NSLayoutConstraint(item: titleTextField, attribute: .top, relatedBy: .equal, toItem: imagePickerButton, attribute: .bottom, multiplier: 1, constant: 20)
+        let leading = NSLayoutConstraint(item: titleTextField, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 14)
+        let trailing = NSLayoutConstraint(item: titleTextField, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
         
         addConstraints([top, leading , trailing])
     }
@@ -104,9 +104,9 @@ public class AddBookView: UIView {
         
         addSubview(authorTextField)
         
-        let top = NSLayoutConstraint.init(item: authorTextField, attribute: .top, relatedBy: .equal, toItem: titleTextField, attribute: .bottom, multiplier: 1, constant: 20)
-        let leading = NSLayoutConstraint.init(item: authorTextField, attribute: .leading, relatedBy: .equal, toItem: titleTextField, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint.init(item: authorTextField, attribute: .trailing, relatedBy: .equal, toItem: titleTextField, attribute: .trailing, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: authorTextField, attribute: .top, relatedBy: .equal, toItem: titleTextField, attribute: .bottom, multiplier: 1, constant: 30)
+        let leading = NSLayoutConstraint(item: authorTextField, attribute: .leading, relatedBy: .equal, toItem: titleTextField, attribute: .leading, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: authorTextField, attribute: .trailing, relatedBy: .equal, toItem: titleTextField, attribute: .trailing, multiplier: 1, constant: 0)
         
         addConstraints([top, leading , trailing])
     }
@@ -123,10 +123,10 @@ public class AddBookView: UIView {
         
         addSubview(currentPageTextField)
         
-        let top = NSLayoutConstraint.init(item: currentPageTextField, attribute: .top, relatedBy: .equal, toItem: authorTextField, attribute: .bottom, multiplier: 1, constant: 20)
-        let leading = NSLayoutConstraint.init(item: currentPageTextField, attribute: .leading, relatedBy: .equal, toItem: authorTextField, attribute: .leading, multiplier: 1, constant: 0)
-        let width = NSLayoutConstraint.init(item: currentPageTextField, attribute: .width, relatedBy: .equal, toItem: authorTextField, attribute: .width, multiplier: 0.4, constant: 0)
-        let bottom = NSLayoutConstraint.init(item: currentPageTextField, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -40)
+        let top = NSLayoutConstraint(item: currentPageTextField, attribute: .top, relatedBy: .equal, toItem: authorTextField, attribute: .bottom, multiplier: 1, constant: 30)
+        let leading = NSLayoutConstraint(item: currentPageTextField, attribute: .leading, relatedBy: .equal, toItem: authorTextField, attribute: .leading, multiplier: 1, constant: 0)
+        let width = NSLayoutConstraint(item: currentPageTextField, attribute: .width, relatedBy: .equal, toItem: authorTextField, attribute: .width, multiplier: 0.4, constant: 0)
+        let bottom = NSLayoutConstraint(item: currentPageTextField, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -40)
 
         addConstraints([top, leading, width, bottom])
     }
@@ -142,9 +142,9 @@ public class AddBookView: UIView {
         
         addSubview(totalPagesTextField)
         
-        let top = NSLayoutConstraint.init(item: totalPagesTextField, attribute: .top, relatedBy: .equal, toItem: currentPageTextField, attribute: .top, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint.init(item: totalPagesTextField, attribute: .trailing, relatedBy: .equal, toItem: authorTextField, attribute: .trailing, multiplier: 1, constant: 0)
-        let width = NSLayoutConstraint.init(item: totalPagesTextField, attribute: .width, relatedBy: .equal, toItem: currentPageTextField, attribute: .width, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: totalPagesTextField, attribute: .top, relatedBy: .equal, toItem: currentPageTextField, attribute: .top, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: totalPagesTextField, attribute: .trailing, relatedBy: .equal, toItem: authorTextField, attribute: .trailing, multiplier: 1, constant: 0)
+        let width = NSLayoutConstraint(item: totalPagesTextField, attribute: .width, relatedBy: .equal, toItem: currentPageTextField, attribute: .width, multiplier: 1, constant: 0)
     
         addConstraints([top, trailing, width])
     }
