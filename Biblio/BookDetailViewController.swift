@@ -8,26 +8,32 @@
 
 import UIKit
 
-class BookDetailViewController: UIViewController {
+class BookDetailViewController: BaseInputViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var progressView: CircularProgressView!
-    @IBOutlet weak var pagesReadLabel: UILabel!
-    @IBOutlet weak var pageTextField: UITextField!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var finishDateLabel: UILabel!
-    @IBOutlet weak var finishByLabel: UILabel!
-    @IBOutlet weak var editButton: UIButton!
+    var bookDetailView = BookDetailView()
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.tableFooterView = UIView()
-        tableView.dataSource = self
-        tableView.backgroundColor = .clear
+        setup()
+        bookDetailView.tableView.dataSource = self
+    }
+    
+    func setup() {
+        configureBookDetailView()
+    }
+    
+    func configureBookDetailView() {
+        bookDetailView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(bookDetailView)
+        
+        let top = NSLayoutConstraint.init(item: bookDetailView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint.init(item: bookDetailView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint.init(item: bookDetailView, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint.init(item: bookDetailView, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: 0)
+        
+        contentView.addConstraints([top, leading, trailing, bottom])
     }
     
     // MARK: - IBAction
@@ -51,7 +57,8 @@ extension BookDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell")!
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: "TableViewCell")
+        cell.accessoryType = .disclosureIndicator
         
         cell.textLabel?.text = "You'll finish by"
         

@@ -33,18 +33,12 @@ public class AddBookViewController: BaseInputViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        addBookView.imagePickerButton.clipsToBounds = true
-        imagePicker.delegate = self
-        scrollView.delaysContentTouches = false
-        addBookView.authorTextField.delegate = self
-        addBookView.titleTextField.delegate = self
-        addBookView.currentPageTextField.delegate = self
-        addBookView.totalPagesTextField.delegate = self
+        setup()
     }
     
     // MARK: - Actions
     
-    @IBAction func saveButtonPressed(_ sender: Any) {
+    func saveButtonPressed(_ sender: Any) {
         if shouldSave() == true {
             save()
             dismiss(animated: true, completion: nil)
@@ -79,6 +73,33 @@ public class AddBookViewController: BaseInputViewController {
         present(actionSheet, animated: true, completion: nil)
     }
 
+    // MARK: - Private
+    
+    private func setup() {
+        configureAddBookView()
+        imagePicker.delegate = self
+        saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
+    }
+    
+    private func configureAddBookView() {
+        addBookView.authorTextField.delegate = self
+        addBookView.titleTextField.delegate = self
+        addBookView.currentPageTextField.delegate = self
+        addBookView.totalPagesTextField.delegate = self
+        addBookView.imagePickerButton.addTarget(self, action: #selector(imagePickerButtonPressed(_:)), for: .touchUpInside)
+        
+        addBookView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(addBookView)
+        
+        let top = NSLayoutConstraint.init(item: addBookView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint.init(item: addBookView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint.init(item: addBookView, attribute: .trailing, relatedBy: .equal, toItem: contentView, attribute: .trailing, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint.init(item: addBookView, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: 0)
+        
+        contentView.addConstraints([top, leading, trailing, bottom])
+    }
+    
     // MARK: - Helper
     
     func dismissKeyboard() {

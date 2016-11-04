@@ -37,8 +37,7 @@ class BookListViewController: BaseViewController, UICollectionViewDataSource, UI
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "BookDetailViewController")
-            else { return }
+        let vc = BookDetailViewController()
         
         let navigationController = UINavigationController.init(rootViewController: vc)
         navigationController.isNavigationBarHidden = true
@@ -53,12 +52,8 @@ class BookListViewController: BaseViewController, UICollectionViewDataSource, UI
     // MARK: - Action
     
     @IBAction func addButtonPressed(_ sender: Any) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "AddBookViewController")
-            else { return }
-        
-        let addBookVC = vc as! AddBookViewController
-        addBookVC.delegate = self
-        let navigationController = UINavigationController.init(rootViewController: vc)
+        let addBookVC = AddBookViewController()
+        let navigationController = UINavigationController.init(rootViewController: addBookVC)
         navigationController.isNavigationBarHidden = true
         navigationController.modalPresentationStyle = .custom
         navigationController.transitioningDelegate = self

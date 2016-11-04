@@ -30,6 +30,8 @@
 		66EAB75D1DCBB06000E9192D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB75C1DCBB06000E9192D /* BaseViewController.swift */; };
 		66EAB75F1DCBD9B800E9192D /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */; };
 		66F638981DC8F1C200039FB8 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F638971DC8F1C200039FB8 /* UIFontExtensions.swift */; };
+		66FD7F021DCCF968003218F7 /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD7F011DCCF968003218F7 /* BookDetailView.swift */; };
+		66FD7F041DCCF9FB003218F7 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD7F031DCCF9FB003218F7 /* SeparatorView.swift */; };
 		9CEE82EDBB2A860C1ABF06D3 /* Pods_Biblio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAF77AB82E3280CFA74B4DF /* Pods_Biblio.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +73,8 @@
 		66EAB75C1DCBB06000E9192D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInputViewController.swift; sourceTree = "<group>"; };
 		66F638971DC8F1C200039FB8 /* UIFontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtensions.swift; sourceTree = "<group>"; };
+		66FD7F011DCCF968003218F7 /* BookDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
+		66FD7F031DCCF9FB003218F7 /* SeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		71C46E5F82BFFC4D7F8237E1 /* Pods-Biblio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Biblio.release.xcconfig"; path = "Pods/Target Support Files/Pods-Biblio/Pods-Biblio.release.xcconfig"; sourceTree = "<group>"; };
 		CAAF77AB82E3280CFA74B4DF /* Pods_Biblio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Biblio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF7921EC217887B3EF8A8454 /* Pods-Biblio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Biblio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Biblio/Pods-Biblio.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 				66D7F0D91DC7C8050098AD2D /* CircularProgressView.swift */,
 				66CB697C1DC3E4280054B5DE /* TextField.swift */,
 				66A22CEC1DCBEBAC008A8077 /* AddBookView.swift */,
+				66FD7F011DCCF968003218F7 /* BookDetailView.swift */,
+				66FD7F031DCCF9FB003218F7 /* SeparatorView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -394,8 +400,10 @@
 			files = (
 				66AE73F01DBFBDF300BC1260 /* Book.swift in Sources */,
 				66A22CED1DCBEBAC008A8077 /* AddBookView.swift in Sources */,
+				66FD7F041DCCF9FB003218F7 /* SeparatorView.swift in Sources */,
 				667DA0A31DC8F1F5003E55F9 /* UIColorExtensions.swift in Sources */,
 				66AE73F21DBFBDFE00BC1260 /* Progress.swift in Sources */,
+				66FD7F021DCCF968003218F7 /* BookDetailView.swift in Sources */,
 				66F638981DC8F1C200039FB8 /* UIFontExtensions.swift in Sources */,
 				66AE73CB1DBFB72F00BC1260 /* AddBookViewController.swift in Sources */,
 				66CB697D1DC3E4280054B5DE /* TextField.swift in Sources */,
