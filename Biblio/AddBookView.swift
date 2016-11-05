@@ -88,8 +88,8 @@ public class AddBookView: UIView {
         addSubview(titleTextField)
         
         let top = NSLayoutConstraint(item: titleTextField, attribute: .top, relatedBy: .equal, toItem: imagePickerButton, attribute: .bottom, multiplier: 1, constant: 20)
-        let leading = NSLayoutConstraint(item: titleTextField, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 14)
-        let trailing = NSLayoutConstraint(item: titleTextField, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
+        let leading = NSLayoutConstraint(item: titleTextField, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 20)
+        let trailing = NSLayoutConstraint(item: titleTextField, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -20)
         
         addConstraints([top, leading , trailing])
     }

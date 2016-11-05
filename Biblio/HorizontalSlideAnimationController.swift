@@ -44,7 +44,6 @@ class HorizontalSlideAnimationController: NSObject, UIViewControllerAnimatedTran
                 fromView.removeFromSuperview()
                 transitionContext.completeTransition(didComplete)
             })
-
         }
     }
 }

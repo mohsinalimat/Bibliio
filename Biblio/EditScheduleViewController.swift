@@ -9,7 +9,7 @@
 import UIKit
 
 class EditScheduleViewController: BaseInputViewController {
-
+    
     private var editScheduleView = EditScheduleView()
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class EditScheduleViewController: BaseInputViewController {
     }
     
     func saveButtonPressed(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        let _ = navigationController?.popViewController(animated: true)
     }
     
     func configureEditScheduleView() {
