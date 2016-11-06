@@ -68,11 +68,11 @@ extension BookDetailViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = .clear
         cell.accessoryType = .disclosureIndicator
         
-        cell.textLabel?.textColor = .white
+        cell.textLabel?.textColor = .darkText
         cell.textLabel?.text = "You'll finish by"
         
         cell.detailTextLabel?.text = "11/10/16"
-        cell.detailTextLabel?.textColor = .white
+        cell.detailTextLabel?.textColor = .darkText
 
         return cell
     }

@@ -19,7 +19,7 @@ public class EditScheduleView: UIView {
     public var repeatLabel = UILabel()
     public var daysLabel = UILabel()
     public var thirdSeparatorView = SeparatorView()
-    public var tempView = UIView()
+    public var tempView = DayButtonContainerView()
     public var reminderLabel = UILabel()
     public var reminderSwitch = UISwitch()
     public var pickerView = UIDatePicker()
@@ -34,8 +34,14 @@ public class EditScheduleView: UIView {
         setup()
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        tempView.layer.cornerRadius = 18
+    }
+    
     func setup() {
-       backgroundColor = UIColor.deepBlue()
+       backgroundColor = UIColor.white
        // translatesAutoresizingMaskIntoConstraints = false
        // let height = NSLayoutConstraint.init(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
        // addConstraint(height)
@@ -60,7 +66,7 @@ public class EditScheduleView: UIView {
         finishByLabel.font = UIFont.systemFont(ofSize: 20)
         finishByLabel.text = "I want to finish by"
         finishByLabel.textAlignment = .center
-        finishByLabel.textColor = .white
+        finishByLabel.textColor = .darkText
         addSubview(finishByLabel)
         
         let top = NSLayoutConstraint(item: finishByLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 50)
@@ -72,9 +78,9 @@ public class EditScheduleView: UIView {
     func configureFinishDateButton() {
         finishDateButton.translatesAutoresizingMaskIntoConstraints = false
         finishDateButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        finishDateButton.setTitleColor(.white, for: .normal)
+        finishDateButton.setTitleColor(.darkText, for: .normal)
         finishDateButton.setTitle("11/16/16", for: .normal)
-        finishDateButton.setTitleColor(.white, for: .normal)
+        finishDateButton.setTitleColor(.darkText, for: .normal)
         addSubview(finishDateButton)
         
         let baseline = NSLayoutConstraint(item: finishDateButton, attribute: .lastBaseline, relatedBy: .equal, toItem: finishByLabel, attribute: .lastBaseline, multiplier: 1, constant: 0)
@@ -95,7 +101,7 @@ public class EditScheduleView: UIView {
     
     func configureReadingLabel() {
         readingLabel.translatesAutoresizingMaskIntoConstraints = false
-        readingLabel.textColor = .white
+        readingLabel.textColor = .darkText
         readingLabel.text = "Reading"
         readingLabel.font = UIFont.systemFont(ofSize: 20)
         addSubview(readingLabel)
@@ -108,11 +114,12 @@ public class EditScheduleView: UIView {
     
     func configurePageTextField() {
         pageTextField.translatesAutoresizingMaskIntoConstraints = false
-        pageTextField.textColor = .white
+        pageTextField.textColor = .darkText
         pageTextField.text = "132"
         pageTextField.font = UIFont.systemFont(ofSize: 20)
         pageTextField.tintColor = .white
         pageTextField.textAlignment = .right
+        pageTextField.keyboardType = .numberPad
         addSubview(pageTextField)
         
         let top = NSLayoutConstraint(item: pageTextField, attribute: .top, relatedBy: .equal, toItem: readingLabel, attribute: .top, multiplier: 1, constant: 0)
@@ -134,7 +141,7 @@ public class EditScheduleView: UIView {
     
     func configureRepeatLabel() {
         repeatLabel.translatesAutoresizingMaskIntoConstraints = false
-        repeatLabel.textColor = .white
+        repeatLabel.textColor = .darkText
         repeatLabel.text = "Every"
         repeatLabel.font = UIFont.systemFont(ofSize: 20)
         addSubview(repeatLabel)
@@ -147,7 +154,7 @@ public class EditScheduleView: UIView {
     
     func configureDaysLabel() {
         daysLabel.translatesAutoresizingMaskIntoConstraints = false
-        daysLabel.textColor = .white
+        daysLabel.textColor = .darkText
         daysLabel.text = "Mon, Tue, Wed"
         daysLabel.font = UIFont.systemFont(ofSize: 20)
         addSubview(daysLabel)
@@ -170,26 +177,25 @@ public class EditScheduleView: UIView {
     
     func configureTempView() {
         tempView.translatesAutoresizingMaskIntoConstraints = false
-        tempView.backgroundColor = UIColor.softGrey()
         addSubview(tempView)
         
         let top = NSLayoutConstraint(item: tempView, attribute: .top, relatedBy: .equal, toItem: thirdSeparatorView, attribute: .bottom, multiplier: 1, constant: 20)
-        let leading = NSLayoutConstraint(item: tempView, attribute: .leading, relatedBy: .equal, toItem: thirdSeparatorView, attribute: .leading, multiplier: 1, constant: 0)
-        let trailing = NSLayoutConstraint(item: tempView, attribute: .trailing, relatedBy: .equal, toItem: thirdSeparatorView, attribute: .trailing, multiplier: 1, constant: 0)
-        let height = NSLayoutConstraint(item: tempView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
+        let leading = NSLayoutConstraint(item: tempView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 8)
+        let trailing = NSLayoutConstraint(item: tempView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -8)
+        let height = NSLayoutConstraint(item: tempView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: (1/10), constant: 0)
 
         addConstraints([top, leading, trailing, height])
     }
     
     func configureReminderLabel() {
         reminderLabel.translatesAutoresizingMaskIntoConstraints = false
-        reminderLabel.textColor = .white
+        reminderLabel.textColor = .darkText
         reminderLabel.text = "Reminders"
         reminderLabel.font = UIFont.systemFont(ofSize: 20)
         addSubview(reminderLabel)
         
         let top = NSLayoutConstraint(item: reminderLabel, attribute: .top, relatedBy: .equal, toItem: tempView, attribute: .bottom, multiplier: 1, constant: 20)
-        let leading = NSLayoutConstraint(item: reminderLabel, attribute: .leading, relatedBy: .equal, toItem: tempView, attribute: .leading, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint(item: reminderLabel, attribute: .leading, relatedBy: .equal, toItem: thirdSeparatorView, attribute: .leading, multiplier: 1, constant: 0)
 
         addConstraints([top, leading])
     }
@@ -199,7 +205,7 @@ public class EditScheduleView: UIView {
         reminderSwitch.isOn = true
         addSubview(reminderSwitch)
         
-        let top = NSLayoutConstraint(item: reminderSwitch, attribute: .top, relatedBy: .equal, toItem: tempView, attribute: .bottom, multiplier: 1, constant: 20)
+        let top = NSLayoutConstraint(item: reminderSwitch, attribute: .centerY, relatedBy: .equal, toItem: reminderLabel, attribute: .centerY, multiplier: 1, constant: 0)
         let trailing = NSLayoutConstraint(item: reminderSwitch, attribute: .trailing, relatedBy: .equal, toItem: tempView, attribute: .trailing, multiplier: 1, constant: 0)
 
         addConstraints([top, trailing])
@@ -216,7 +222,7 @@ public class EditScheduleView: UIView {
         let leading = NSLayoutConstraint(item: pickerView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
         let trailing = NSLayoutConstraint(item: pickerView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
         let bottom = NSLayoutConstraint(item: pickerView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -20)
-        let height = NSLayoutConstraint(item: pickerView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
+        let height = NSLayoutConstraint(item: pickerView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 100)
         
         addConstraints([top, leading, trailing, bottom, height])
     }

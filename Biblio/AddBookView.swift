@@ -10,7 +10,7 @@ import UIKit
 
 public class AddBookView: UIView {
     
-    public var titleLabel = UILabel()
+    public var headerLabel = UILabel()
     public var imagePickerButton = UIButton()
     public var titleTextField = TextField()
     public var authorTextField = TextField()
@@ -34,7 +34,7 @@ public class AddBookView: UIView {
 //        let height = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
 //        
 //        addConstraint(height)
-        configureTitleLabel()
+        configureHeaderLabel()
         configureImagePickerButton()
         configureTitleTextField()
         configureAuthorTextField()
@@ -48,16 +48,16 @@ public class AddBookView: UIView {
         imagePickerButton.layer.cornerRadius = imagePickerButton.frame.width / 2.0
     }
     
-    func configureTitleLabel() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = "What are you reading?"
-        titleLabel.font = UIFont.systemFont(ofSize: 24, weight: UIFontWeightLight)
-        titleLabel.textAlignment = .center
-        addSubview(titleLabel)
+    func configureHeaderLabel() {
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+        headerLabel.text = "What are you reading?"
+        headerLabel.font = UIFont.systemFont(ofSize: 24, weight: UIFontWeightLight)
+        headerLabel.textAlignment = .center
+        addSubview(headerLabel)
         
-        let top = NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 14)
-        let leading = NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 14)
-        let trailing = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
+        let top = NSLayoutConstraint(item: headerLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 14)
+        let leading = NSLayoutConstraint(item: headerLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 14)
+        let trailing = NSLayoutConstraint(item: headerLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -14)
         addConstraints([top, leading, trailing])
     }
     
@@ -69,8 +69,8 @@ public class AddBookView: UIView {
         imagePickerButton.clipsToBounds = true
         addSubview(imagePickerButton)
         
-        let top = NSLayoutConstraint(item: imagePickerButton, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 14)
-        let centerX = NSLayoutConstraint(item: imagePickerButton, attribute: .centerX, relatedBy: .equal, toItem: titleLabel, attribute: .centerX, multiplier: 1, constant: 0)
+        let top = NSLayoutConstraint(item: imagePickerButton, attribute: .top, relatedBy: .equal, toItem: headerLabel, attribute: .bottom, multiplier: 1, constant: 14)
+        let centerX = NSLayoutConstraint(item: imagePickerButton, attribute: .centerX, relatedBy: .equal, toItem: headerLabel, attribute: .centerX, multiplier: 1, constant: 0)
         let width = NSLayoutConstraint(item: imagePickerButton, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0.3, constant: 0)
         let height = NSLayoutConstraint(item: imagePickerButton, attribute: .height, relatedBy: .equal, toItem: imagePickerButton, attribute: .width, multiplier: 1, constant: 0)
         
