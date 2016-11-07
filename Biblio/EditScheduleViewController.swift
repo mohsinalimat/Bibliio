@@ -12,6 +12,12 @@ class EditScheduleViewController: BaseInputViewController {
     
     private var editScheduleView = EditScheduleView()
     
+    var book = Book() {
+        didSet {
+            updateUI()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -36,5 +42,13 @@ class EditScheduleViewController: BaseInputViewController {
         let bottom = NSLayoutConstraint(item: editScheduleView, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: 0)
         
         contentView.addConstraints([top, leading, trailing, bottom])
+    }
+    
+    func updateUI() {
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        editScheduleView.finishDateButton.setTitle(formatter.string(from: book.progress.finishDate), for: .normal)
+        editScheduleView.pageTextField.text = "\(book.progress.pagesPerDayGoal)"
     }
 }

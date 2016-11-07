@@ -30,6 +30,8 @@ public class DayButtonContainerView: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
+        
+        layer.cornerRadius = 22
     }
     
     func setup() {
@@ -46,7 +48,7 @@ public class DayButtonContainerView: UIView {
     func configureSundayButton() {
         sundayButton.translatesAutoresizingMaskIntoConstraints = false
         sundayButton.backgroundColor = UIColor.deepBlue()
-        sundayButton.setTitle("Sun", for: .normal)
+        sundayButton.setTitle("Su", for: .normal)
         addSubview(sundayButton)
         
         let top = NSLayoutConstraint(item: sundayButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
@@ -60,7 +62,7 @@ public class DayButtonContainerView: UIView {
     func configureMondayButton() {
         mondayButton.translatesAutoresizingMaskIntoConstraints = false
         mondayButton.backgroundColor = UIColor.deepBlue()
-        mondayButton.setTitle("Mon", for: .normal)
+        mondayButton.setTitle("M", for: .normal)
         addSubview(mondayButton)
         
         let top = NSLayoutConstraint(item: mondayButton, attribute: .top, relatedBy: .equal, toItem: sundayButton, attribute: .top, multiplier: 1, constant: 0)
@@ -74,7 +76,7 @@ public class DayButtonContainerView: UIView {
     func configureTuesdayButton() {
         tuesdayButton.translatesAutoresizingMaskIntoConstraints = false
         tuesdayButton.backgroundColor = UIColor.deepBlue()
-        tuesdayButton.setTitle("Tue", for: .normal)
+        tuesdayButton.setTitle("Tu", for: .normal)
         addSubview(tuesdayButton)
         
         let top = NSLayoutConstraint(item: tuesdayButton, attribute: .top, relatedBy: .equal, toItem: mondayButton, attribute: .top, multiplier: 1, constant: 0)
@@ -88,7 +90,7 @@ public class DayButtonContainerView: UIView {
     func configureWednesdayButton() {
         wednesdayButton.translatesAutoresizingMaskIntoConstraints = false
         wednesdayButton.backgroundColor = UIColor.deepBlue()
-        wednesdayButton.setTitle("Wed", for: .normal)
+        wednesdayButton.setTitle("W", for: .normal)
         addSubview(wednesdayButton)
         
         let top = NSLayoutConstraint(item: wednesdayButton, attribute: .top, relatedBy: .equal, toItem: tuesdayButton, attribute: .top, multiplier: 1, constant: 0)
@@ -102,7 +104,7 @@ public class DayButtonContainerView: UIView {
     func configureThursdayButton() {
         thursdayButton.translatesAutoresizingMaskIntoConstraints = false
         thursdayButton.backgroundColor = UIColor.deepBlue()
-        thursdayButton.setTitle("Thu", for: .normal)
+        thursdayButton.setTitle("Th", for: .normal)
         addSubview(thursdayButton)
         
         let top = NSLayoutConstraint(item: thursdayButton, attribute: .top, relatedBy: .equal, toItem: wednesdayButton, attribute: .top, multiplier: 1, constant: 0)
@@ -116,7 +118,7 @@ public class DayButtonContainerView: UIView {
     func configureFridayButton() {
         fridayButton.translatesAutoresizingMaskIntoConstraints = false
         fridayButton.backgroundColor = UIColor.deepBlue()
-        fridayButton.setTitle("Fri", for: .normal)
+        fridayButton.setTitle("F", for: .normal)
         addSubview(fridayButton)
         
         let top = NSLayoutConstraint(item: fridayButton, attribute: .top, relatedBy: .equal, toItem: thursdayButton, attribute: .top, multiplier: 1, constant: 0)
@@ -130,7 +132,7 @@ public class DayButtonContainerView: UIView {
     func configureSaturdayButton() {
         saturdayButton.translatesAutoresizingMaskIntoConstraints = false
         saturdayButton.backgroundColor = UIColor.deepBlue()
-        saturdayButton.setTitle("Sat", for: .normal)
+        saturdayButton.setTitle("Sa", for: .normal)
         addSubview(saturdayButton)
         
         let top = NSLayoutConstraint(item: saturdayButton, attribute: .top, relatedBy: .equal, toItem: fridayButton, attribute: .top, multiplier: 1, constant: 0)

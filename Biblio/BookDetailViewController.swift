@@ -11,10 +11,21 @@ import UIKit
 class BookDetailViewController: BaseInputViewController {
 
     var bookDetailView = BookDetailView()
+    var book = Book() {
+        didSet {
+            updateUI()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        bookDetailView.progressView.setProgress(value: book.progress.percentage, animated: true, duration: 1.0, completion: nil)
     }
     
     func setup() {
@@ -39,6 +50,13 @@ class BookDetailViewController: BaseInputViewController {
         contentView.addConstraints([top, leading, trailing, bottom])
     }
     
+    func updateUI() {
+        bookDetailView.titleLabel.text = book.title
+        bookDetailView.authorLabel.text = book.author
+        bookDetailView.pagesReadLabel.text = "\(book.progress.currentPage) of \(book.progress.totalPages)"
+        bookDetailView.currentPageTextField.text = "\(book.progress.currentPage)"
+    }
+    
     // MARK: - Action
     
     func cancelButtonPressed(_ sender: Any) {
@@ -49,8 +67,7 @@ class BookDetailViewController: BaseInputViewController {
     }
 }
 
-extension BookDetailViewController: UITableViewDataSource, UITableViewDelegate {
-    
+extension BookDetailViewController: UITableViewDataSource {
     
     // MARK: - UITableViewDataSource
     
@@ -71,17 +88,22 @@ extension BookDetailViewController: UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.textColor = .darkText
         cell.textLabel?.text = "You'll finish by"
         
-        cell.detailTextLabel?.text = "11/10/16"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        cell.detailTextLabel?.text = dateFormatter.string(from: book.progress.finishDate)
         cell.detailTextLabel?.textColor = .darkText
 
         return cell
     }
+}
+
+extension BookDetailViewController: UITableViewDelegate {
     
     // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = EditScheduleViewController()
+        vc.book = book
         navigationController?.pushViewController(vc, animated: true)
     }
-    
 }

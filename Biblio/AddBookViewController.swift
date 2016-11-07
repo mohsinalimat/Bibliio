@@ -21,13 +21,9 @@ public class AddBookViewController: BaseInputViewController {
     }
     
     weak var delegate: AddBookViewControllerDelegate?
-    
     var imagePicker = UIImagePickerController()
-    
     var choseImage = false
-
     var book: Book = Book()
-    
     var addBookView = AddBookView()
     
     override public func viewDidLoad() {
@@ -130,7 +126,13 @@ public class AddBookViewController: BaseInputViewController {
         guard totalPages.characters.count != 0
             else { return false }
         
-        book = Book(title: title, pages: Int(totalPages)!)
+        guard let currentPage = addBookView.currentPageTextField.text
+            else { return false }
+        
+        guard currentPage.characters.count != 0
+            else { return false }
+        
+        book = Book(title: title, currentPage: Int(currentPage)!, totalPages: Int(totalPages)!)
         
         if let author = addBookView.authorTextField.text {
             book.author = author

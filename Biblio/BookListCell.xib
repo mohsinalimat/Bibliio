@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BookListCollectionViewCell" customModule="Biblio" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BookListCell" customModule="Biblio" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="417" height="240"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -36,7 +36,7 @@
                                         <color key="value" red="0.08235294118" green="0.64705882349999999" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="progress">
-                                        <real key="value" value="0.5"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="10"/>
@@ -182,11 +182,14 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="containerView" destination="42s-64-TzN" id="hAk-JC-mWL"/>
+                <outlet property="couldFinishLabel" destination="Nx6-u1-xqt" id="a5n-9h-s8R"/>
                 <outlet property="finishByLabel" destination="6rs-a6-9hF" id="lUC-hy-zRn"/>
-                <outlet property="lastReadLabel" destination="r20-gn-2oC" id="rLI-el-5Iu"/>
+                <outlet property="lastReadLabel" destination="r20-gn-2oC" id="TUC-do-Psi"/>
+                <outlet property="lastReadTitleLabel" destination="sQc-UB-1by" id="dWh-4g-E4c"/>
                 <outlet property="moreButton" destination="416-G3-FvS" id="YSa-U6-EGO"/>
                 <outlet property="pagesReadLabel" destination="hYP-1k-Cgl" id="vZG-x0-WSZ"/>
                 <outlet property="progressView" destination="l7I-26-TZf" id="sC0-vH-O8l"/>
+                <outlet property="readLabel" destination="OpT-qR-7f5" id="bxd-73-OG0"/>
                 <outlet property="titleLabel" destination="1wO-Pm-T1Y" id="dmk-Vj-JsJ"/>
                 <outlet property="topView" destination="pX7-Ri-FSd" id="ZdJ-b4-biI"/>
             </connections>

@@ -10,10 +10,12 @@ import UIKit
 
 protocol BookListCellDelegate: NSObjectProtocol {
     
-    func moreButtonPressed(cell: BookListCollectionViewCell) -> ()
+    func moreButtonPressed(cell: BookListCell) -> ()
 }
 
-class BookListCollectionViewCell: UICollectionViewCell {
+class BookListCell: UICollectionViewCell {
+    
+    static let Identifier = "BookListCell"
     
     weak open var delegate: BookListCellDelegate?
     
@@ -24,9 +26,11 @@ class BookListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lastReadLabel: UILabel!
     @IBOutlet weak var finishByLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
-    
+    @IBOutlet weak var readLabel: UILabel!
+    @IBOutlet weak var couldFinishLabel: UILabel!
     @IBOutlet weak var topView: UIView!
     
+    @IBOutlet weak var lastReadTitleLabel: UILabel!
     var maskPath: UIBezierPath? = nil
     let maskLayer = CAShapeLayer()
     
@@ -43,7 +47,6 @@ class BookListCollectionViewCell: UICollectionViewCell {
         setup()
    
         containerView.layer.cornerRadius = 17
-    
     }
     
     override func layoutSubviews() {
@@ -60,23 +63,32 @@ class BookListCollectionViewCell: UICollectionViewCell {
         layer.shadowOffset = CGSize(width: 1, height: 3)
         layer.shadowOpacity = 0.3
         layer.shadowRadius = 1
+        readLabel.font = UIFont.titleLabelFont()
+        pagesReadLabel.font = UIFont.valueLabelFont()
+        lastReadTitleLabel.font = UIFont.titleLabelFont()
+        lastReadLabel.font = UIFont.valueLabelFont()
+        couldFinishLabel.font = UIFont.titleLabelFont()
+        finishByLabel.font = UIFont.valueLabelFont()
     }
     
     //MARK: - IBAction
     
     @IBAction func moreButtonPressed(_ sender: Any) {
-        
         self.delegate?.moreButtonPressed(cell: self)
     }
     
     // MARK: - UI
     
     func updateAppearance() {
-        
         guard let book = self.book
             else { return }
         
         titleLabel.text = book.title
+        pagesReadLabel.text = "\(book.progress.currentPage) of \(book.totalPages)"
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        lastReadLabel.text = "\(formatter.string(from: book.progress.lastRead))"
+        finishByLabel.text = "\(formatter.string(from: book.progress.finishDate))"
         
         if let imageData = book.imageData {
             let image = UIImage(data: imageData)
@@ -95,4 +107,9 @@ class BookListCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    func animateProgress() {
+        guard let book = book
+            else { return }
+        progressView.setProgress(value: book.progress.percentage, animated: true, duration: 0.5, completion: nil)
+    }
 }

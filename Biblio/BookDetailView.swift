@@ -90,7 +90,6 @@ public class BookDetailView: UIView {
         progressView.progressWidth = 8
         progressView.borderColor = UIColor.lightGreen()
         progressView.progressColor = UIColor.jade()
-        progressView.progress = 0.5
         topView.addSubview(progressView)
         
         let top = NSLayoutConstraint(item: progressView, attribute: .top, relatedBy: .equal, toItem: authorLabel, attribute: .bottom, multiplier: 1, constant: 16)

@@ -13,13 +13,15 @@ public class Book: Object {
     
     dynamic var title: String = ""
     dynamic var author: String = ""
-    dynamic var pages: Int = 0
+    dynamic var totalPages: Int = 0
     dynamic var imageData: Data? = nil
+    dynamic var progress: Progress!
     
-    convenience init(title: String, author: String = "", pages: Int) {
+    convenience init(title: String, author: String = "", currentPage: Int, totalPages: Int) {
         self.init()
         self.title = title
         self.author = author
-        self.pages = pages
+        self.totalPages = totalPages
+        self.progress = Progress(currentPage: currentPage, totalPages: totalPages)
     }
 }
