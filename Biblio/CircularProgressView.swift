@@ -67,6 +67,15 @@ import UIKit
         }
     }
     
+    open var image: UIImage? {
+        didSet {
+            imageView.image = image
+            layoutIfNeeded()
+        }
+    }
+    
+    private let imageView: UIImageView = UIImageView()
+    
     private let progressLayer = CAShapeLayer()
     
     private let borderLayer = CAShapeLayer()
@@ -79,7 +88,7 @@ import UIKit
     
     private var destinationValue: CGFloat = 0.0
     
-    // MARK: - Init
+    // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -97,22 +106,6 @@ import UIKit
         setup()
     }
     
-    func setup() {
-        backgroundColor = .clear
-    
-        progressLayer.lineWidth = progressWidth
-        borderLayer.lineWidth = progressWidth
-        
-        progressLayer.fillColor = UIColor.clear.cgColor
-        borderLayer.fillColor = UIColor.clear.cgColor
-        
-        layer.addSublayer(borderLayer)
-        layer.addSublayer(progressLayer)
-        
-        startAngle = CGFloat(-(M_PI * 0.5))
-        endAngle   = CGFloat(3.0/4.0 * (M_PI * 2.0))
-    }
-    
     // MARK: - Overrides
     
     open override func layoutSubviews() {
@@ -125,6 +118,7 @@ import UIKit
         let progressPath = progressStrokePath(bounds: bounds)
         borderLayer.path = borderPath
         progressLayer.path = progressPath
+        imageView.layer.cornerRadius = bounds.width / 2.0
         
         centralView?.center = CGPoint(x: bounds.midX, y: bounds.midY)
     }
@@ -168,12 +162,12 @@ import UIKit
     
     // MARK: - UI
     
-    func stopAnimation() {
+    private func stopAnimation() {
         progressLayer.removeAnimation(forKey: "strokeEnd")
         displayLink?.isPaused = true
     }
     
-    func displayLinkDidFire(_: CADisplayLink) {
+    @objc private func displayLinkDidFire(_: CADisplayLink) {
         guard let value = progressLayer.presentation()?.strokeEnd
             else { return }
         
@@ -185,7 +179,7 @@ import UIKit
     
     // MARK: - Helpers
     
-    func borderStrokePath(bounds: CGRect) -> CGPath {
+    private func borderStrokePath(bounds: CGRect) -> CGPath {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = bounds.midX
         
@@ -193,7 +187,7 @@ import UIKit
         return path.cgPath
     }
     
-    func progressStrokePath(bounds: CGRect) -> CGPath {
+    private func progressStrokePath(bounds: CGRect) -> CGPath {
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = bounds.midX
         
@@ -201,7 +195,7 @@ import UIKit
         return path.cgPath
     }
     
-    func updateAppearance() {
+    private func updateAppearance() {
         progressLayer.strokeEnd = progress
         progressLayer.lineWidth = progressWidth
         progressLayer.path = progressStrokePath(bounds: bounds)
@@ -210,11 +204,44 @@ import UIKit
         borderLayer.strokeColor = borderColor.cgColor
     }
     
-    func createDisplayLink() {
+    private func createDisplayLink() {
         guard displayLink == nil
             else { return }
         displayLink = CADisplayLink(target: self, selector: #selector(displayLinkDidFire(_:)))
         displayLink?.isPaused = false
         displayLink?.add(to: .main, forMode: .commonModes)
+    }
+    
+    private func setup() {
+        backgroundColor = .clear
+        progressLayer.lineWidth = progressWidth
+        borderLayer.lineWidth = progressWidth
+        
+        progressLayer.fillColor = UIColor.clear.cgColor
+        borderLayer.fillColor = UIColor.clear.cgColor
+        
+        layer.addSublayer(borderLayer)
+        layer.addSublayer(progressLayer)
+        
+        startAngle = CGFloat(-(M_PI * 0.5))
+        endAngle   = CGFloat(3.0/4.0 * (M_PI * 2.0))
+        configureImageView()
+    }
+    
+    private func configureImageView() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        addSubview(imageView)
+        sendSubview(toBack: imageView)
+        
+        let top = NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: imageView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+        let width = NSLayoutConstraint(item: imageView, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1, constant: 0)
+        let height = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .width, multiplier: 1, constant: 0)
+        
+        addConstraints([top, leading, trailing, bottom, width, height])
     }
 }

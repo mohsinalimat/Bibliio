@@ -52,6 +52,7 @@ class BookListCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        //Bad, find a better place to do this
         maskPath = UIBezierPath.init(roundedRect: topView.bounds, byRoundingCorners: [.topRight, .topLeft], cornerRadii: CGSize(width: 16, height: 16))
         maskLayer.path = maskPath!.cgPath;
         topView.layer.mask = maskLayer;
@@ -92,10 +93,7 @@ class BookListCell: UICollectionViewCell {
         
         if let imageData = book.imageData {
             let image = UIImage(data: imageData)
-            let imageView = UIImageView(image: image)
-            imageView.clipsToBounds = true
-            imageView.contentMode = .scaleAspectFit
-            progressView.centralView = imageView
+            progressView.image = image
         } else {
             letterLabel.font = UIFont.systemFont(ofSize: 50)
             letterLabel.textColor = UIColor.gray
