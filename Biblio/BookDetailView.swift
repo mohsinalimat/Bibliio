@@ -86,15 +86,15 @@ public class BookDetailView: UIView {
     
     func configureProgressView() {
         progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.borderWidth = 8
-        progressView.progressWidth = 8
+        progressView.borderWidth = 10
+        progressView.progressWidth = 10
         progressView.borderColor = UIColor.lightGreen()
         progressView.progressColor = UIColor.jade()
         topView.addSubview(progressView)
         
         let top = NSLayoutConstraint(item: progressView, attribute: .top, relatedBy: .equal, toItem: authorLabel, attribute: .bottom, multiplier: 1, constant: 16)
         let centerX = NSLayoutConstraint(item: progressView, attribute: .centerX, relatedBy: .equal, toItem: authorLabel, attribute: .centerX, multiplier: 1, constant: 0)
-        let width = NSLayoutConstraint(item: progressView, attribute: .width, relatedBy: .equal, toItem: topView, attribute: .width, multiplier: 0.3, constant: 0)
+        let width = NSLayoutConstraint(item: progressView, attribute: .width, relatedBy: .equal, toItem: topView, attribute: .width, multiplier: 0.35, constant: 0)
         let height = NSLayoutConstraint(item: progressView, attribute: .height, relatedBy: .equal, toItem: progressView, attribute: .width, multiplier: 1, constant: 0)
         
         topView.addConstraints([top, centerX, width, height])
@@ -167,7 +167,7 @@ public class BookDetailView: UIView {
         let trailing = NSLayoutConstraint(item: tableView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -4)
         let bottom = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -20)
         let height = NSLayoutConstraint(item: tableView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
-        
+
         addConstraints([top, leading, trailing, bottom, height])
     }
 }

@@ -55,6 +55,19 @@ class BookDetailViewController: BaseInputViewController {
         bookDetailView.authorLabel.text = book.author
         bookDetailView.pagesReadLabel.text = "\(book.progress.currentPage) of \(book.progress.totalPages)"
         bookDetailView.currentPageTextField.text = "\(book.progress.currentPage)"
+        
+        if let imageData = book.imageData {
+            bookDetailView.progressView.image = UIImage(data: imageData)
+        } else {
+            let letterLabel = UILabel()
+            letterLabel.font = UIFont.systemFont(ofSize: 50)
+            letterLabel.textColor = UIColor.gray
+            let firstLetter: Character = book.title.uppercased().characters.first!
+            letterLabel.text = String(firstLetter)
+            letterLabel.sizeToFit()
+            bookDetailView.progressView.fillColor = UIColor.separator()
+            bookDetailView.progressView.centralView = letterLabel
+        }
     }
     
     // MARK: - Action

@@ -70,7 +70,6 @@ import UIKit
     open var image: UIImage? {
         didSet {
             imageView.image = image
-            layoutIfNeeded()
         }
     }
     
