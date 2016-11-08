@@ -148,7 +148,7 @@ public class BookDetailView: UIView {
     func configureSeparator() {
         addSubview(separator)
         
-        let top = NSLayoutConstraint(item: separator, attribute: .top, relatedBy: .equal, toItem: currentPageLabel, attribute: .bottom, multiplier: 1, constant: 6)
+        let top = NSLayoutConstraint(item: separator, attribute: .top, relatedBy: .equal, toItem: currentPageLabel, attribute: .bottom, multiplier: 1, constant: 8)
         let leading = NSLayoutConstraint(item: separator, attribute: .leading, relatedBy: .equal, toItem: currentPageLabel, attribute: .leading, multiplier: 1, constant: 0)
         let trailing = NSLayoutConstraint(item: separator, attribute: .trailing, relatedBy: .equal, toItem: currentPageTextField, attribute: .trailing, multiplier: 1, constant: 0)
         
@@ -162,7 +162,7 @@ public class BookDetailView: UIView {
         tableView.separatorStyle = .none
         addSubview(tableView)
 
-        let top = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: separator, attribute: .bottom, multiplier: 1, constant: 20)
+        let top = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: separator, attribute: .bottom, multiplier: 1, constant: 14)
         let leading = NSLayoutConstraint(item: tableView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 4)
         let trailing = NSLayoutConstraint(item: tableView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -4)
         let bottom = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -20)
