@@ -22,4 +22,12 @@ extension UIFont {
         }
         return UIFont.systemFont(ofSize: 15)
     }
+    
+    static func textInputFont() -> UIFont {
+        if DeviceType.IS_IPHONE_5 {
+            return UIFont.systemFont(ofSize: 18)
+        }
+        
+        return UIFont.systemFont(ofSize: 20)
+    }
 }

@@ -131,7 +131,16 @@ public class AddBookViewController: BaseInputViewController {
         guard currentPage.characters.count != 0
             else { return false }
         
-        book = Book(title: title, currentPage: Int(currentPage)!, totalPages: Int(totalPages)!)
+        guard let page = Int(currentPage)
+            else { return false }
+        
+        guard let total = Int(totalPages)
+            else { return false }
+        
+        guard total >= page
+            else { return false }
+        
+        book = Book(title: title, currentPage: page, totalPages: total)
         
         if let author = addBookView.authorTextField.text {
             book.author = author
@@ -164,6 +173,17 @@ extension AddBookViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         
+        return true
+    }
+    
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == addBookView.currentPageTextField || textField == addBookView.totalPagesTextField {
+            let numericCharacterSet = NSCharacterSet.decimalDigits.inverted
+            guard string.rangeOfCharacter(from: numericCharacterSet) == nil
+                else { return false }
+        }
+    
         return true
     }
 }

@@ -109,7 +109,7 @@ public class AddBookView: UIView {
         currentPageTextField.translatesAutoresizingMaskIntoConstraints = false
         currentPageTextField.borderStyle = .none
         currentPageTextField.lineColor = .darkGray
-        currentPageTextField.font = UIFont.systemFont(ofSize: 20)
+        currentPageTextField.font = UIFont.textInputFont()
         currentPageTextField.placeholder = "Current page"
         currentPageTextField.text = "1"
         currentPageTextField.keyboardType = .numberPad
@@ -129,7 +129,7 @@ public class AddBookView: UIView {
         totalPagesTextField.translatesAutoresizingMaskIntoConstraints = false
         totalPagesTextField.borderStyle = .none
         totalPagesTextField.lineColor = .darkGray
-        totalPagesTextField.font = UIFont.systemFont(ofSize: 20)
+        totalPagesTextField.font = UIFont.textInputFont()
         totalPagesTextField.placeholder = "Total pages"
         totalPagesTextField.keyboardType = .numberPad
         totalPagesTextField.lineWidth = 0.5
