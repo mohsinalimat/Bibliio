@@ -4,6 +4,7 @@ use_frameworks!
 
 target 'Biblio' do
   pod 'RealmSwift'
+  pod 'IQKeyboardManagerSwift'
 end
 
 

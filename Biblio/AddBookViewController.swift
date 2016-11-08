@@ -28,7 +28,6 @@ public class AddBookViewController: BaseInputViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
         setup()
     }
     
@@ -205,4 +204,3 @@ extension AddBookViewController: UIImagePickerControllerDelegate, UINavigationCo
         dismiss(animated: true, completion: nil)
     }
 }
-

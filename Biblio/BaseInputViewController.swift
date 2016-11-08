@@ -23,13 +23,11 @@ public class BaseInputViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
-        
         setup()
     }
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         containerView.layer.cornerRadius = 16
     }
     
@@ -42,7 +40,7 @@ public class BaseInputViewController: UIViewController {
         configureSaveButton()
     }
     
-    func configureScrollView() {
+    private func configureScrollView() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.delaysContentTouches = false
         view.addSubview(scrollView)
@@ -55,7 +53,7 @@ public class BaseInputViewController: UIViewController {
         view.addConstraints([top, leading, trailing, bottom])
     }
     
-    func configureOuterView() {
+    private func configureOuterView() {
         outerView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(outerView)
         
@@ -68,7 +66,7 @@ public class BaseInputViewController: UIViewController {
         scrollView.addConstraints([top, leading, trailing, bottom, centerX])
     }
     
-    func configureContainerView() {
+    private func configureContainerView() {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.clipsToBounds = true
         outerView.addSubview(containerView)
@@ -81,7 +79,7 @@ public class BaseInputViewController: UIViewController {
         outerView.addConstraints([top, leading, trailing, bottom])
     }
     
-    func configureContentView() {
+    private func configureContentView() {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(contentView)
         
@@ -92,7 +90,7 @@ public class BaseInputViewController: UIViewController {
         containerView.addConstraints([top, leading, trailing])
     }
     
-    func configureCancelButton() {
+    private func configureCancelButton() {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.backgroundColor = UIColor.softGrey()
         cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
@@ -105,11 +103,11 @@ public class BaseInputViewController: UIViewController {
         let bottom = NSLayoutConstraint(item: cancelButton, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .bottom, multiplier: 1, constant: 0)
         let width = NSLayoutConstraint(item: cancelButton, attribute: .width, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 0.5, constant: 0)
         let height = NSLayoutConstraint(item: cancelButton, attribute: .height, relatedBy: .equal, toItem: containerView, attribute: .width, multiplier: 0.13, constant: 0)
-        
+
         containerView.addConstraints([top, leading, bottom, width, height])
     }
     
-    func configureSaveButton() {
+    private func configureSaveButton() {
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.backgroundColor = UIColor.deepBlue()
         saveButton.titleLabel?.textColor = .white

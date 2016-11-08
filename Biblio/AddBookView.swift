@@ -29,11 +29,6 @@ public class AddBookView: UIView {
     
     func setup() {
         backgroundColor = .white
-        
-//        translatesAutoresizingMaskIntoConstraints = false
-//        let height = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
-//        
-//        addConstraint(height)
         configureHeaderLabel()
         configureImagePickerButton()
         configureTitleTextField()
@@ -44,7 +39,6 @@ public class AddBookView: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        
         imagePickerButton.layer.cornerRadius = imagePickerButton.frame.width / 2.0
     }
     
