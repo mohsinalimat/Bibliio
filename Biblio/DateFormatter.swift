@@ -10,14 +10,14 @@ import UIKit
 
 extension DateFormatter {
     
-    private static let bookDateFormatter: DateFormatter = {
+    private static let shortStyleFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         return formatter
     }()
     
     
-    static func string(forDate: Date) {
-        
+    static func shortString(forDate date: Date) -> String {
+        return shortStyleFormatter.string(from: date)
     }
 }

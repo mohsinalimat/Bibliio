@@ -100,10 +100,8 @@ extension BookDetailViewController: UITableViewDataSource {
         
         cell.textLabel?.textColor = .darkText
         cell.textLabel?.text = "You'll finish by"
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        cell.detailTextLabel?.text = dateFormatter.string(from: book.progress.finishDate)
+ 
+        cell.detailTextLabel?.text = DateFormatter.shortString(forDate: book.progress.finishDate)
         cell.detailTextLabel?.textColor = .darkText
 
         return cell

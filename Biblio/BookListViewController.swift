@@ -13,7 +13,7 @@ struct Constants {
     static let CellMargin: CGFloat = 14.0
 }
 
-class BookListViewController: BaseViewController {
+class BookListViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addButton: UIBarButtonItem!
@@ -45,7 +45,7 @@ class BookListViewController: BaseViewController {
                 }, completion: { _ in })
                 break
             case .error(let error):
-                fatalError("\(error)")
+                print("\(error.localizedDescription)")
                 break
             }
         }
@@ -63,7 +63,6 @@ class BookListViewController: BaseViewController {
         navigationController.isNavigationBarHidden = true
         navigationController.modalPresentationStyle = .custom
         navigationController.transitioningDelegate = self
-        
         DispatchQueue.main.async { [unowned self] in
             self.present(navigationController, animated: true, completion: nil)
         }
@@ -140,13 +139,6 @@ extension BookListViewController: UIViewControllerTransitioningDelegate {
     }
 }
 
-extension BookListViewController: AddBookViewControllerDelegate {
-   
-    public func addBookViewController(_ vc: AddBookViewController, _ didSave: Book) {
-        collectionView.reloadData()
-    }
-}
-
 extension BookListViewController: BookListCellDelegate {
     
     // MARK: - BookListCellDelegate
@@ -156,22 +148,16 @@ extension BookListViewController: BookListCellDelegate {
         let book = books[indexPath.row]
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [unowned self] (action) in
             self.dismiss(animated: true, completion: nil)
         }
-        
-        alertController.addAction(cancelAction)
-        
         let destroyAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] (action) in
-            
             self.realm.beginWrite()
             self.realm.delete(book)
             try! self.realm.commitWrite()
         }
-        
+        alertController.addAction(cancelAction)
         alertController.addAction(destroyAction)
-        
         present(alertController, animated: true)
     }
 }

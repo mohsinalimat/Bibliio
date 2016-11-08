@@ -9,22 +9,18 @@
 import UIKit
 import RealmSwift
 
-public protocol AddBookViewControllerDelegate: class {
-    
-    func addBookViewController(_ vc: AddBookViewController, _ didSave: Book)
-}
-
 public class AddBookViewController: BaseInputViewController {
     
     override public var prefersStatusBarHidden: Bool {
         return true
     }
     
-    weak var delegate: AddBookViewControllerDelegate?
     var imagePicker = UIImagePickerController()
-    var choseImage = false
+    var didChooseImage = false
     var book: Book = Book()
     var addBookView = AddBookView()
+    
+    // MARK: - View Lifecycle
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -33,24 +29,21 @@ public class AddBookViewController: BaseInputViewController {
     
     // MARK: - Actions
     
-    func saveButtonPressed(_ sender: Any) {
+    @objc private func saveButtonPressed(_ sender: Any) {
         if shouldSave() == true {
             save()
             dismiss(animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Oops", message: "Fill in at least the title and the number of pages!", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(okButton)
-            present(alert, animated: true, completion: nil)
+            showAlert()
         }
     }
     
-    func cancelButtonPressed(_ sender: Any) {
+    @objc private func cancelButtonPressed(_ sender: Any) {
         dismissKeyboard()
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerButtonPressed(_ sender: Any) {
+    @objc private func imagePickerButtonPressed(_ sender: Any) {
         let takePicture = UIAlertAction(title: "Take Picture", style: .default, handler: { [unowned self] (alert: UIAlertAction!) in
             self.openCamera()
         })
@@ -68,7 +61,7 @@ public class AddBookViewController: BaseInputViewController {
         present(actionSheet, animated: true, completion: nil)
     }
 
-    // MARK: - Private
+    // MARK: - Set up
     
     private func setup() {
         configureAddBookView()
@@ -95,7 +88,14 @@ public class AddBookViewController: BaseInputViewController {
         contentView.addConstraints([top, leading, trailing, bottom])
     }
     
-    // MARK: - Helper
+    // MARK: - UI
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "Oops", message: "Fill in at least the title and the number of pages!", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
+    }
     
     func dismissKeyboard() {
         addBookView.titleTextField.resignFirstResponder()
@@ -104,12 +104,13 @@ public class AddBookViewController: BaseInputViewController {
         addBookView.totalPagesTextField.resignFirstResponder()
     }
     
+    // MARK: Save
+    
     func save() {
         let realm = try! Realm()
         try! realm.write {
             realm.add(book)
         }
-        delegate?.addBookViewController(self, book)
     }
     
     func shouldSave() -> Bool {
@@ -146,7 +147,7 @@ public class AddBookViewController: BaseInputViewController {
             book.author = author
         }
         
-        if let image = addBookView.imagePickerButton.currentImage, choseImage == true {
+        if let image = addBookView.imagePickerButton.currentImage, didChooseImage == true {
   
             if let data = UIImageJPEGRepresentation(image, 1.0) {
                 book.imageData = data
@@ -162,7 +163,6 @@ extension AddBookViewController: UITextFieldDelegate {
     // MARK: - UITextFieldDelegate
 
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         if textField == addBookView.titleTextField {
             addBookView.authorTextField.becomeFirstResponder()
         } else if textField == addBookView.authorTextField {
@@ -172,18 +172,15 @@ extension AddBookViewController: UITextFieldDelegate {
         } else {
             textField.resignFirstResponder()
         }
-        
         return true
     }
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         if textField == addBookView.currentPageTextField || textField == addBookView.totalPagesTextField {
             let numericCharacterSet = NSCharacterSet.decimalDigits.inverted
             guard string.rangeOfCharacter(from: numericCharacterSet) == nil
                 else { return false }
         }
-    
         return true
     }
 }
@@ -202,7 +199,7 @@ extension AddBookViewController: UIImagePickerControllerDelegate, UINavigationCo
             imagePicker.sourceType = .camera
             imagePicker.cameraCaptureMode = .photo
             present(imagePicker, animated: true, completion: nil)
-        } else{
+        } else {
             let alert = UIAlertController(title: "Camera Not Found", message: "This device has no camera.", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style:.default, handler: nil)
             alert.addAction(ok)
@@ -220,7 +217,7 @@ extension AddBookViewController: UIImagePickerControllerDelegate, UINavigationCo
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         addBookView.imagePickerButton.contentMode = .scaleAspectFit
         addBookView.imagePickerButton.setImage(chosenImage, for: .normal)
-        choseImage = true
+        didChooseImage = true
         dismiss(animated: true, completion: nil)
     }
 }

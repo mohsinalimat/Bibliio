@@ -86,10 +86,8 @@ class BookListCell: UICollectionViewCell {
         
         titleLabel.text = book.title
         pagesReadLabel.text = "\(book.progress.currentPage) of \(book.totalPages)"
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        lastReadLabel.text = "\(formatter.string(from: book.progress.lastRead))"
-        finishByLabel.text = "\(formatter.string(from: book.progress.finishDate))"
+        lastReadLabel.text = "\(DateFormatter.shortString(forDate: book.progress.lastRead))"
+        finishByLabel.text = "\(DateFormatter.shortString(forDate: book.progress.finishDate))"
         
         if let imageData = book.imageData {
             let image = UIImage(data: imageData)

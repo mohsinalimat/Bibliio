@@ -45,10 +45,7 @@ class EditScheduleViewController: BaseInputViewController {
     }
     
     func updateUI() {
-        
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        editScheduleView.finishDateButton.setTitle(formatter.string(from: book.progress.finishDate), for: .normal)
+        editScheduleView.finishDateButton.setTitle(DateFormatter.shortString(forDate: book.progress.finishDate), for: .normal)
         editScheduleView.pageTextField.text = "\(book.progress.pagesPerDayGoal)"
     }
 }

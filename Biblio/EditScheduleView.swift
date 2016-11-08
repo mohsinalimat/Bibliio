@@ -19,7 +19,6 @@ public class EditScheduleView: UIView {
     public var repeatLabel = UILabel()
     public var daysLabel = UILabel()
     public var thirdSeparatorView = SeparatorView()
-    public var tempView = DayButtonContainerView()
     public var reminderLabel = UILabel()
     public var reminderSwitch = UISwitch()
     public var pickerView = UIDatePicker()

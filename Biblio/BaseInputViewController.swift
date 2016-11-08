@@ -31,6 +31,8 @@ public class BaseInputViewController: UIViewController {
         containerView.layer.cornerRadius = 16
     }
     
+    // MARK: - Setup
+    
     private func setup() {
         configureScrollView()
         configureOuterView()
