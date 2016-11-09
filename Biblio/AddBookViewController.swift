@@ -38,11 +38,6 @@ public class AddBookViewController: BaseInputViewController {
         }
     }
     
-    @objc private func cancelButtonPressed(_ sender: Any) {
-        dismissKeyboard()
-        dismiss(animated: true, completion: nil)
-    }
-    
     @objc private func imagePickerButtonPressed(_ sender: Any) {
         let takePicture = UIAlertAction(title: "Take Picture", style: .default, handler: { [unowned self] (alert: UIAlertAction!) in
             self.openCamera()
@@ -53,21 +48,20 @@ public class AddBookViewController: BaseInputViewController {
         })
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
+        
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(takePicture)
         actionSheet.addAction(choosePicture)
         actionSheet.addAction(cancel)
         present(actionSheet, animated: true, completion: nil)
     }
-
+    
     // MARK: - Set up
     
     private func setup() {
         configureAddBookView()
         imagePicker.delegate = self
         saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
-        cancelButton.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
     }
     
     private func configureAddBookView() {
@@ -95,13 +89,6 @@ public class AddBookViewController: BaseInputViewController {
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okButton)
         present(alert, animated: true, completion: nil)
-    }
-    
-    func dismissKeyboard() {
-        addBookView.titleTextField.resignFirstResponder()
-        addBookView.titleTextField.resignFirstResponder()
-        addBookView.currentPageTextField.resignFirstResponder()
-        addBookView.totalPagesTextField.resignFirstResponder()
     }
     
     // MARK: Save
@@ -148,7 +135,7 @@ public class AddBookViewController: BaseInputViewController {
         }
         
         if let image = addBookView.imagePickerButton.currentImage, didChooseImage == true {
-  
+            
             if let data = UIImageJPEGRepresentation(image, 1.0) {
                 book.imageData = data
             }
@@ -161,7 +148,7 @@ public class AddBookViewController: BaseInputViewController {
 extension AddBookViewController: UITextFieldDelegate {
     
     // MARK: - UITextFieldDelegate
-
+    
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == addBookView.titleTextField {
             addBookView.authorTextField.becomeFirstResponder()
@@ -213,7 +200,7 @@ extension AddBookViewController: UIImagePickerControllerDelegate, UINavigationCo
         dismiss(animated: true, completion: nil)
     }
     
-   public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         addBookView.imagePickerButton.contentMode = .scaleAspectFit
         addBookView.imagePickerButton.setImage(chosenImage, for: .normal)

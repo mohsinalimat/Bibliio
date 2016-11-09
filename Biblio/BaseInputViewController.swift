@@ -31,9 +31,22 @@ public class BaseInputViewController: UIViewController {
         containerView.layer.cornerRadius = 16
     }
     
+    // MARK: - Action
+    
+    func cancelButtonPressed(_ sender: Any) {
+        view.endEditing(true)
+        
+        if let nc = navigationController, nc.viewControllers.count > 1 {
+            nc.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
     // MARK: - Setup
     
     private func setup() {
+        cancelButton.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
         configureScrollView()
         configureOuterView()
         configureContainerView()

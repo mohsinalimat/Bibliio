@@ -25,7 +25,6 @@ class DatePickerViewController: BaseInputViewController {
     private func setup() {
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         contentView.backgroundColor = .white
-        cancelButton.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
         contentView.addSubview(datePicker)
         
         let top = NSLayoutConstraint(item: datePicker, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 20)
@@ -34,9 +33,5 @@ class DatePickerViewController: BaseInputViewController {
         let bottom = NSLayoutConstraint(item: datePicker, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: -20)
         
         contentView.addConstraints([top, leading, trailing, bottom])
-    }
-    
-    func cancelButtonPressed(_ sender: Any) {
-        let _ = navigationController?.popViewController(animated: true)
     }
 }

@@ -31,7 +31,6 @@ class BookDetailViewController: BaseInputViewController {
     func setup() {
         saveButton.backgroundColor = .white
         saveButton.setTitleColor(UIColor.deepBlue(), for: .normal)
-        cancelButton.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
         configureBookDetailView()
     }
@@ -71,10 +70,6 @@ class BookDetailViewController: BaseInputViewController {
     }
     
     // MARK: - Action
-    
-    func cancelButtonPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
     
     func saveButtonPressed(_ sender: Any) {
     }

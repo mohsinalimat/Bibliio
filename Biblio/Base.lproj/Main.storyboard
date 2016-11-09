@@ -136,13 +136,11 @@
             </objects>
             <point key="canvasLocation" x="183" y="1232"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Books-->
         <scene sceneID="1vK-bG-eQp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3iC-ln-ij1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="book" id="86q-Jc-5zP">
-                        <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-4"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Books" image="book" id="86q-Jc-5zP"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="26y-fe-DYf">
@@ -162,13 +160,11 @@
             </objects>
             <point key="canvasLocation" x="1078" y="557"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Settings-->
         <scene sceneID="3BZ-sH-D7n">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zZ3-aM-f3v" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="settings" id="wKS-Bh-YJL">
-                        <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-4"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="wKS-Bh-YJL"/>
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
@@ -186,13 +182,11 @@
             </objects>
             <point key="canvasLocation" x="241" y="2050"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Archive-->
         <scene sceneID="gc2-zg-NqU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1lY-Lw-T5R" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="archive" id="dvV-ce-AFZ">
-                        <inset key="imageInsets" minX="0.0" minY="4" maxX="0.0" maxY="-4"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Archive" image="archive" id="dvV-ce-AFZ"/>
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>

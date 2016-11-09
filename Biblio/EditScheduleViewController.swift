@@ -24,12 +24,7 @@ class EditScheduleViewController: BaseInputViewController {
     }
     
     func setup() {
-        cancelButton.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
         configureEditScheduleView()
-    }
-    
-    func cancelButtonPressed(_ sender: Any) {
-        let _ = navigationController?.popViewController(animated: true)
     }
     
     func configureEditScheduleView() {

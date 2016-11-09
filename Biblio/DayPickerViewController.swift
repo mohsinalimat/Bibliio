@@ -35,7 +35,6 @@ class DayPickerViewController: BaseInputViewController {
         tableView.delegate = self
         tableView.allowsMultipleSelection = true
         contentView.backgroundColor = .white
-        cancelButton.addTarget(self, action: #selector(cancelButtonPressed(_:)), for: .touchUpInside)
         contentView.addSubview(tableView)
         
         let top = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 20)
@@ -45,10 +44,6 @@ class DayPickerViewController: BaseInputViewController {
         tableViewHeightConstraint = NSLayoutConstraint(item: tableView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0)
         
         contentView.addConstraints([top, leading, trailing, tableViewHeightConstraint, bottom])
-    }
-    
-    func cancelButtonPressed(_ sender: Any) {
-        let _ = navigationController?.popViewController(animated: true)
     }
 }
 
