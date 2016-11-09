@@ -29,8 +29,8 @@ class BookDetailViewController: BaseInputViewController {
     }
     
     func setup() {
-        saveButton.backgroundColor = .white
-        saveButton.setTitleColor(UIColor.deepBlue(), for: .normal)
+        saveButton.backgroundColor = UIColor.deepBlue()
+        saveButton.setTitleColor(.white, for: .normal)
         saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
         configureBookDetailView()
     }

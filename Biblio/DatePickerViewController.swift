@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol DatePickerDelegate: NSObjectProtocol {
+    
+    func datePickerViewController(_ dayPickerViewController: DatePickerViewController, selectedDate: Date)
+}
+
 class DatePickerViewController: BaseInputViewController {
+    
+    weak var delegate: DatePickerDelegate?
     
     var datePicker = UIDatePicker()
     
@@ -20,10 +27,21 @@ class DatePickerViewController: BaseInputViewController {
         setup()
     }
     
+    // MARK: - Target Action
+    
+    dynamic private func saveButtonPressed(_ sender: Any) {
+        let date = datePicker.date
+        delegate?.datePickerViewController(self, selectedDate: date)
+        let _ = navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: - Setup
     
     private func setup() {
+        saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
+        
         datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.datePickerMode = .date
         contentView.backgroundColor = .white
         contentView.addSubview(datePicker)
         

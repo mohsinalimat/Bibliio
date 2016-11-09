@@ -12,11 +12,7 @@ class EditScheduleViewController: BaseInputViewController {
     
     var editScheduleView = EditScheduleView()
     
-    var book = Book() {
-        didSet {
-            updateUI()
-        }
-    }
+    var book = Book()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +37,19 @@ class EditScheduleViewController: BaseInputViewController {
         
         contentView.addConstraints([top, leading, trailing, bottom])
     }
+}
+
+extension EditScheduleViewController: DatePickerDelegate {
     
-    func updateUI() {
-        
+    func datePickerViewController(_ dayPickerViewController: DatePickerViewController, selectedDate: Date) {
+        editScheduleView.finishByCell.textLabel?.text = DateFormatter.shortString(forDate: selectedDate)
+    }
+}
+
+extension EditScheduleViewController: DayPickerDelegate {
+    
+    func dayPickerViewController(_ dayPickerViewController: DayPickerViewController, selectedDays: [Bool]) {
+        print("Chose days")
     }
 }
 
@@ -83,13 +89,13 @@ extension EditScheduleViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let vc: UIViewController
-        
         if indexPath.section == 0 {
-            vc = DatePickerViewController()
+            let vc = DatePickerViewController()
+            vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.section == 2 && indexPath.row == 0 {
-            vc = DayPickerViewController()
+            let vc = DayPickerViewController()
+            vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         }
     }

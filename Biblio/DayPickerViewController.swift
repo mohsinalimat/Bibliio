@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol DayPickerDelegate: NSObjectProtocol {
+    
+    func dayPickerViewController(_ dayPickerViewController: DayPickerViewController, selectedDays: [Bool])
+}
+
 class DayPickerViewController: BaseInputViewController {
     
+    weak var delegate: DayPickerDelegate?
     var tableView = UITableView()
     var tableViewHeightConstraint: NSLayoutConstraint!
     
@@ -27,12 +33,22 @@ class DayPickerViewController: BaseInputViewController {
         tableViewHeightConstraint.constant = tableView.contentSize.height
     }
     
+    // MARK: - Target Action
+    
+    dynamic private func saveButtonPressed(_ sender: Any) {
+        let days = selectedDays()
+        delegate?.dayPickerViewController(self, selectedDays: days)
+        let _ = navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: - Setup
     
     private func setup() {
+        saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.bounces = false
         tableView.allowsMultipleSelection = true
         contentView.backgroundColor = .white
         contentView.addSubview(tableView)
@@ -44,6 +60,12 @@ class DayPickerViewController: BaseInputViewController {
         tableViewHeightConstraint = NSLayoutConstraint(item: tableView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0)
         
         contentView.addConstraints([top, leading, trailing, tableViewHeightConstraint, bottom])
+    }
+    
+    // MARK: - Helper
+    
+    private func selectedDays() -> [Bool] {
+        return [true, true, true, true, true, true, true]
     }
 }
 
