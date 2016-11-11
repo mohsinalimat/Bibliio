@@ -47,7 +47,6 @@ class EditScheduleView: UIView {
     
     private func configureTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UINib.init(nibName: ReadingGoalCell.Identifier, bundle: nil), forCellReuseIdentifier: ReadingGoalCell.Identifier)
         tableView.bounces = false
         tableView.tableFooterView = UIView()
         addSubview(tableView)

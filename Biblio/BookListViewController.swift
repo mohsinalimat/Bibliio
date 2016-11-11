@@ -19,8 +19,8 @@ class BookListViewController: UIViewController {
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     lazy var realm = try! Realm()
-    lazy var books: Results<Book> = {
-        self.realm.objects(Book.self)
+    lazy var books: Results<Book> = { [unowned self] in
+        self.realm.objects(Book.self).filter("currentPage < totalPages")
     }()
     
     let slideAnimationController = VerticalSlideAnimationController()
@@ -30,7 +30,7 @@ class BookListViewController: UIViewController {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
         setupCollectionView()
-
+        
         notificationToken = books.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
             guard let collectionView = self?.collectionView else { return }
             switch changes {

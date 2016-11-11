@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		663C00321DD0EF0700AF5B17 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663C00311DD0EF0700AF5B17 /* Device.swift */; };
 		664538111DD112E300DB4E5B /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664538101DD112E300DB4E5B /* DateFormatter.swift */; };
-		667B9B9F1DD2554000E8D4A7 /* ReadingGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667B9B9D1DD2554000E8D4A7 /* ReadingGoalCell.swift */; };
-		667B9BA01DD2554000E8D4A7 /* ReadingGoalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 667B9B9E1DD2554000E8D4A7 /* ReadingGoalCell.xib */; };
 		667B9BA21DD2879D00E8D4A7 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667B9BA11DD2879D00E8D4A7 /* DatePickerViewController.swift */; };
 		667B9BA41DD2899800E8D4A7 /* DayPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667B9BA31DD2899800E8D4A7 /* DayPickerViewController.swift */; };
 		667DA0A31DC8F1F5003E55F9 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667DA0A21DC8F1F5003E55F9 /* UIColorExtensions.swift */; };
@@ -23,7 +21,6 @@
 		66AE73D61DBFB72F00BC1260 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66AE73D41DBFB72F00BC1260 /* LaunchScreen.storyboard */; };
 		66AE73E11DBFB73000BC1260 /* BiblioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE73E01DBFB73000BC1260 /* BiblioTests.swift */; };
 		66AE73F01DBFBDF300BC1260 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE73EF1DBFBDF300BC1260 /* Book.swift */; };
-		66AE73F21DBFBDFE00BC1260 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE73F11DBFBDFE00BC1260 /* Progress.swift */; };
 		66BDFFE21DCB958F000F43CC /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BDFFE11DCB958F000F43CC /* BookDetailViewController.swift */; };
 		66CB697D1DC3E4280054B5DE /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB697C1DC3E4280054B5DE /* TextField.swift */; };
 		66CB697F1DC3E7DB0054B5DE /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB697E1DC3E7DB0054B5DE /* BookListViewController.swift */; };
@@ -32,6 +29,7 @@
 		66D7F0DF1DC7C8A30098AD2D /* BookListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D7F0DD1DC7C8A30098AD2D /* BookListCell.swift */; };
 		66D7F0E01DC7C8A30098AD2D /* BookListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66D7F0DE1DC7C8A30098AD2D /* BookListCell.xib */; };
 		66D7F0E71DC8E3E90098AD2D /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D7F0E61DC8E3E90098AD2D /* ArrayExtensions.swift */; };
+		66D8CEE21DD401C1003EA577 /* BoolObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D8CEE11DD401C1003EA577 /* BoolObject.swift */; };
 		66EAB75F1DCBD9B800E9192D /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */; };
 		66F638981DC8F1C200039FB8 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F638971DC8F1C200039FB8 /* UIFontExtensions.swift */; };
 		66FD7F021DCCF968003218F7 /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD7F011DCCF968003218F7 /* BookDetailView.swift */; };
@@ -56,8 +54,6 @@
 /* Begin PBXFileReference section */
 		663C00311DD0EF0700AF5B17 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		664538101DD112E300DB4E5B /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
-		667B9B9D1DD2554000E8D4A7 /* ReadingGoalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadingGoalCell.swift; sourceTree = "<group>"; };
-		667B9B9E1DD2554000E8D4A7 /* ReadingGoalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReadingGoalCell.xib; sourceTree = "<group>"; };
 		667B9BA11DD2879D00E8D4A7 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		667B9BA31DD2899800E8D4A7 /* DayPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayPickerViewController.swift; sourceTree = "<group>"; };
 		667DA0A21DC8F1F5003E55F9 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -74,7 +70,6 @@
 		66AE73E01DBFB73000BC1260 /* BiblioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiblioTests.swift; sourceTree = "<group>"; };
 		66AE73E21DBFB73000BC1260 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66AE73EF1DBFBDF300BC1260 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		66AE73F11DBFBDFE00BC1260 /* Progress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
 		66BDFFE11DCB958F000F43CC /* BookDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		66CB697C1DC3E4280054B5DE /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		66CB697E1DC3E7DB0054B5DE /* BookListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +78,7 @@
 		66D7F0DD1DC7C8A30098AD2D /* BookListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListCell.swift; sourceTree = "<group>"; };
 		66D7F0DE1DC7C8A30098AD2D /* BookListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListCell.xib; sourceTree = "<group>"; };
 		66D7F0E61DC8E3E90098AD2D /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		66D8CEE11DD401C1003EA577 /* BoolObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolObject.swift; sourceTree = "<group>"; };
 		66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInputViewController.swift; sourceTree = "<group>"; };
 		66F638971DC8F1C200039FB8 /* UIFontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtensions.swift; sourceTree = "<group>"; };
 		66FD7F011DCCF968003218F7 /* BookDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
@@ -167,7 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				66AE73EF1DBFBDF300BC1260 /* Book.swift */,
-				66AE73F11DBFBDFE00BC1260 /* Progress.swift */,
+				66D8CEE11DD401C1003EA577 /* BoolObject.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -220,8 +216,6 @@
 			children = (
 				66D7F0DD1DC7C8A30098AD2D /* BookListCell.swift */,
 				66D7F0DE1DC7C8A30098AD2D /* BookListCell.xib */,
-				667B9B9D1DD2554000E8D4A7 /* ReadingGoalCell.swift */,
-				667B9B9E1DD2554000E8D4A7 /* ReadingGoalCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -354,7 +348,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				66AE73D61DBFB72F00BC1260 /* LaunchScreen.storyboard in Resources */,
-				667B9BA01DD2554000E8D4A7 /* ReadingGoalCell.xib in Resources */,
 				66AE73D31DBFB72F00BC1260 /* Assets.xcassets in Resources */,
 				66D7F0E01DC7C8A30098AD2D /* BookListCell.xib in Resources */,
 				66AE73CE1DBFB72F00BC1260 /* Main.storyboard in Resources */,
@@ -430,7 +423,6 @@
 				663C00321DD0EF0700AF5B17 /* Device.swift in Sources */,
 				66FD7F041DCCF9FB003218F7 /* SeparatorView.swift in Sources */,
 				667DA0A31DC8F1F5003E55F9 /* UIColorExtensions.swift in Sources */,
-				66AE73F21DBFBDFE00BC1260 /* Progress.swift in Sources */,
 				66FD7F021DCCF968003218F7 /* BookDetailView.swift in Sources */,
 				66F638981DC8F1C200039FB8 /* UIFontExtensions.swift in Sources */,
 				66AE73CB1DBFB72F00BC1260 /* AddBookViewController.swift in Sources */,
@@ -438,9 +430,9 @@
 				66CB697D1DC3E4280054B5DE /* TextField.swift in Sources */,
 				66EAB75F1DCBD9B800E9192D /* BaseInputViewController.swift in Sources */,
 				66D7F0DF1DC7C8A30098AD2D /* BookListCell.swift in Sources */,
+				66D8CEE21DD401C1003EA577 /* BoolObject.swift in Sources */,
 				66AE73C91DBFB72F00BC1260 /* AppDelegate.swift in Sources */,
 				66D7F0E71DC8E3E90098AD2D /* ArrayExtensions.swift in Sources */,
-				667B9B9F1DD2554000E8D4A7 /* ReadingGoalCell.swift in Sources */,
 				667B9BA21DD2879D00E8D4A7 /* DatePickerViewController.swift in Sources */,
 				66CB697F1DC3E7DB0054B5DE /* BookListViewController.swift in Sources */,
 				66FD7F0E1DCD4BAB003218F7 /* NavigationController.swift in Sources */,

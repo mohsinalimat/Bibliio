@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import RealmSwift
+
+protocol EditScheduleDelegate: NSObjectProtocol {
+    
+    func editScheduleViewController(_ editScheduleViewController: EditScheduleViewController, didSaveBook: Book)
+}
 
 class EditScheduleViewController: BaseInputViewController {
     
+    weak var delegate: EditScheduleDelegate?
+    
     var editScheduleView = EditScheduleView()
     
-    var book = Book()
+    var book = Book() {
+        didSet {
+            updateUI()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +32,14 @@ class EditScheduleViewController: BaseInputViewController {
     }
     
     func setup() {
+        saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
         configureEditScheduleView()
+    }
+    
+    // MARK: Target Action
+    
+    func saveButtonPressed(_ sender: Any) {
+        
     }
     
     func configureEditScheduleView() {
@@ -37,6 +56,57 @@ class EditScheduleViewController: BaseInputViewController {
         
         contentView.addConstraints([top, leading, trailing, bottom])
     }
+    
+    func updateUI() {
+        if let finishByDate = book.finishDate {
+            editScheduleView.finishByCell.textLabel?.text = DateFormatter.shortString(forDate: finishByDate)
+        }
+        editScheduleView.readingGoalTextField.text = "\(book.pagesPerDayGoal)"
+        editScheduleView.scheduleCell.textLabel?.text = string(forDays: book.readingDays)
+    }
+    
+    func string(forDays days: List<BoolObject>) -> String {
+        
+        let boolDays: [Bool] = days.map({ $0.value })
+        if boolDays.reduce(true, {$0 && $1}) {
+            return "Everyday"
+        }
+        
+        if boolDays[1..<6].reduce(false, {!$0 && !$1}) && boolDays[0] && boolDays[6] {
+            return "Weekend"
+        }
+        
+        if boolDays[1..<6].reduce(true, {$0 && $1}) && !boolDays[0] && !boolDays[6] {
+            return "Weekdays"
+        }
+        
+        let daysString =  String(boolDays.enumerated().map { (index, element) in
+            return element ? "\(nameOfDay(forIndex:index)), " : ""
+        }.joined().characters.dropLast(2))
+        
+        return daysString
+    }
+    
+        private func nameOfDay(forIndex index: Int) -> String {
+            switch index {
+            case 0:
+                return "Sunday"
+            case 1:
+                return "Monday"
+            case 2:
+                return "Tuesday"
+            case 3:
+                return "Wednesday"
+            case 4:
+                return "Thursday"
+            case 5:
+                return "Friday"
+            case 6:
+                return "Saturday"
+            default:
+                return ""
+            }
+        }
 }
 
 extension EditScheduleViewController: DatePickerDelegate {
@@ -44,13 +114,19 @@ extension EditScheduleViewController: DatePickerDelegate {
     func datePickerViewController(_ dayPickerViewController: DatePickerViewController, selectedDate: Date) {
         editScheduleView.finishByCell.textLabel?.text = DateFormatter.shortString(forDate: selectedDate)
     }
+    
 }
 
 extension EditScheduleViewController: DayPickerDelegate {
     
-    func dayPickerViewController(_ dayPickerViewController: DayPickerViewController, selectedDays: [Bool]) {
-        print("Chose days")
+    func dayPickerViewController(_ dayPickerViewController: DayPickerViewController, selectedDays: List<BoolObject>? ) {
+        guard let days = selectedDays
+            else { return }
+        book.readingDays.removeAll()
+        book.readingDays.append(objectsIn: days)
+        updateUI()
     }
+    
 }
 
 extension EditScheduleViewController: UITableViewDataSource {
@@ -83,6 +159,20 @@ extension EditScheduleViewController: UITableViewDataSource {
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "I want to finish by"
+        case 1:
+            return "Reading"
+        case 2:
+            return "Every"
+        default:
+            return nil
+        }
+    }
+    
 }
 
 extension EditScheduleViewController: UITableViewDelegate {
@@ -99,29 +189,32 @@ extension EditScheduleViewController: UITableViewDelegate {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "I want to finish by"
-        case 1:
-            return "Reading"
-        case 2:
-            return "Every"
-        default:
-            return nil
-        }
-    }
 }
 
 extension EditScheduleViewController: UITextFieldDelegate {
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
+        
         let numericCharacterSet = NSCharacterSet.decimalDigits.inverted
         guard string.rangeOfCharacter(from: numericCharacterSet) == nil
             else { return false }
-    
+        
         return true
     }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        guard let text = textField.text, text.characters.count > 0
+        else {
+            textField.text = "\(book.pagesPerDayGoal)"
+            return
+        }
+        
+        var input = Int(text)!
+        input = input > book.totalPages ? book.totalPages : input
+        input = input < 0 ? 1 : input
+        book.pagesPerDayGoal = input
+        updateUI()
+    }
+    
 }

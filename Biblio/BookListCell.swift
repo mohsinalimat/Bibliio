@@ -11,6 +11,7 @@ import UIKit
 protocol BookListCellDelegate: NSObjectProtocol {
     
     func moreButtonPressed(cell: BookListCell) -> ()
+    
 }
 
 class BookListCell: UICollectionViewCell {
@@ -85,9 +86,23 @@ class BookListCell: UICollectionViewCell {
             else { return }
         
         titleLabel.text = book.title
-        pagesReadLabel.text = "\(book.progress.currentPage) of \(book.totalPages)"
-        lastReadLabel.text = "\(DateFormatter.shortString(forDate: book.progress.lastRead))"
-        finishByLabel.text = "\(DateFormatter.shortString(forDate: book.progress.finishDate))"
+        pagesReadLabel.text = "\(book.currentPage) of \(book.totalPages)"
+        
+        if let lastReadDate = book.lastRead {
+            lastReadLabel.text = "\(DateFormatter.shortString(forDate: lastReadDate))"
+        } else {
+            lastReadLabel.text = "Not read yet"
+        }
+        
+        if book.isFinished {
+            couldFinishLabel.text = "Finished on"
+        }
+        
+        if let finishByDate = book.finishDate {
+            finishByLabel.text = "\(DateFormatter.shortString(forDate: finishByDate))"
+        } else {
+            finishByLabel.text = ""
+        }
         
         if let imageData = book.imageData {
             let image = UIImage(data: imageData)
@@ -106,6 +121,6 @@ class BookListCell: UICollectionViewCell {
     func animateProgress() {
         guard let book = book
             else { return }
-        progressView.setProgress(value: book.progress.percentage, animated: true, duration: 0.5, completion: nil)
+        progressView.setProgress(value: book.percentCompleted, animated: true, duration: 1, completion: nil)
     }
 }

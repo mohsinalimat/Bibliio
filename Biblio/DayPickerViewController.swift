@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol DayPickerDelegate: NSObjectProtocol {
     
-    func dayPickerViewController(_ dayPickerViewController: DayPickerViewController, selectedDays: [Bool])
+    func dayPickerViewController(_ dayPickerViewController: DayPickerViewController, selectedDays: List<BoolObject>?)
+    
 }
 
 class DayPickerViewController: BaseInputViewController {
@@ -36,8 +38,7 @@ class DayPickerViewController: BaseInputViewController {
     // MARK: - Target Action
     
     dynamic private func saveButtonPressed(_ sender: Any) {
-        let days = selectedDays()
-        delegate?.dayPickerViewController(self, selectedDays: days)
+        delegate?.dayPickerViewController(self, selectedDays: selectedDays())
         let _ = navigationController?.popViewController(animated: true)
     }
     
@@ -64,9 +65,20 @@ class DayPickerViewController: BaseInputViewController {
     
     // MARK: - Helper
     
-    private func selectedDays() -> [Bool] {
-        return [true, true, true, true, true, true, true]
+    private func selectedDays() -> List<BoolObject>? {
+        guard let selectedRows = tableView.indexPathsForSelectedRows
+            else { return nil }
+        
+        var days = [false, false, false, false, false, false, false]
+        for indexPath in selectedRows {
+            days[indexPath.row] = true
+        }
+        
+        let list = List<BoolObject>()
+        list.append(objectsIn: days.map({ BoolObject(bool:$0) }))
+        return list
     }
+    
 }
 
 extension DayPickerViewController: UITableViewDataSource {
@@ -104,12 +116,12 @@ extension DayPickerViewController: UITableViewDataSource {
             return ""
         }
     }
+    
 }
 
 extension DayPickerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at: indexPath)
         
         if cell?.accessoryType == .checkmark {
@@ -118,4 +130,5 @@ extension DayPickerViewController: UITableViewDelegate {
             cell?.accessoryType = .checkmark
         }
     }
+    
 }
