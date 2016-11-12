@@ -5,16 +5,19 @@ PODS:
   - Realm/Headers (2.0.2)
   - RealmSwift (2.0.2):
     - Realm (= 2.0.2)
+  - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
   - RealmSwift
+  - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
   Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
   RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: e90cc43a6e6ec6502331b7c39580456ca0768082
+PODFILE CHECKSUM: 0e358943b282ef57dd53f9a40dcb37c2d845d0a6
 
 COCOAPODS: 1.1.1
