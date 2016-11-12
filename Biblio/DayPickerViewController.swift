@@ -21,6 +21,12 @@ class DayPickerViewController: BaseInputViewController {
     var tableView = UITableView()
     var tableViewHeightConstraint: NSLayoutConstraint!
     
+    var book = Book() {
+        didSet {
+            updateUI()
+        }
+    }
+    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -79,6 +85,9 @@ class DayPickerViewController: BaseInputViewController {
         return list
     }
     
+    func updateUI() {
+        
+    }
 }
 
 extension DayPickerViewController: UITableViewDataSource {

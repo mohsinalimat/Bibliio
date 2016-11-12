@@ -67,7 +67,6 @@ class BookDetailView: UIView {
     func configureTitleLabel() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = .center
-        titleLabel.text = "Title"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
         titleLabel.textColor = .white
         topView.addSubview(titleLabel)
@@ -82,7 +81,6 @@ class BookDetailView: UIView {
     func configureAuthorLabel() {
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
         authorLabel.textAlignment = .center
-        authorLabel.text = "Author"
         authorLabel.font = UIFont.systemFont(ofSize: 18)
         authorLabel.textColor = .white
         topView.addSubview(authorLabel)
@@ -112,7 +110,6 @@ class BookDetailView: UIView {
     func configurePagesReadLabel() {
         pagesReadLabel.translatesAutoresizingMaskIntoConstraints = false
         pagesReadLabel.font = UIFont.systemFont(ofSize: 14)
-        pagesReadLabel.text = "132 of 200 read"
         pagesReadLabel.textAlignment = .center
         pagesReadLabel.textColor = .white
         topView.addSubview(pagesReadLabel)
@@ -180,6 +177,7 @@ class BookDetailView: UIView {
     func configureTableView () {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
+        tableView.bounces = false
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         addSubview(tableView)

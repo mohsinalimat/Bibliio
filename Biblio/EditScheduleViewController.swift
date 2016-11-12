@@ -178,10 +178,10 @@ extension EditScheduleViewController: UITableViewDataSource {
 extension EditScheduleViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if indexPath.section == 0 {
             let vc = DatePickerViewController()
             vc.delegate = self
+            vc.book = book
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.section == 2 && indexPath.row == 0 {
             let vc = DayPickerViewController()
@@ -189,6 +189,7 @@ extension EditScheduleViewController: UITableViewDelegate {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
 }
 
 extension EditScheduleViewController: UITextFieldDelegate {

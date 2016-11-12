@@ -19,6 +19,12 @@ class DatePickerViewController: BaseInputViewController {
     
     var datePicker = UIDatePicker()
     
+    var book = Book() {
+        didSet {
+            updateUI()
+        }
+    }
+    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -35,11 +41,26 @@ class DatePickerViewController: BaseInputViewController {
         let _ = navigationController?.popViewController(animated: true)
     }
     
+    dynamic private func pickerViewValueChanged(_ sender: Any) {
+        let today = Date()
+        if datePicker.date < today {
+            datePicker.setDate(today, animated: true)
+        }
+    }
+    
+    private func updateUI() {
+        if let finishDate = book.finishDate {
+           datePicker.setDate(finishDate, animated: true)
+        } else {
+            datePicker.setDate(Date(), animated: true)
+        }
+    }
+    
     // MARK: - Setup
     
     private func setup() {
         saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
-        
+        datePicker.addTarget(self, action: #selector(pickerViewValueChanged(_:)), for: .valueChanged)
         datePicker.translatesAutoresizingMaskIntoConstraints = false
         datePicker.datePickerMode = .date
         contentView.backgroundColor = .white

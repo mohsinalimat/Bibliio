@@ -25,7 +25,7 @@ class Book: Object {
         }
     }
     dynamic var lastRead: Date?
-    dynamic var pagesPerDayGoal = 10
+    dynamic var pagesPerDayGoal = 20
     let readingDays = List<BoolObject>()
     dynamic var imageData: Data? = nil
     
@@ -47,7 +47,7 @@ class Book: Object {
         self.author = author
         self.currentPage = currentPage
         self.totalPages = totalPages
-        self.readingDays.append(objectsIn: [BoolObject(bool: true), BoolObject(bool: false), BoolObject(bool: false), BoolObject(bool: false), BoolObject(bool: false), BoolObject(bool: false), BoolObject(bool: true)])
+        self.readingDays.append(objectsIn: [BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true)])
     }
     
     func updateLastRead() {

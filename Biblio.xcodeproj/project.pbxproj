@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		663C00321DD0EF0700AF5B17 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663C00311DD0EF0700AF5B17 /* Device.swift */; };
 		664538111DD112E300DB4E5B /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664538101DD112E300DB4E5B /* DateFormatter.swift */; };
+		6667A4F81DD6B28F007F10E8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667A4F71DD6B28F007F10E8 /* SettingsViewController.swift */; };
 		667B9BA21DD2879D00E8D4A7 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667B9BA11DD2879D00E8D4A7 /* DatePickerViewController.swift */; };
 		667B9BA41DD2899800E8D4A7 /* DayPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667B9BA31DD2899800E8D4A7 /* DayPickerViewController.swift */; };
 		667DA0A31DC8F1F5003E55F9 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667DA0A21DC8F1F5003E55F9 /* UIColorExtensions.swift */; };
@@ -30,6 +31,7 @@
 		66D7F0E01DC7C8A30098AD2D /* BookListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66D7F0DE1DC7C8A30098AD2D /* BookListCell.xib */; };
 		66D7F0E71DC8E3E90098AD2D /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D7F0E61DC8E3E90098AD2D /* ArrayExtensions.swift */; };
 		66D8CEE21DD401C1003EA577 /* BoolObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D8CEE11DD401C1003EA577 /* BoolObject.swift */; };
+		66E384011DD6702F0002DA09 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E384001DD6702F0002DA09 /* DateExtensions.swift */; };
 		66EAB75F1DCBD9B800E9192D /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */; };
 		66F638981DC8F1C200039FB8 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F638971DC8F1C200039FB8 /* UIFontExtensions.swift */; };
 		66FD7F021DCCF968003218F7 /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD7F011DCCF968003218F7 /* BookDetailView.swift */; };
@@ -54,6 +56,7 @@
 /* Begin PBXFileReference section */
 		663C00311DD0EF0700AF5B17 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		664538101DD112E300DB4E5B /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		6667A4F71DD6B28F007F10E8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		667B9BA11DD2879D00E8D4A7 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		667B9BA31DD2899800E8D4A7 /* DayPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayPickerViewController.swift; sourceTree = "<group>"; };
 		667DA0A21DC8F1F5003E55F9 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 		66D7F0DE1DC7C8A30098AD2D /* BookListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListCell.xib; sourceTree = "<group>"; };
 		66D7F0E61DC8E3E90098AD2D /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		66D8CEE11DD401C1003EA577 /* BoolObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolObject.swift; sourceTree = "<group>"; };
+		66E384001DD6702F0002DA09 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInputViewController.swift; sourceTree = "<group>"; };
 		66F638971DC8F1C200039FB8 /* UIFontExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontExtensions.swift; sourceTree = "<group>"; };
 		66FD7F011DCCF968003218F7 /* BookDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 			children = (
 				66AE73CC1DBFB72F00BC1260 /* Main.storyboard */,
 				66AE73CA1DBFB72F00BC1260 /* AddBookViewController.swift */,
+				6667A4F71DD6B28F007F10E8 /* SettingsViewController.swift */,
 				66CB697E1DC3E7DB0054B5DE /* BookListViewController.swift */,
 				66CB69801DC3E8570054B5DE /* ArchiveViewController.swift */,
 				66BDFFE11DCB958F000F43CC /* BookDetailViewController.swift */,
@@ -238,6 +243,7 @@
 				66F638971DC8F1C200039FB8 /* UIFontExtensions.swift */,
 				667DA0A21DC8F1F5003E55F9 /* UIColorExtensions.swift */,
 				664538101DD112E300DB4E5B /* DateFormatter.swift */,
+				66E384001DD6702F0002DA09 /* DateExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -421,6 +427,7 @@
 				66A22CED1DCBEBAC008A8077 /* AddBookView.swift in Sources */,
 				66FD7F101DCD4C4B003218F7 /* HorizontalSlideAnimationController.swift in Sources */,
 				663C00321DD0EF0700AF5B17 /* Device.swift in Sources */,
+				66E384011DD6702F0002DA09 /* DateExtensions.swift in Sources */,
 				66FD7F041DCCF9FB003218F7 /* SeparatorView.swift in Sources */,
 				667DA0A31DC8F1F5003E55F9 /* UIColorExtensions.swift in Sources */,
 				66FD7F021DCCF968003218F7 /* BookDetailView.swift in Sources */,
@@ -438,6 +445,7 @@
 				66FD7F0E1DCD4BAB003218F7 /* NavigationController.swift in Sources */,
 				66D7F0DA1DC7C8050098AD2D /* CircularProgressView.swift in Sources */,
 				66CB69811DC3E8570054B5DE /* ArchiveViewController.swift in Sources */,
+				6667A4F81DD6B28F007F10E8 /* SettingsViewController.swift in Sources */,
 				667DA0B01DC94EEA003E55F9 /* VerticalSlideAnimationController.swift in Sources */,
 				66FD7F0C1DCD4142003218F7 /* EditScheduleView.swift in Sources */,
 				66FD7F0A1DCD4120003218F7 /* EditScheduleViewController.swift in Sources */,
