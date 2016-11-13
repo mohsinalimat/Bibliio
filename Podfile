@@ -6,6 +6,7 @@ target 'Biblio' do
   pod 'RealmSwift'
   pod 'IQKeyboardManagerSwift'
   pod 'TTTAttributedLabel'
+  pod 'DZNEmptyDataSet'
 end
 
 

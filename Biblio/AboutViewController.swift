@@ -7,29 +7,20 @@
 //
 
 import UIKit
+import TTTAttributedLabel
 
 class AboutViewController: UIViewController {
 
+    @IBOutlet weak var introLabel: TTTAttributedLabel!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        scrollView.delaysContentTouches = false
+        let text = introLabel.text! as NSString
+        let range = text.range(of: "create a ticket here")
+        let url = URL(string: "https://github.com/atecle/biblio/issues")!
+        introLabel.addLink(to: url, with: range)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

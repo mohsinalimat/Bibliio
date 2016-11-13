@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import DZNEmptyDataSet
 
 class ArchiveViewController: UIViewController {
 
@@ -35,6 +36,7 @@ class ArchiveViewController: UIViewController {
                     collectionView.insertItems(at: insertions.map { IndexPath(row: $0, section: 0) })
                     collectionView.deleteItems(at: deletions.map { IndexPath(row: $0, section: 0) })
                     collectionView.reloadItems(at: modifications.map { IndexPath(row: $0, section: 0) })
+                    collectionView.reloadEmptyDataSet()
                 }, completion: { _ in })
                 break
             case .error(let error):
@@ -59,10 +61,38 @@ class ArchiveViewController: UIViewController {
         collectionView.register(UINib(nibName: BookListCell.Identifier, bundle: nil), forCellWithReuseIdentifier: BookListCell.Identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.emptyDataSetSource = self
+        collectionView.emptyDataSetDelegate = self
         collectionView.alwaysBounceVertical = true
         collectionView.delaysContentTouches = false
     }
 
+}
+
+extension ArchiveViewController: DZNEmptyDataSetDelegate {
+    
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return books.count == 0
+    }
+
+}
+
+extension ArchiveViewController: DZNEmptyDataSetSource {
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        let image = UIImage(named: "box")
+        return image
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let string = NSAttributedString(string: "Archive")
+        return string
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let string = NSAttributedString(string: "The books you've finished go here.")
+        return string
+    }
 }
 
 extension ArchiveViewController: BookListCellDelegate {
@@ -79,6 +109,7 @@ extension ArchiveViewController: BookListCellDelegate {
             self.realm.beginWrite()
             self.realm.delete(book)
             try! self.realm.commitWrite()
+            self.collectionView.reloadEmptyDataSet()
         }
         alertController.addAction(cancelAction)
         alertController.addAction(destroyAction)

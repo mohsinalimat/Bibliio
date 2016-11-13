@@ -1,4 +1,5 @@
 PODS:
+  - DZNEmptyDataSet (1.8.1)
   - IQKeyboardManagerSwift (4.0.7)
   - Realm (2.0.2):
     - Realm/Headers (= 2.0.2)
@@ -8,16 +9,18 @@ PODS:
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
+  - DZNEmptyDataSet
   - IQKeyboardManagerSwift
   - RealmSwift
   - TTTAttributedLabel
 
 SPEC CHECKSUMS:
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
   Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
   RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 0e358943b282ef57dd53f9a40dcb37c2d845d0a6
+PODFILE CHECKSUM: 149110cff50dac8dfb1cb56e4123a7728b82b214
 
 COCOAPODS: 1.1.1

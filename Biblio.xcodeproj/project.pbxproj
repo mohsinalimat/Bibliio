@@ -40,6 +40,7 @@
 		66FD7F0C1DCD4142003218F7 /* EditScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD7F0B1DCD4142003218F7 /* EditScheduleView.swift */; };
 		66FD7F0E1DCD4BAB003218F7 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD7F0D1DCD4BAB003218F7 /* NavigationController.swift */; };
 		66FD7F101DCD4C4B003218F7 /* HorizontalSlideAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD7F0F1DCD4C4B003218F7 /* HorizontalSlideAnimationController.swift */; };
+		66FDEA541DD6E0510035D1FB /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FDEA531DD6E0510035D1FB /* AboutViewController.swift */; };
 		9CEE82EDBB2A860C1ABF06D3 /* Pods_Biblio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAAF77AB82E3280CFA74B4DF /* Pods_Biblio.framework */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		66FD7F0B1DCD4142003218F7 /* EditScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditScheduleView.swift; sourceTree = "<group>"; };
 		66FD7F0D1DCD4BAB003218F7 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		66FD7F0F1DCD4C4B003218F7 /* HorizontalSlideAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalSlideAnimationController.swift; sourceTree = "<group>"; };
+		66FDEA531DD6E0510035D1FB /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		71C46E5F82BFFC4D7F8237E1 /* Pods-Biblio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Biblio.release.xcconfig"; path = "Pods/Target Support Files/Pods-Biblio/Pods-Biblio.release.xcconfig"; sourceTree = "<group>"; };
 		CAAF77AB82E3280CFA74B4DF /* Pods_Biblio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Biblio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF7921EC217887B3EF8A8454 /* Pods-Biblio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Biblio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Biblio/Pods-Biblio.debug.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				66FD7F0D1DCD4BAB003218F7 /* NavigationController.swift */,
 				667B9BA11DD2879D00E8D4A7 /* DatePickerViewController.swift */,
 				667B9BA31DD2899800E8D4A7 /* DayPickerViewController.swift */,
+				66FDEA531DD6E0510035D1FB /* AboutViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				6667A4F81DD6B28F007F10E8 /* SettingsViewController.swift in Sources */,
 				667DA0B01DC94EEA003E55F9 /* VerticalSlideAnimationController.swift in Sources */,
 				66FD7F0C1DCD4142003218F7 /* EditScheduleView.swift in Sources */,
+				66FDEA541DD6E0510035D1FB /* AboutViewController.swift in Sources */,
 				66FD7F0A1DCD4120003218F7 /* EditScheduleViewController.swift in Sources */,
 				66BDFFE21DCB958F000F43CC /* BookDetailViewController.swift in Sources */,
 			);
