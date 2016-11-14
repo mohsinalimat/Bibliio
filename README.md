@@ -33,3 +33,9 @@ This is a project that I'm continually improving. If you're a user that wants to
 For the next build
 - Refactor to an MVVM architecture. View Controllers are bloated with logic and need to be decoupled from model
 - Set custom reminders, as of now it defaults to everyday
+- Move from archive back into reading list
+- Edit book details after having created a book.
+
+Improvements to come eventually
+- Bar code scanner for easy input
+- Record reading "sessions" -- let the user set a timer and log a reading session. Will generate useful metrics about the user's reading habits
