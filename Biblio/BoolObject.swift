@@ -15,4 +15,5 @@ class BoolObject: Object {
         self.init()
         self.value = bool
     }
+    
 }

@@ -26,4 +26,25 @@ extension Date {
         return Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: firstDate), to: Calendar.current.startOfDay(for: secondDate)).day
     }
     
+    static func nameOfDay(forIndex index: Int) -> String {
+        switch index {
+        case 0:
+            return "Sunday"
+        case 1:
+            return "Monday"
+        case 2:
+            return "Tuesday"
+        case 3:
+            return "Wednesday"
+        case 4:
+            return "Thursday"
+        case 5:
+            return "Friday"
+        case 6:
+            return "Saturday"
+        default:
+            return ""
+        }
+    }
+    
 }

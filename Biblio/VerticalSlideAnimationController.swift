@@ -8,18 +8,17 @@
 
 import UIKit
 
-class VerticalSlideAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+final class VerticalSlideAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
     
-    public var isPresenting = false
+    var isPresenting = false
     
     private var blurView = UIVisualEffectView()
     
-    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.40
     }
     
-    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let fromViewController = transitionContext.viewController(forKey: .from)!
         let toViewController = transitionContext.viewController(forKey: .to)!
         let toVCFinalFrame = transitionContext.finalFrame(for: toViewController)
@@ -28,7 +27,6 @@ class VerticalSlideAnimationController: NSObject, UIViewControllerAnimatedTransi
         let bounds = UIScreen.main.bounds
         
         if isPresenting {
-            
             blurView.frame = fromViewController.view.bounds
             blurView.effect = UIBlurEffect(style: .light)
             blurView.alpha = 0
@@ -43,7 +41,6 @@ class VerticalSlideAnimationController: NSObject, UIViewControllerAnimatedTransi
                 transitionContext.completeTransition(true)
             })
         } else {
-            
             UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0.0, usingSpringWithDamping: 0.83, initialSpringVelocity: 0.0, options: [], animations: {
                 self.blurView.alpha = 0.0
                 fromViewController.view.frame = fromVCFinalFrame.offsetBy(dx: 0, dy: (bounds.size.height))
@@ -54,4 +51,5 @@ class VerticalSlideAnimationController: NSObject, UIViewControllerAnimatedTransi
             })
         }
     }
+    
 }

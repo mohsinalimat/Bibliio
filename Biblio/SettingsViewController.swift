@@ -39,7 +39,7 @@ class SettingsViewController: UITableViewController {
     
     private func confirmEraseData() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [unowned self] (action) in
+        let cancelAction = UIAlertAction(title: Constants.Action.Cancel, style: .cancel) { [unowned self] (action) in
             self.dismiss(animated: true, completion: nil)
         }
         let destroyAction = UIAlertAction(title: "Erase All Data", style: .destructive) { [unowned self] (action) in

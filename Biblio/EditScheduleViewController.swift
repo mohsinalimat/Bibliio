@@ -90,32 +90,12 @@ class EditScheduleViewController: BaseInputViewController {
         }
         
         let daysString =  String(boolDays.enumerated().map { (index, element) in
-            return element ? "\(nameOfDay(forIndex:index)), " : ""
+            return element ? "\(Date.nameOfDay(forIndex:index)), " : ""
         }.joined().characters.dropLast(2))
         
         return daysString
     }
     
-        private func nameOfDay(forIndex index: Int) -> String {
-            switch index {
-            case 0:
-                return "Sunday"
-            case 1:
-                return "Monday"
-            case 2:
-                return "Tuesday"
-            case 3:
-                return "Wednesday"
-            case 4:
-                return "Thursday"
-            case 5:
-                return "Friday"
-            case 6:
-                return "Saturday"
-            default:
-                return ""
-            }
-        }
 }
 
 extension EditScheduleViewController: DatePickerDelegate {

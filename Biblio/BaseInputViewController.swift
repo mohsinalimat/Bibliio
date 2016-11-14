@@ -110,7 +110,7 @@ public class BaseInputViewController: UIViewController {
         cancelButton.backgroundColor = UIColor.softGrey()
         cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
         cancelButton.titleLabel?.textColor = .white
-        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.setTitle(Constants.Action.Cancel, for: .normal)
         containerView.addSubview(cancelButton)
         
         let top = NSLayoutConstraint(item: cancelButton, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: 0)

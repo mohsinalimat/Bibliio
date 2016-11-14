@@ -39,15 +39,15 @@ public class AddBookViewController: BaseInputViewController {
     }
     
     @objc private func imagePickerButtonPressed(_ sender: Any) {
-        let takePicture = UIAlertAction(title: "Take Picture", style: .default, handler: { [unowned self] (alert: UIAlertAction!) in
+        let takePicture = UIAlertAction(title: Constants.ImagePicker.TakeMessage, style: .default, handler: { [unowned self] (alert: UIAlertAction!) in
             self.openCamera()
         })
         
-        let choosePicture = UIAlertAction(title: "Choose From Gallery", style: .default, handler: { [unowned self] (alert: UIAlertAction!) in
+        let choosePicture = UIAlertAction(title: Constants.ImagePicker.ChooseMessage, style: .default, handler: { [unowned self] (alert: UIAlertAction!) in
             self.openGallery()
         })
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: Constants.Action.Cancel, style: .cancel, handler: nil)
         
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(takePicture)
@@ -86,7 +86,7 @@ public class AddBookViewController: BaseInputViewController {
     
     func showAlert() {
         let alert = UIAlertController(title: "Oops", message: "Fill in at least the title and the number of pages!", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okButton = UIAlertAction(title: Constants.Action.OK, style: .default, handler: nil)
         alert.addAction(okButton)
         present(alert, animated: true, completion: nil)
     }
@@ -188,7 +188,7 @@ extension AddBookViewController: UIImagePickerControllerDelegate, UINavigationCo
             present(imagePicker, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Camera Not Found", message: "This device has no camera.", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style:.default, handler: nil)
+            let ok = UIAlertAction(title: Constants.Action.OK, style:.default, handler: nil)
             alert.addAction(ok)
             present(alert, animated: true, completion: nil)
         }

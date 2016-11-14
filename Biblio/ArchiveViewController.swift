@@ -52,7 +52,7 @@ class ArchiveViewController: UIViewController {
     func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        let width = UIScreen.main.bounds.width - (Constants.CellMargin * 2)
+        let width = UIScreen.main.bounds.width - (Constants.BookCell.Margin * 2)
         let height = UIScreen.main.bounds.height * 0.3
         layout.itemSize = CGSize(width: width, height: height)
         
@@ -102,10 +102,10 @@ extension ArchiveViewController: BookListCellDelegate {
         let book = books[indexPath.row]
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [unowned self] (action) in
+        let cancelAction = UIAlertAction(title: Constants.Action.Cancel, style: .cancel) { [unowned self] (action) in
             self.dismiss(animated: true, completion: nil)
         }
-        let destroyAction = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] (action) in
+        let destroyAction = UIAlertAction(title: Constants.Action.Delete, style: .destructive) { [unowned self] (action) in
             self.realm.beginWrite()
             self.realm.delete(book)
             try! self.realm.commitWrite()

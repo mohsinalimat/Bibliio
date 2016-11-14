@@ -8,15 +8,15 @@
 
 import UIKit
 
-class HorizontalSlideAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
+final class HorizontalSlideAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 
-    public var isPushing = true
+    var isPushing = true
     
-    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.6
     }
     
-    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let duration = transitionDuration(using: transitionContext)
         let toView = transitionContext.view(forKey: .to)!
         let fromView = transitionContext.view(forKey: .from)!
@@ -46,4 +46,5 @@ class HorizontalSlideAnimationController: NSObject, UIViewControllerAnimatedTran
             })
         }
     }
+    
 }
