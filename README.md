@@ -15,7 +15,6 @@ Biblio is a simple tracker app for your reading habits.
 
 ###Screenshots
 <p align="center">
-  <img width="200" src="assets/screenshot-1.png"/>
     <img width="200" src="assets/screenshot-2.png"/>
     <img width="200" src="assets/screenshot-3.png"/>
     <img width="200" src="assets/screenshot-4.png"/>
