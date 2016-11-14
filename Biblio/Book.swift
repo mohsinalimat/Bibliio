@@ -11,32 +11,33 @@ import UserNotifications
 
 class Book: Object {
     
-    override static func ignoredProperties() -> [String] {
-        return ["remindersOn"]
-    }
+    // MARK: - Properties
     
     private(set) dynamic var id = NSUUID().uuidString
     
     dynamic var title: String = ""
     dynamic var author: String = ""
-    
-    dynamic var currentPage: Int = 1
-    dynamic var totalPages: Int = 1
-    
-    dynamic var startDate = Date()
-    dynamic var finishDate: Date? {
+   
+    dynamic var currentPageBacking: Int = 1
+    dynamic var currentPage: Int {
         get {
-            return estimatedFinishDate()
+            return currentPageBacking
+        }
+        set(newValue) {
+            currentPageBacking = newValue
+            updateLastRead()
         }
     }
     
+    dynamic var totalPages: Int = 1
+    dynamic var startDate = Date()
+    dynamic var finishDate: Date? { return estimatedFinishDate() }
     dynamic var lastRead: Date?
     dynamic var pagesPerDayGoal = 20
     let readingDays = List<BoolObject>()
     dynamic var imageData: Data? = nil
-    
+   
     private dynamic var remindersOnBacking: Bool = false
-    
     dynamic var remindersOn: Bool {
         get {
             return remindersOnBacking
@@ -52,12 +53,14 @@ class Book: Object {
             return CGFloat(currentPage)/CGFloat(totalPages)
         }
     }
-    
+
     var isFinished: Bool {
         get {
            return currentPage == totalPages
         }
     }
+    
+    // MARK: - Initialization
     
     convenience init(title: String, author: String = "", currentPage: Int, totalPages: Int) {
         self.init()
@@ -68,12 +71,36 @@ class Book: Object {
         self.readingDays.append(objectsIn: [BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true)])
     }
     
-    func updateLastRead() {
-        lastRead = Date()
+    // MARK: - Overrides
+    
+    override static func ignoredProperties() -> [String] {
+        return ["remindersOn"]
     }
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    // MARK: - Public
+    
+    //I'd rather have a didSet on finishDate, but crashes app
+    func configureSchedule(for date: Date) {
+        guard let days = Date.daysBetween(firstDate: Date(), secondDate: date)
+            else { return }
+        let pagesLeft = totalPages - currentPage
+        var daysUntilGoal = days
+        if days > pagesLeft {
+            daysUntilGoal = pagesLeft
+        }
+        let pagesPerDay = ceil(CGFloat(pagesLeft)/CGFloat(daysUntilGoal))
+        let _ = readingDays.map { $0.value = true }
+        pagesPerDayGoal = Int(pagesPerDay)
+    }
+    
+    // MARK: - Private
+    
+    private func updateLastRead() {
+        lastRead = Date()
     }
     
     private func estimatedFinishDate() -> Date? {
@@ -111,20 +138,7 @@ class Book: Object {
             }
         }
     }
-    
-    func configureSchedule(for date: Date) {
-        guard let days = Date.daysBetween(firstDate: Date(), secondDate: date)
-            else { return }
-        let pagesLeft = totalPages - currentPage
-        var daysUntilGoal = days
-        if days > pagesLeft {
-            daysUntilGoal = pagesLeft
-        }
-        let pagesPerDay = ceil(CGFloat(pagesLeft)/CGFloat(daysUntilGoal))
-        let _ = readingDays.map { $0.value = true }
-        pagesPerDayGoal = Int(pagesPerDay)
-    }
-    
+
 }
 
 extension Book: NSCopying {
