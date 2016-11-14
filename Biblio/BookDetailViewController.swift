@@ -92,6 +92,8 @@ class BookDetailViewController: BaseInputViewController {
             book.readingDays.removeAll()
             book.readingDays.append(objectsIn: tempBook.readingDays)
             book.lastRead = tempBook.lastRead
+            book.remindersOn = tempBook.remindersOn
+            tempBook.remindersOn = false
             realm.add(book, update: true)
         }
     }

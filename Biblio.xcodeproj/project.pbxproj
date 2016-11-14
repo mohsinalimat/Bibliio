@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6619254B1DDA2495001BDB90 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6619254A1DDA2495001BDB90 /* Consts.swift */; };
 		663C00321DD0EF0700AF5B17 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663C00311DD0EF0700AF5B17 /* Device.swift */; };
 		664538111DD112E300DB4E5B /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664538101DD112E300DB4E5B /* DateFormatter.swift */; };
 		6667A4F81DD6B28F007F10E8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667A4F71DD6B28F007F10E8 /* SettingsViewController.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6619254A1DDA2495001BDB90 /* Consts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		663C00311DD0EF0700AF5B17 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		664538101DD112E300DB4E5B /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		6667A4F71DD6B28F007F10E8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				667DA0AF1DC94EEA003E55F9 /* VerticalSlideAnimationController.swift */,
 				66FD7F0F1DCD4C4B003218F7 /* HorizontalSlideAnimationController.swift */,
 				663C00311DD0EF0700AF5B17 /* Device.swift */,
+				6619254A1DDA2495001BDB90 /* Consts.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				664538111DD112E300DB4E5B /* DateFormatter.swift in Sources */,
+				6619254B1DDA2495001BDB90 /* Consts.swift in Sources */,
 				66AE73F01DBFBDF300BC1260 /* Book.swift in Sources */,
 				66A22CED1DCBEBAC008A8077 /* AddBookView.swift in Sources */,
 				66FD7F101DCD4C4B003218F7 /* HorizontalSlideAnimationController.swift in Sources */,

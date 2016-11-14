@@ -128,7 +128,6 @@ extension BookListViewController: UICollectionViewDataSource {
         cell.delegate = self
         cell.book = book
         cell.animateProgress()
-        print("test")
         
         return cell
     }

@@ -21,11 +21,7 @@ class DayPickerViewController: BaseInputViewController {
     var tableView = UITableView()
     var tableViewHeightConstraint: NSLayoutConstraint!
     
-    var book = Book() {
-        didSet {
-            updateUI()
-        }
-    }
+    var book = Book()
     
     // MARK: - View Lifecycle
     
@@ -85,14 +81,6 @@ class DayPickerViewController: BaseInputViewController {
         return list
     }
     
-    func updateUI() {
-        //        book.readingDays.enumerated().map { [unowned self] (index, element) in
-        //            let indexPath = IndexPath(row: index, section: 0)
-        //            print("\(indexPath)")
-        //            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-        //            self.tableView(self.tableView, didSelectRowAt: indexPath)
-        //        }
-    }
 }
 
 extension DayPickerViewController: UITableViewDataSource {

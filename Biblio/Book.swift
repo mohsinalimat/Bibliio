@@ -7,8 +7,13 @@
 //
 
 import RealmSwift
+import UserNotifications
 
 class Book: Object {
+    
+    override static func ignoredProperties() -> [String] {
+        return ["remindersOn"]
+    }
     
     private(set) dynamic var id = NSUUID().uuidString
     
@@ -29,6 +34,18 @@ class Book: Object {
     dynamic var pagesPerDayGoal = 20
     let readingDays = List<BoolObject>()
     dynamic var imageData: Data? = nil
+    
+    private dynamic var remindersOnBacking: Bool = false
+    
+    dynamic var remindersOn: Bool {
+        get {
+            return remindersOnBacking
+        }
+        set(newValue) {
+            remindersOnBacking = newValue
+            enableReminders(remindersOnBacking)
+        }
+    }
     
     var percentCompleted: CGFloat {
         get {
@@ -78,6 +95,21 @@ class Book: Object {
         components.day = daysLeft
         
         return calendar.date(byAdding: components, to: today)
+    }
+    
+    private func enableReminders(_ enable: Bool) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
+        if enable == true {
+            var components = DateComponents()
+            components.hour = 13
+            let content = UNMutableNotificationContent()
+            content.body = "Hey, don't forget to read \(title) 📖"
+            let trigger = UNCalendarNotificationTrigger.init(dateMatching: DateComponents(), repeats: true)
+            let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request) { (error) in
+                print("\(error.debugDescription)")
+            }
+        }
     }
     
     func configureSchedule(for date: Date) {

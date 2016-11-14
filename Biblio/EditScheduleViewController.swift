@@ -66,6 +66,12 @@ class EditScheduleViewController: BaseInputViewController {
         }
         editScheduleView.readingGoalTextField.text = "\(book.pagesPerDayGoal)"
         editScheduleView.scheduleCell.textLabel?.text = string(forDays: book.readingDays)
+        editScheduleView.reminderSwitch.isOn = book.remindersOn
+        editScheduleView.reminderSwitch.addTarget(self, action: #selector(reminderSwitchValueChanged(_:)), for: .valueChanged)
+    }
+    
+    func reminderSwitchValueChanged(_ sender: Any) {        
+        book.remindersOn = editScheduleView.reminderSwitch.isOn
     }
     
     func string(forDays days: List<BoolObject>) -> String {

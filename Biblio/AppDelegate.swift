@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import IQKeyboardManagerSwift
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UIApplication.shared.statusBarStyle = .lightContent
         IQKeyboardManager.sharedManager().enable = true
-
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.badge, .alert , .sound]) { (granted, error) in
+            print("\(error.debugDescription)")
+        }
+        
         return true
     }
 
