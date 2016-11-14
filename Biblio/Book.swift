@@ -141,6 +141,7 @@ extension Book: NSCopying {
         book.lastRead = self.lastRead
         book.pagesPerDayGoal = self.pagesPerDayGoal
         book.imageData = self.imageData
+        book.remindersOn = self.remindersOn
         return book
     }
     
