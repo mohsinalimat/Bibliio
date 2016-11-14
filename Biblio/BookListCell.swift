@@ -119,8 +119,10 @@ class BookListCell: UICollectionViewCell {
     }
     
     func animateProgress() {
-        guard let book = book
-            else { return }
-        progressView.setProgress(value: book.percentCompleted, animated: true, duration: 1, completion: nil)
+        DispatchQueue.main.async { [unowned self] in
+            guard let book = self.book
+                else { return }
+            self.progressView.setProgress(value: book.percentCompleted, animated: true, duration: 1, completion: nil)
+        }
     }
 }

@@ -18,7 +18,7 @@ class ArchiveViewController: UIViewController {
     lazy var realm = try! Realm()
     lazy var books: Results<Book> = { [unowned self] in
         self.realm.objects(Book.self).filter("currentPage == totalPages")
-        }()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,6 +115,7 @@ extension ArchiveViewController: BookListCellDelegate {
         alertController.addAction(destroyAction)
         present(alertController, animated: true)
     }
+    
 }
 
 extension ArchiveViewController: UICollectionViewDataSource {

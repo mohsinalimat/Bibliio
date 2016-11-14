@@ -65,9 +65,8 @@ class BookListViewController: UIViewController {
         navigationController.isNavigationBarHidden = true
         navigationController.modalPresentationStyle = .custom
         navigationController.transitioningDelegate = self
-        DispatchQueue.main.async { [unowned self] in
-            self.present(navigationController, animated: true, completion: nil)
-        }
+        present(navigationController, animated: true, completion: nil)
+        
     }
     
     // MARK: - Setup
@@ -129,6 +128,7 @@ extension BookListViewController: UICollectionViewDataSource {
         cell.delegate = self
         cell.book = book
         cell.animateProgress()
+        print("test")
         
         return cell
     }
@@ -148,11 +148,9 @@ extension BookListViewController: UICollectionViewDelegate {
         navigationController.isNavigationBarHidden = true
         navigationController.modalPresentationStyle = .custom
         navigationController.transitioningDelegate = self
-        
-        DispatchQueue.main.async { [unowned self] in
-            self.present(navigationController, animated: true, completion: nil)
-        }
+        present(navigationController, animated: true, completion: nil)
     }
+    
 }
 
 extension BookListViewController: UIViewControllerTransitioningDelegate {
