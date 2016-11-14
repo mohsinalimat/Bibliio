@@ -20,4 +20,5 @@ extension DateFormatter {
     static func shortString(forDate date: Date) -> String {
         return shortStyleFormatter.string(from: date)
     }
+    
 }

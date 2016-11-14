@@ -30,7 +30,6 @@
 		66D7F0DA1DC7C8050098AD2D /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D7F0D91DC7C8050098AD2D /* CircularProgressView.swift */; };
 		66D7F0DF1DC7C8A30098AD2D /* BookListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D7F0DD1DC7C8A30098AD2D /* BookListCell.swift */; };
 		66D7F0E01DC7C8A30098AD2D /* BookListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66D7F0DE1DC7C8A30098AD2D /* BookListCell.xib */; };
-		66D7F0E71DC8E3E90098AD2D /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D7F0E61DC8E3E90098AD2D /* ArrayExtensions.swift */; };
 		66D8CEE21DD401C1003EA577 /* BoolObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D8CEE11DD401C1003EA577 /* BoolObject.swift */; };
 		66E384011DD6702F0002DA09 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E384001DD6702F0002DA09 /* DateExtensions.swift */; };
 		66EAB75F1DCBD9B800E9192D /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */; };
@@ -83,7 +82,6 @@
 		66D7F0D91DC7C8050098AD2D /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		66D7F0DD1DC7C8A30098AD2D /* BookListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListCell.swift; sourceTree = "<group>"; };
 		66D7F0DE1DC7C8A30098AD2D /* BookListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListCell.xib; sourceTree = "<group>"; };
-		66D7F0E61DC8E3E90098AD2D /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		66D8CEE11DD401C1003EA577 /* BoolObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolObject.swift; sourceTree = "<group>"; };
 		66E384001DD6702F0002DA09 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInputViewController.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 		66D7F0E51DC8E3D00098AD2D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				66D7F0E61DC8E3E90098AD2D /* ArrayExtensions.swift */,
 				66F638971DC8F1C200039FB8 /* UIFontExtensions.swift */,
 				667DA0A21DC8F1F5003E55F9 /* UIColorExtensions.swift */,
 				664538101DD112E300DB4E5B /* DateFormatter.swift */,
@@ -446,7 +443,6 @@
 				66D7F0DF1DC7C8A30098AD2D /* BookListCell.swift in Sources */,
 				66D8CEE21DD401C1003EA577 /* BoolObject.swift in Sources */,
 				66AE73C91DBFB72F00BC1260 /* AppDelegate.swift in Sources */,
-				66D7F0E71DC8E3E90098AD2D /* ArrayExtensions.swift in Sources */,
 				667B9BA21DD2879D00E8D4A7 /* DatePickerViewController.swift in Sources */,
 				66CB697F1DC3E7DB0054B5DE /* BookListViewController.swift in Sources */,
 				66FD7F0E1DCD4BAB003218F7 /* NavigationController.swift in Sources */,

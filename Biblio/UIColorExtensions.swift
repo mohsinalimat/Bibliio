@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIColor {
+    
     static func softRed() -> UIColor {
         return UIColor(red: 225/255.0, green: 76/255.0, blue: 47/255.0, alpha: 1)
     }
@@ -42,4 +43,5 @@ extension UIColor {
     static func jade() -> UIColor {
         return UIColor(red: 21/255.0, green: 165/255.0, blue: 55/255.0, alpha: 1)
     }
+    
 }
