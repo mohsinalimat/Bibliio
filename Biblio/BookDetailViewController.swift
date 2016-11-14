@@ -80,8 +80,13 @@ class BookDetailViewController: BaseInputViewController {
     // MARK: - Action
     
     func saveButtonPressed(_ sender: Any) {
+        save()
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func save() {
         try! realm.write {
-           // copy book
+            // copy book
             book.currentPage = tempBook.currentPage
             book.pagesPerDayGoal = tempBook.pagesPerDayGoal
             book.readingDays.removeAll()
@@ -89,7 +94,6 @@ class BookDetailViewController: BaseInputViewController {
             book.lastRead = tempBook.lastRead
             realm.add(book, update: true)
         }
-        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -110,7 +114,7 @@ extension BookDetailViewController: UITableViewDataSource {
 extension BookDetailViewController: EditScheduleDelegate {
     
     func editScheduleViewController(_ editScheduleViewController: EditScheduleViewController, didSaveBook: Book) {
-        print("Test")
+        save()
         updateUI()
     }
 }

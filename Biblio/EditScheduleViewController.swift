@@ -26,6 +26,8 @@ class EditScheduleViewController: BaseInputViewController {
         }
     }
     
+    let realm = try! Realm()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -39,7 +41,8 @@ class EditScheduleViewController: BaseInputViewController {
     // MARK: Target Action
     
     func saveButtonPressed(_ sender: Any) {
-        
+        self.delegate?.editScheduleViewController(self, didSaveBook: book)
+        let _ = navigationController?.popViewController(animated: true)
     }
     
     func configureEditScheduleView() {
@@ -112,7 +115,8 @@ class EditScheduleViewController: BaseInputViewController {
 extension EditScheduleViewController: DatePickerDelegate {
     
     func datePickerViewController(_ dayPickerViewController: DatePickerViewController, selectedDate: Date) {
-        editScheduleView.finishByCell.textLabel?.text = DateFormatter.shortString(forDate: selectedDate)
+        book.configureSchedule(for: selectedDate)
+        updateUI()
     }
     
 }
@@ -185,6 +189,7 @@ extension EditScheduleViewController: UITableViewDelegate {
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.section == 2 && indexPath.row == 0 {
             let vc = DayPickerViewController()
+            vc.book = book
             vc.delegate = self
             navigationController?.pushViewController(vc, animated: true)
         }

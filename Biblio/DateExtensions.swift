@@ -18,4 +18,11 @@ extension Date {
         return lhs.compare(rhs) == .orderedAscending
     }
     
+    public func dayNumberOfWeek() -> Int? {
+        return Calendar.current.dateComponents([.weekday], from: self).weekday
+    }
+    
+    public static func daysBetween(firstDate: Date, secondDate: Date) -> Int? {
+        return Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: firstDate), to: Calendar.current.startOfDay(for: secondDate)).day
+    }
 }

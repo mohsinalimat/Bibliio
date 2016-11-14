@@ -86,7 +86,12 @@ class DayPickerViewController: BaseInputViewController {
     }
     
     func updateUI() {
-        
+        //        book.readingDays.enumerated().map { [unowned self] (index, element) in
+        //            let indexPath = IndexPath(row: index, section: 0)
+        //            print("\(indexPath)")
+        //            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        //            self.tableView(self.tableView, didSelectRowAt: indexPath)
+        //        }
     }
 }
 
@@ -97,11 +102,10 @@ extension DayPickerViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let day = nameOfDay(forIndex: indexPath.row)
         let cell = UITableViewCell()
-        
         cell.textLabel?.text = day
+        
         return cell
     }
     
@@ -132,11 +136,19 @@ extension DayPickerViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        
-        if cell?.accessoryType == .checkmark {
-            cell?.accessoryType = .none
-        } else {
-            cell?.accessoryType = .checkmark
+        cell?.accessoryType = .checkmark
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.accessoryType = .none
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if book.readingDays[indexPath.row].value {
+            cell.setSelected(true, animated: false)
+            cell.accessoryType = .checkmark
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
         }
     }
     

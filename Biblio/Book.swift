@@ -24,6 +24,7 @@ class Book: Object {
             return estimatedFinishDate()
         }
     }
+    
     dynamic var lastRead: Date?
     dynamic var pagesPerDayGoal = 20
     let readingDays = List<BoolObject>()
@@ -59,14 +60,37 @@ class Book: Object {
     }
     
     private func estimatedFinishDate() -> Date? {
-        let readingDaysCount = readingDays.filter({ $0.value == true }).count
-        let daysLeft = Int(ceil(CGFloat((totalPages - currentPage))/CGFloat(pagesPerDayGoal)))
-        let weeksLeft = Int(ceil(CGFloat(daysLeft)/CGFloat(readingDaysCount)))
+        let today = Date()
+        var daysLeft = 0
+        var pagesSum = currentPage
+        var currentDay = today.dayNumberOfWeek()! - 1
+    
+        while (pagesSum <= totalPages) {
+            if readingDays[currentDay].value {
+                pagesSum = pagesSum + pagesPerDayGoal
+            }
+            daysLeft += 1
+            currentDay = currentDay == 6 ? 0 : currentDay + 1
+        }
+        
         let calendar = Calendar.current
         var components = DateComponents()
-        components.weekOfYear = weeksLeft
-        let finishDate = calendar.date(byAdding: components, to: Date())
-        return finishDate
+        components.day = daysLeft
+        
+        return calendar.date(byAdding: components, to: today)
+    }
+    
+    func configureSchedule(for date: Date) {
+        guard let days = Date.daysBetween(firstDate: Date(), secondDate: date)
+            else { return }
+        let pagesLeft = totalPages - currentPage
+        var daysUntilGoal = days
+        if days > pagesLeft {
+            daysUntilGoal = pagesLeft
+        }
+        let pagesPerDay = ceil(CGFloat(pagesLeft)/CGFloat(daysUntilGoal))
+        let _ = readingDays.map { $0.value = true }
+        pagesPerDayGoal = Int(pagesPerDay)
     }
     
 }
