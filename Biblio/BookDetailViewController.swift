@@ -18,15 +18,18 @@ class BookDetailViewController: BaseInputViewController {
             updateUI()
         }
     }
-    
     var tempBook = Book()
     
     let realm = try! Realm()
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
+    
+    // MARK: - Set up
     
     func setup() {
         saveButton.backgroundColor = UIColor.deepBlue()
@@ -49,6 +52,8 @@ class BookDetailViewController: BaseInputViewController {
         
         contentView.addConstraints([top, leading, trailing, bottom])
     }
+    
+    // MARK: - UI
     
     func updateUI() {
         bookDetailView.titleLabel.text = tempBook.title
@@ -115,6 +120,8 @@ extension BookDetailViewController: UITableViewDataSource {
 
 extension BookDetailViewController: EditScheduleDelegate {
     
+    // MARK: - EditScheduleDelegate
+
     func editScheduleViewController(_ editScheduleViewController: EditScheduleViewController, didSaveBook: Book) {
         save()
         updateUI()
@@ -136,6 +143,8 @@ extension BookDetailViewController: UITableViewDelegate {
 
 extension BookDetailViewController: UITextFieldDelegate {
     
+    // MARK: - UITextFieldDelegate
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let numericCharacterSet = NSCharacterSet.decimalDigits.inverted
         guard string.rangeOfCharacter(from: numericCharacterSet) == nil
@@ -154,7 +163,6 @@ extension BookDetailViewController: UITextFieldDelegate {
         let input = Int(text)!
         let page = input > tempBook.totalPages ? tempBook.totalPages : input
         tempBook.currentPage = page
-        tempBook.updateLastRead()
         updateUI()
     }
 }

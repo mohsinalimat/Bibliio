@@ -23,6 +23,8 @@ class BookListViewController: UIViewController {
     let slideAnimationController = VerticalSlideAnimationController()
     var notificationToken: NotificationToken? = nil
     
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
@@ -88,6 +90,8 @@ class BookListViewController: UIViewController {
 
 extension BookListViewController: DZNEmptyDataSetSource {
     
+    // MARK: - DZNEmptyDataSetSource
+    
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         let string = NSAttributedString(string: "Reading List")
         return string
@@ -107,6 +111,8 @@ extension BookListViewController: DZNEmptyDataSetSource {
 
 extension BookListViewController: DZNEmptyDataSetDelegate {
     
+    // MARK: - DZNEmptyDataSetDelegate
+
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
         return books.count == 0
     }
@@ -120,17 +126,16 @@ extension BookListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let book = books[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookListCell.Identifier, for: indexPath) as! BookListCell
-        
         cell.delegate = self
         cell.book = book
         cell.animateProgress()
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return books.count
     }
+    
 }
 
 extension BookListViewController: UICollectionViewDelegate {
@@ -170,7 +175,6 @@ extension BookListViewController: BookListCellDelegate {
     func moreButtonPressed(cell: BookListCell) {
         let indexPath = collectionView.indexPath(for: cell)!
         let book = books[indexPath.row]
-        
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: Constants.Action.Cancel, style: .cancel) { [unowned self] (action) in
             self.dismiss(animated: true, completion: nil)

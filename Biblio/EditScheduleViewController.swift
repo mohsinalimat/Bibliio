@@ -17,7 +17,7 @@ protocol EditScheduleDelegate: NSObjectProtocol {
 class EditScheduleViewController: BaseInputViewController {
     
     weak var delegate: EditScheduleDelegate?
-    
+
     var editScheduleView = EditScheduleView()
     
     var book = Book() {
@@ -28,6 +28,8 @@ class EditScheduleViewController: BaseInputViewController {
     
     let realm = try! Realm()
     
+    
+    // MARK: - View Lifecyle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()

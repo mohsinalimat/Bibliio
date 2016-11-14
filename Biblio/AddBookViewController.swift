@@ -9,9 +9,9 @@
 import UIKit
 import RealmSwift
 
-public class AddBookViewController: BaseInputViewController {
+final class AddBookViewController: BaseInputViewController {
     
-    override public var prefersStatusBarHidden: Bool {
+    override var prefersStatusBarHidden: Bool {
         return true
     }
     
@@ -101,22 +101,13 @@ public class AddBookViewController: BaseInputViewController {
     }
     
     func shouldSave() -> Bool {
-        guard let title = addBookView.titleTextField.text
+        guard let title = addBookView.titleTextField.text, title.characters.count != 0
             else { return false }
         
-        guard title.characters.count != 0
+        guard let totalPages = addBookView.totalPagesTextField.text, totalPages.characters.count != 0
             else { return false }
         
-        guard let totalPages = addBookView.totalPagesTextField.text
-            else { return false }
-        
-        guard totalPages.characters.count != 0
-            else { return false }
-        
-        guard let currentPage = addBookView.currentPageTextField.text
-            else { return false }
-        
-        guard currentPage.characters.count != 0
+        guard let currentPage = addBookView.currentPageTextField.text, currentPage.characters.count != 0
             else { return false }
         
         guard let page = Int(currentPage)
@@ -135,7 +126,6 @@ public class AddBookViewController: BaseInputViewController {
         }
         
         if let image = addBookView.imagePickerButton.currentImage, didChooseImage == true {
-            
             if let data = UIImageJPEGRepresentation(image, 1.0) {
                 book.imageData = data
             }

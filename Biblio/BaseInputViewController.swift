@@ -20,6 +20,9 @@ public class BaseInputViewController: UIViewController {
     private var maskPath: UIBezierPath? = nil
     private let maskLayer = CAShapeLayer()
     
+    
+    // MARK: - View Lifecyle
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false

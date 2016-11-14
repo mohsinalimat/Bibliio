@@ -60,7 +60,6 @@ class ArchiveViewController: UIViewController {
         collectionView.setCollectionViewLayout(layout, animated: false)
         collectionView.register(UINib(nibName: BookListCell.Identifier, bundle: nil), forCellWithReuseIdentifier: BookListCell.Identifier)
         collectionView.dataSource = self
-        collectionView.delegate = self
         collectionView.emptyDataSetSource = self
         collectionView.emptyDataSetDelegate = self
         collectionView.alwaysBounceVertical = true
@@ -71,6 +70,8 @@ class ArchiveViewController: UIViewController {
 
 extension ArchiveViewController: DZNEmptyDataSetDelegate {
     
+    // MARK: - DZNEmptyDataSetDelegate 
+    
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
         return books.count == 0
     }
@@ -78,6 +79,8 @@ extension ArchiveViewController: DZNEmptyDataSetDelegate {
 }
 
 extension ArchiveViewController: DZNEmptyDataSetSource {
+    
+    // MARK: - DZNEmptyDataSetSource
     
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         let image = UIImage(named: "box")
@@ -96,6 +99,8 @@ extension ArchiveViewController: DZNEmptyDataSetSource {
 }
 
 extension ArchiveViewController: BookListCellDelegate {
+    
+    // MARK: - BookListCellDelegate
     
     func moreButtonPressed(cell: BookListCell) {
         let indexPath = collectionView.indexPath(for: cell)!
@@ -120,6 +125,8 @@ extension ArchiveViewController: BookListCellDelegate {
 
 extension ArchiveViewController: UICollectionViewDataSource {
     
+    // MARK: - UICollectionViewDataSource
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return books.count
     }
@@ -133,12 +140,5 @@ extension ArchiveViewController: UICollectionViewDataSource {
         cell.animateProgress()
         
         return cell
-    }
-}
-
-extension ArchiveViewController: UICollectionViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
     }
 }

@@ -10,9 +10,11 @@ import UIKit
 import RealmSwift
 import MessageUI
 
-class SettingsViewController: UITableViewController {
+final class SettingsViewController: UITableViewController {
     
     let realm = try! Realm()
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,8 @@ class SettingsViewController: UITableViewController {
            confirmEraseData()
         }
     }
+    
+    // MARK: - UI
     
     private func confirmEraseData() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
