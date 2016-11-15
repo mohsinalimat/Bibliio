@@ -28,14 +28,10 @@ Biblio is still in the submission process. As soon as it's uploaded, this will b
 
 
 ### To Do
-This is a project that I'm continually improving. If you're a user that wants to see a feature, create a ticket and I'll definitely take a look. Or if you want to contribute, submit a pull request.
 
 For the next build
-- Refactor to an MVVM architecture. View Controllers are bloated with logic and need to be decoupled from model
-- Set custom reminders, as of now it defaults to everyday
-- Move from archive back into reading list
+- Refactor to MVVM. VCs feel bloated, should be decoupled from model. Considering RxSwift for binding
+- Fix custom reminders
 - Edit book details after having created a book.
+- other changes to come
 
-Improvements to come eventually
-- Bar code scanner for easy input
-- Record reading "sessions" -- let the user set a timer and log a reading session. Will generate useful metrics about the user's reading habits
