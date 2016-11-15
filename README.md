@@ -28,7 +28,7 @@ Biblio is still in the submission process. As soon as it's uploaded, this will b
 
 
 ### To Do
-This is a project that I'm continually improving. If you're a user that wants to see a feature, create a ticket and I'll definitely take a look. 
+This is a project that I'm continually improving. If you're a user that wants to see a feature, create a ticket and I'll definitely take a look. Or if you want to contribute, submit a pull request.
 
 For the next build
 - Refactor to an MVVM architecture. View Controllers are bloated with logic and need to be decoupled from model
