@@ -1,6 +1,6 @@
 //
 //  SettingsViewController.swift
-//  Biblio
+//  Bibliio
 //
 //  Created by Adam on 11/11/16.
 //  Copyright © 2016 Adam Tecle. All rights reserved.
@@ -61,7 +61,7 @@ final class SettingsViewController: UITableViewController {
         composeVC.mailComposeDelegate = self
         
         composeVC.setToRecipients(["adam.tecle@gmail.com"])
-        composeVC.setSubject("Biblio feedback")
+        composeVC.setSubject("Bibliio feedback")
         composeVC.setMessageBody("Hello!", isHTML: false)
         
         self.present(composeVC, animated: true, completion: nil)

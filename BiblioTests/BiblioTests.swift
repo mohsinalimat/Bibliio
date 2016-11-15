@@ -1,15 +1,15 @@
 //
-//  BiblioTests.swift
-//  BiblioTests
+//  BibliioTests.swift
+//  BibliioTests
 //
 //  Created by Adam on 10/25/16.
 //  Copyright © 2016 Adam Tecle. All rights reserved.
 //
 
 import XCTest
-@testable import Biblio
+@testable import Bibliio
 
-class BiblioTests: XCTestCase {
+class BibliioTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

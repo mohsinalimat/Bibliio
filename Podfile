@@ -2,7 +2,7 @@ platform :ios, '10.0'
 inhibit_all_warnings!
 use_frameworks!
 
-target 'Biblio' do
+target 'Bibliio' do
   pod 'RealmSwift'
   pod 'IQKeyboardManagerSwift'
   pod 'TTTAttributedLabel'

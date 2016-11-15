@@ -1,6 +1,6 @@
 //
 //  BookListCollectionViewCell.swift
-//  Biblio
+//  Bibliio
 //
 //  Created by Adam on 10/31/16.
 //  Copyright © 2016 Adam Tecle. All rights reserved.
