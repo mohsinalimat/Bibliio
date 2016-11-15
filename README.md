@@ -2,9 +2,9 @@
   <img width="320" src="assets/biblio.png"/>
 </p>
 
-#Biblio
+#Bibliio
 
-Biblio is a simple tracker app for your reading habits. 
+Bibliio is a simple tracker app for your reading habits. 
 
 ##Features
 
@@ -24,7 +24,7 @@ Biblio is a simple tracker app for your reading habits.
 
 ### App Store Status
 
-Biblio is still in the submission process. As soon as it's uploaded, this will be updated.
+Bibliio is still in the submission process. As soon as it's uploaded, this will be updated.
 
 
 ### To Do
