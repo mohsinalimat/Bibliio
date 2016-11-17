@@ -7,6 +7,7 @@
 //
 
 import RealmSwift
+import RxRealm
 import UserNotifications
 
 class Book: Object {

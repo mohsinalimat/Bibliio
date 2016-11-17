@@ -3,7 +3,7 @@ inhibit_all_warnings!
 use_frameworks!
 
 target 'Bibliio' do
-  pod 'RealmSwift'
+  pod 'RxRealm'
   pod 'IQKeyboardManagerSwift'
   pod 'TTTAttributedLabel'
   pod 'DZNEmptyDataSet'

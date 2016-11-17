@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6619254B1DDA2495001BDB90 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6619254A1DDA2495001BDB90 /* Constants.swift */; };
+		662A66B11DDE390E008C87F4 /* BookListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662A66B01DDE390E008C87F4 /* BookListCellViewModel.swift */; };
+		662A66B31DDE3FBB008C87F4 /* BookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662A66B21DDE3FBB008C87F4 /* BookListViewModel.swift */; };
 		663C00321DD0EF0700AF5B17 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663C00311DD0EF0700AF5B17 /* Device.swift */; };
 		664538111DD112E300DB4E5B /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664538101DD112E300DB4E5B /* DateFormatter.swift */; };
 		6667A4F81DD6B28F007F10E8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667A4F71DD6B28F007F10E8 /* SettingsViewController.swift */; };
@@ -67,6 +69,8 @@
 /* Begin PBXFileReference section */
 		1881083A08A357F62D4C03ED /* Pods_Bibliio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bibliio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6619254A1DDA2495001BDB90 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		662A66B01DDE390E008C87F4 /* BookListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListCellViewModel.swift; sourceTree = "<group>"; };
+		662A66B21DDE3FBB008C87F4 /* BookListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListViewModel.swift; sourceTree = "<group>"; };
 		663C00311DD0EF0700AF5B17 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		664538101DD112E300DB4E5B /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		6667A4F71DD6B28F007F10E8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 		663BB5501DCF9AB80029AD9B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				662A66B01DDE390E008C87F4 /* BookListCellViewModel.swift */,
+				662A66B21DDE3FBB008C87F4 /* BookListViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -504,6 +510,7 @@
 				664538111DD112E300DB4E5B /* DateFormatter.swift in Sources */,
 				6619254B1DDA2495001BDB90 /* Constants.swift in Sources */,
 				66AE73F01DBFBDF300BC1260 /* Book.swift in Sources */,
+				662A66B31DDE3FBB008C87F4 /* BookListViewModel.swift in Sources */,
 				66A22CED1DCBEBAC008A8077 /* AddBookView.swift in Sources */,
 				66FD7F101DCD4C4B003218F7 /* HorizontalSlideAnimationController.swift in Sources */,
 				663C00321DD0EF0700AF5B17 /* Device.swift in Sources */,
@@ -522,6 +529,7 @@
 				667B9BA21DD2879D00E8D4A7 /* DatePickerViewController.swift in Sources */,
 				66CB697F1DC3E7DB0054B5DE /* BookListViewController.swift in Sources */,
 				66FD7F0E1DCD4BAB003218F7 /* NavigationController.swift in Sources */,
+				662A66B11DDE390E008C87F4 /* BookListCellViewModel.swift in Sources */,
 				66D7F0DA1DC7C8050098AD2D /* CircularProgressView.swift in Sources */,
 				66CB69811DC3E8570054B5DE /* ArchiveViewController.swift in Sources */,
 				6667A4F81DD6B28F007F10E8 /* SettingsViewController.swift in Sources */,

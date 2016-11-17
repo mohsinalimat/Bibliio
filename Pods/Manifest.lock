@@ -4,28 +4,34 @@ PODS:
     - HockeySDK/DefaultLib (= 4.1.2)
   - HockeySDK/DefaultLib (4.1.2)
   - IQKeyboardManagerSwift (4.0.7)
-  - Realm (2.0.2):
-    - Realm/Headers (= 2.0.2)
-  - Realm/Headers (2.0.2)
-  - RealmSwift (2.0.2):
-    - Realm (= 2.0.2)
+  - Realm (2.0.4):
+    - Realm/Headers (= 2.0.4)
+  - Realm/Headers (2.0.4)
+  - RealmSwift (2.0.4):
+    - Realm (= 2.0.4)
+  - RxRealm (0.3.1):
+    - RealmSwift (~> 2.0)
+    - RxSwift (~> 3.0.0)
+  - RxSwift (3.0.1)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
   - DZNEmptyDataSet
   - HockeySDK
   - IQKeyboardManagerSwift
-  - RealmSwift
+  - RxRealm
   - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   HockeySDK: c7523379550a4305cefc1cdfa7b5f9a5a3538180
   IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
-  Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
-  RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
+  Realm: 9da97f48365f8b99dd95c28d45ad8222d62e1775
+  RealmSwift: 01e8db006035f16003e6307ae8eae1adccce68db
+  RxRealm: '0965e07d49b8575d16c3a0487c667dfe64ce6a9c'
+  RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: caba3fcd3e7e6984da991c6804cf9d1302581ba2
+PODFILE CHECKSUM: 1ef53a358664a2b4a0f8044bee9d43d13c75172a
 
 COCOAPODS: 1.2.0.beta.1
