@@ -33,6 +33,7 @@
 		66D7F0DF1DC7C8A30098AD2D /* BookListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D7F0DD1DC7C8A30098AD2D /* BookListCell.swift */; };
 		66D7F0E01DC7C8A30098AD2D /* BookListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66D7F0DE1DC7C8A30098AD2D /* BookListCell.xib */; };
 		66D8CEE21DD401C1003EA577 /* BoolObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D8CEE11DD401C1003EA577 /* BoolObject.swift */; };
+		66DC0EEC1DDCF0B500525788 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66AE73D71DBFB72F00BC1260 /* Info.plist */; };
 		66E384011DD6702F0002DA09 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E384001DD6702F0002DA09 /* DateExtensions.swift */; };
 		66EAB75F1DCBD9B800E9192D /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */; };
 		66F638981DC8F1C200039FB8 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F638971DC8F1C200039FB8 /* UIFontExtensions.swift */; };
@@ -379,7 +380,7 @@
 					66AE73C41DBFB72F00BC1260 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3GR96D7Z4R;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					66AE73DB1DBFB73000BC1260 = {
 						CreatedOnToolsVersion = 8.0;
@@ -421,6 +422,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66DC0EEC1DDCF0B500525788 /* Info.plist in Resources */,
 				66AE73D61DBFB72F00BC1260 /* LaunchScreen.storyboard in Resources */,
 				66AE73D31DBFB72F00BC1260 /* Assets.xcassets in Resources */,
 				66D7F0E01DC7C8A30098AD2D /* BookListCell.xib in Resources */,
@@ -701,11 +703,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 3GR96D7Z4R;
 				INFOPLIST_FILE = Biblio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adamtecle.Bibliio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "de1b2096-a46b-4413-a958-3c5c551bc4f1";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.adamtecle.Bibliio";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -716,11 +721,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 3GR96D7Z4R;
 				INFOPLIST_FILE = Biblio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adamtecle.Bibliio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "de1b2096-a46b-4413-a958-3c5c551bc4f1";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: com.adamtecle.Bibliio";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -765,6 +773,7 @@
 				667776691DDB65E600142E1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		66AE73C01DBFB72F00BC1260 /* Build configuration list for PBXProject "Bibliio" */ = {
 			isa = XCConfigurationList;

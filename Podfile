@@ -7,6 +7,7 @@ target 'Bibliio' do
   pod 'IQKeyboardManagerSwift'
   pod 'TTTAttributedLabel'
   pod 'DZNEmptyDataSet'
+  pod 'HockeySDK'
 end
 
 

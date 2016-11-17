@@ -1,1 +1,8 @@
+Easily track your read habits! Whether you are an avid reader or trying to make a habit out of reading, Bibliio is for you.
 
+- Add a book to your reading list
+- Automatically get an estimated finish date, which can configure based on how much you want to read
+- Set reminders to read
+- Watch your archive grow with all the books you've finished
+
+Bibliio is open source and is actively being developed, with many improvements and features still to come. If you'd like to see a feature incorporated, or if you'd like to report a bug, you're strongly encouraged to file an issue at https://github.com/atecle/Bibliio/Issues

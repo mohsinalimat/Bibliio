@@ -15,12 +15,10 @@ Runs all the tests
 ```
 fastlane ios beta
 ```
-Submit a new Beta Build to Apple TestFlight
-
-This will also make sure the profile is up to date
-### ios release
+Submit a new build to HockeyApp
+### ios deploy
 ```
-fastlane ios release
+fastlane ios deploy
 ```
 Deploy a new version to the App Store
 

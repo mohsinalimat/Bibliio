@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import IQKeyboardManagerSwift
 import UserNotifications
+import HockeySDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,14 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        UIApplication.shared.statusBarStyle = .lightContent
-        IQKeyboardManager.sharedManager().enable = true
-        
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.badge, .alert , .sound]) { (granted, error) in
-            print("\(error.debugDescription)")
-        }
-        
+        setup()
+
         return true
     }
 
@@ -51,6 +46,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+    }
+    
+    
+    private func setup() {
+        setupAppearance()
+        setupNotifications()
+        setupHockeyApp()
+    }
+    
+    private func setupAppearance() {
+        UIApplication.shared.statusBarStyle = .lightContent
+        IQKeyboardManager.sharedManager().enable = true
+    }
+    
+    private func setupNotifications() {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.badge, .alert , .sound]) { (granted, error) in
+            print("\(error.debugDescription)")
+        }
+    }
+    
+    private func setupHockeyApp() {
+        BITHockeyManager.shared().configure(withIdentifier: "c8ec9fd979ea49d1b2b1718619e8a358")
+        BITHockeyManager.shared().start()
+        BITHockeyManager.shared().authenticator.authenticateInstallation()
     }
 
 }
