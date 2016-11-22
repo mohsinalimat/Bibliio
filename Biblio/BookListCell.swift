@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol BookListCellDelegate: NSObjectProtocol {
     
@@ -35,6 +36,8 @@ class BookListCell: UICollectionViewCell {
     var maskPath: UIBezierPath? = nil
     let maskLayer = CAShapeLayer()
     
+    let disposeBag = DisposeBag()
+    
     private let letterLabel = UILabel()
     
     weak var book: Book? {
@@ -57,6 +60,28 @@ class BookListCell: UICollectionViewCell {
         maskPath = UIBezierPath.init(roundedRect: topView.bounds, byRoundingCorners: [.topRight, .topLeft], cornerRadii: CGSize(width: 16, height: 16))
         maskLayer.path = maskPath!.cgPath;
         topView.layer.mask = maskLayer;
+    }
+    
+    func configure(for viewModel: BookListCellViewModel) {
+        viewModel.title.subscribe { [weak self] (e: Event<String>) in
+            self?.titleLabel.text = e.element!
+        }.addDisposableTo(disposeBag)
+        
+        viewModel.pagesRead.subscribe { [weak self] (e: Event<String>) in
+            self?.pagesReadLabel.text = e.element!
+        }.addDisposableTo(disposeBag)
+        
+        viewModel.lastRead.subscribe { [weak self] (e: Event<String>) in
+            self?.lastReadLabel.text = e.element!
+        }.addDisposableTo(disposeBag)
+       
+        viewModel.finishBy.subscribe { [weak self] (e: Event<String>) in
+            self?.finishByLabel.text = e.element!
+        }.addDisposableTo(disposeBag)
+        
+        viewModel.image.subscribe { [weak self] (e: Event<UIImage?>) in
+            self?.progressView.image = e.element!
+        }.addDisposableTo(disposeBag)
     }
     
     func setup() {
@@ -85,7 +110,7 @@ class BookListCell: UICollectionViewCell {
         guard let book = self.book
             else { return }
         
-        titleLabel.text = book.title
+        //titleLabel.text = book.title
         pagesReadLabel.text = "\(book.currentPage) of \(book.totalPages)"
         
         if let lastReadDate = book.lastRead {

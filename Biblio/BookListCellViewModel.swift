@@ -13,7 +13,10 @@ import RxRealm
 
 struct BookListCellViewModel {
     
+    // Input
     var book: Observable<Book>!
+    
+    // Output
     var title: Observable<String>!
     var pagesRead: Observable<String>!
     var lastRead: Observable<String>!
@@ -23,23 +26,23 @@ struct BookListCellViewModel {
         
     init(with book: Book) {
         self.book = Observable.from(book)
-        title = self.book!.map { (book) in
+        title = self.book.map { (book) in
             return book.title
         }
-        pagesRead = self.book!.map { (book) in
+        pagesRead = self.book.map { (book) in
             return "\(book.currentPage)"
         }
-        lastRead = self.book!.map { (book) in
+        lastRead = self.book.map { (book) in
             guard let lastRead = book.lastRead
                 else { return "" }
             return "\(DateFormatter.shortString(forDate: lastRead))"
         }
-        finishBy = self.book!.map { (book) in
+        finishBy = self.book.map { (book) in
             guard let finishDate = book.finishDate
                 else { return "" }
             return "\(DateFormatter.shortString(forDate: finishDate))"
         }
-        image = self.book!.map { (book) in
+        image = self.book.map { (book) in
             guard let imageData = book.imageData
                 else { return nil }
             return UIImage(data: imageData)
