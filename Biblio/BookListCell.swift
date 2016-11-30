@@ -62,26 +62,8 @@ class BookListCell: UICollectionViewCell {
         topView.layer.mask = maskLayer;
     }
     
-    func configure(for viewModel: BookListCellViewModel) {
-        viewModel.title.subscribe { [weak self] (e: Event<String>) in
-            self?.titleLabel.text = e.element!
-        }.addDisposableTo(disposeBag)
-        
-        viewModel.pagesRead.subscribe { [weak self] (e: Event<String>) in
-            self?.pagesReadLabel.text = e.element!
-        }.addDisposableTo(disposeBag)
-        
-        viewModel.lastRead.subscribe { [weak self] (e: Event<String>) in
-            self?.lastReadLabel.text = e.element!
-        }.addDisposableTo(disposeBag)
-       
-        viewModel.finishBy.subscribe { [weak self] (e: Event<String>) in
-            self?.finishByLabel.text = e.element!
-        }.addDisposableTo(disposeBag)
-        
-        viewModel.image.subscribe { [weak self] (e: Event<UIImage?>) in
-            self?.progressView.image = e.element!
-        }.addDisposableTo(disposeBag)
+    func configure(for viewModel: BookViewModel) {
+    
     }
     
     func setup() {

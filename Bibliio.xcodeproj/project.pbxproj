@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66008D811DEF57540015A982 /* BookViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66789D181DEF438C00A990E2 /* BookViewModelTests.swift */; };
+		66008D851DEF57D70015A982 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664538101DD112E300DB4E5B /* DateFormatter.swift */; };
+		66008D861DEF57DA0015A982 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E384001DD6702F0002DA09 /* DateExtensions.swift */; };
 		6619254B1DDA2495001BDB90 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6619254A1DDA2495001BDB90 /* Constants.swift */; };
-		662A66B11DDE390E008C87F4 /* BookListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662A66B01DDE390E008C87F4 /* BookListCellViewModel.swift */; };
 		662A66B31DDE3FBB008C87F4 /* BookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662A66B21DDE3FBB008C87F4 /* BookListViewModel.swift */; };
 		663C00321DD0EF0700AF5B17 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663C00311DD0EF0700AF5B17 /* Device.swift */; };
 		664538111DD112E300DB4E5B /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664538101DD112E300DB4E5B /* DateFormatter.swift */; };
 		6667A4F81DD6B28F007F10E8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667A4F71DD6B28F007F10E8 /* SettingsViewController.swift */; };
 		667776641DDB65E600142E1E /* BibliioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667776631DDB65E600142E1E /* BibliioUITests.swift */; };
 		6677766C1DDB664800142E1E /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6677766B1DDB664800142E1E /* SnapshotHelper.swift */; };
+		66789D1C1DEF448A00A990E2 /* BookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66789D1B1DEF448A00A990E2 /* BookViewModel.swift */; };
 		667B9BA21DD2879D00E8D4A7 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667B9BA11DD2879D00E8D4A7 /* DatePickerViewController.swift */; };
 		667B9BA41DD2899800E8D4A7 /* DayPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667B9BA31DD2899800E8D4A7 /* DayPickerViewController.swift */; };
 		667DA0A31DC8F1F5003E55F9 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667DA0A21DC8F1F5003E55F9 /* UIColorExtensions.swift */; };
@@ -25,7 +28,6 @@
 		66AE73CE1DBFB72F00BC1260 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66AE73CC1DBFB72F00BC1260 /* Main.storyboard */; };
 		66AE73D31DBFB72F00BC1260 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66AE73D21DBFB72F00BC1260 /* Assets.xcassets */; };
 		66AE73D61DBFB72F00BC1260 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66AE73D41DBFB72F00BC1260 /* LaunchScreen.storyboard */; };
-		66AE73E11DBFB73000BC1260 /* BiblioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE73E01DBFB73000BC1260 /* BiblioTests.swift */; };
 		66AE73F01DBFBDF300BC1260 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE73EF1DBFBDF300BC1260 /* Book.swift */; };
 		66BDFFE21DCB958F000F43CC /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BDFFE11DCB958F000F43CC /* BookDetailViewController.swift */; };
 		66CB697D1DC3E4280054B5DE /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB697C1DC3E4280054B5DE /* TextField.swift */; };
@@ -45,7 +47,7 @@
 		66FD7F0E1DCD4BAB003218F7 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD7F0D1DCD4BAB003218F7 /* NavigationController.swift */; };
 		66FD7F101DCD4C4B003218F7 /* HorizontalSlideAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FD7F0F1DCD4C4B003218F7 /* HorizontalSlideAnimationController.swift */; };
 		66FDEA541DD6E0510035D1FB /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66FDEA531DD6E0510035D1FB /* AboutViewController.swift */; };
-		97A3059CEFC39DF6752B1764 /* Pods_Bibliio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CF4390444F69DD979336B17 /* Pods_Bibliio.framework */; };
+		CCF29D8D25B7AEBE8BA1FF61 /* Pods_Bibliio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29A3AE4AE5E5B3C561A23223 /* Pods_Bibliio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,19 +58,13 @@
 			remoteGlobalIDString = 66AE73C41DBFB72F00BC1260;
 			remoteInfo = Bibliio;
 		};
-		66AE73DD1DBFB73000BC1260 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 66AE73BD1DBFB72F00BC1260 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 66AE73C41DBFB72F00BC1260;
-			remoteInfo = Biblio;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		280771DCB5185D373F4C1048 /* Pods-Bibliio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bibliio.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bibliio/Pods-Bibliio.release.xcconfig"; sourceTree = "<group>"; };
+		0084A7493ABDB1BF69249206 /* Pods_BibliioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BibliioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29A3AE4AE5E5B3C561A23223 /* Pods_Bibliio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bibliio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40F5A9C2D3AF552AB73087B5 /* Pods-Bibliio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bibliio.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bibliio/Pods-Bibliio.release.xcconfig"; sourceTree = "<group>"; };
 		6619254A1DDA2495001BDB90 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		662A66B01DDE390E008C87F4 /* BookListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListCellViewModel.swift; sourceTree = "<group>"; };
 		662A66B21DDE3FBB008C87F4 /* BookListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListViewModel.swift; sourceTree = "<group>"; };
 		663C00311DD0EF0700AF5B17 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		664538101DD112E300DB4E5B /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -77,6 +73,9 @@
 		667776631DDB65E600142E1E /* BibliioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibliioUITests.swift; sourceTree = "<group>"; };
 		667776651DDB65E600142E1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6677766B1DDB664800142E1E /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		66789D181DEF438C00A990E2 /* BookViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewModelTests.swift; sourceTree = "<group>"; };
+		66789D1B1DEF448A00A990E2 /* BookViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewModel.swift; sourceTree = "<group>"; };
+		66789D211DEF4CB800A990E2 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../Library/Developer/Xcode/DerivedData/Bibliio-dtefgvhvtrkiiebrzqvhkucihxqg/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		667B9BA11DD2879D00E8D4A7 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		667B9BA31DD2899800E8D4A7 /* DayPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayPickerViewController.swift; sourceTree = "<group>"; };
 		667DA0A21DC8F1F5003E55F9 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -111,8 +110,9 @@
 		66FD7F0D1DCD4BAB003218F7 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		66FD7F0F1DCD4C4B003218F7 /* HorizontalSlideAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalSlideAnimationController.swift; sourceTree = "<group>"; };
 		66FDEA531DD6E0510035D1FB /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		7059F078BD4C3B716F92ED3A /* Pods-Bibliio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bibliio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bibliio/Pods-Bibliio.debug.xcconfig"; sourceTree = "<group>"; };
-		7CF4390444F69DD979336B17 /* Pods_Bibliio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bibliio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		979CA9D50B61E2A11E19DDD7 /* Pods-BibliioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BibliioTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BibliioTests/Pods-BibliioTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B66FC06C7D26B4F641C44FEE /* Pods-Bibliio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bibliio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bibliio/Pods-Bibliio.debug.xcconfig"; sourceTree = "<group>"; };
+		C4071BD0D8BC632578939EC1 /* Pods-BibliioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BibliioTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BibliioTests/Pods-BibliioTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,7 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97A3059CEFC39DF6752B1764 /* Pods_Bibliio.framework in Frameworks */,
+				CCF29D8D25B7AEBE8BA1FF61 /* Pods_Bibliio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,8 +144,8 @@
 		663BB5501DCF9AB80029AD9B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				662A66B01DDE390E008C87F4 /* BookListCellViewModel.swift */,
 				662A66B21DDE3FBB008C87F4 /* BookListViewModel.swift */,
+				66789D1B1DEF448A00A990E2 /* BookViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -167,8 +167,8 @@
 				66AE73DF1DBFB73000BC1260 /* BiblioTests */,
 				667776621DDB65E600142E1E /* BibliioUITests */,
 				66AE73C61DBFB72F00BC1260 /* Products */,
-				CBEFE8ADC8B2613BFFAFD093 /* Pods */,
 				E390793C776690DDC67029EA /* Frameworks */,
+				9C5F7CCE1FC5780A04EDC6CD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -200,6 +200,7 @@
 			children = (
 				66AE73E01DBFB73000BC1260 /* BiblioTests.swift */,
 				66AE73E21DBFB73000BC1260 /* Info.plist */,
+				66789D181DEF438C00A990E2 /* BookViewModelTests.swift */,
 			);
 			path = BiblioTests;
 			sourceTree = "<group>";
@@ -290,11 +291,13 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		CBEFE8ADC8B2613BFFAFD093 /* Pods */ = {
+		9C5F7CCE1FC5780A04EDC6CD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7059F078BD4C3B716F92ED3A /* Pods-Bibliio.debug.xcconfig */,
-				280771DCB5185D373F4C1048 /* Pods-Bibliio.release.xcconfig */,
+				B66FC06C7D26B4F641C44FEE /* Pods-Bibliio.debug.xcconfig */,
+				40F5A9C2D3AF552AB73087B5 /* Pods-Bibliio.release.xcconfig */,
+				979CA9D50B61E2A11E19DDD7 /* Pods-BibliioTests.debug.xcconfig */,
+				C4071BD0D8BC632578939EC1 /* Pods-BibliioTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -302,7 +305,9 @@
 		E390793C776690DDC67029EA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7CF4390444F69DD979336B17 /* Pods_Bibliio.framework */,
+				66789D211DEF4CB800A990E2 /* RealmSwift.framework */,
+				29A3AE4AE5E5B3C561A23223 /* Pods_Bibliio.framework */,
+				0084A7493ABDB1BF69249206 /* Pods_BibliioTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -332,12 +337,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66AE73E51DBFB73000BC1260 /* Build configuration list for PBXNativeTarget "Bibliio" */;
 			buildPhases = (
-				511F7528CFACB74BE72FBC09 /* [CP] Check Pods Manifest.lock */,
+				ECE52DADF375E9929E9857AF /* [CP] Check Pods Manifest.lock */,
 				66AE73C11DBFB72F00BC1260 /* Sources */,
 				66AE73C21DBFB72F00BC1260 /* Frameworks */,
 				66AE73C31DBFB72F00BC1260 /* Resources */,
-				5478FB9C8764D2756C0D12C8 /* [CP] Embed Pods Frameworks */,
-				C2999E069796EB62769C21A5 /* [CP] Copy Pods Resources */,
+				DC93F300BC95A899B56B27D2 /* [CP] Embed Pods Frameworks */,
+				B14D54A953B01A0BD05750C4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -352,14 +357,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66AE73E81DBFB73000BC1260 /* Build configuration list for PBXNativeTarget "BibliioTests" */;
 			buildPhases = (
+				DCF11E3C67DCF76F42B5C006 /* [CP] Check Pods Manifest.lock */,
 				66AE73D81DBFB73000BC1260 /* Sources */,
 				66AE73D91DBFB73000BC1260 /* Frameworks */,
 				66AE73DA1DBFB73000BC1260 /* Resources */,
+				388D7DA8A7B93A80F16AA10E /* [CP] Embed Pods Frameworks */,
+				70501795C7B51C8B8D3F5EF7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				66AE73DE1DBFB73000BC1260 /* PBXTargetDependency */,
 			);
 			name = BibliioTests;
 			productName = BiblioTests;
@@ -444,22 +451,52 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		511F7528CFACB74BE72FBC09 /* [CP] Check Pods Manifest.lock */ = {
+		388D7DA8A7B93A80F16AA10E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BibliioTests/Pods-BibliioTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5478FB9C8764D2756C0D12C8 /* [CP] Embed Pods Frameworks */ = {
+		70501795C7B51C8B8D3F5EF7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BibliioTests/Pods-BibliioTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B14D54A953B01A0BD05750C4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bibliio/Pods-Bibliio-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC93F300BC95A899B56B27D2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -474,19 +511,34 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bibliio/Pods-Bibliio-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C2999E069796EB62769C21A5 /* [CP] Copy Pods Resources */ = {
+		DCF11E3C67DCF76F42B5C006 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bibliio/Pods-Bibliio-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ECE52DADF375E9929E9857AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -527,10 +579,10 @@
 				667B9BA21DD2879D00E8D4A7 /* DatePickerViewController.swift in Sources */,
 				66CB697F1DC3E7DB0054B5DE /* BookListViewController.swift in Sources */,
 				66FD7F0E1DCD4BAB003218F7 /* NavigationController.swift in Sources */,
-				662A66B11DDE390E008C87F4 /* BookListCellViewModel.swift in Sources */,
 				66D7F0DA1DC7C8050098AD2D /* CircularProgressView.swift in Sources */,
 				66CB69811DC3E8570054B5DE /* ArchiveViewController.swift in Sources */,
 				6667A4F81DD6B28F007F10E8 /* SettingsViewController.swift in Sources */,
+				66789D1C1DEF448A00A990E2 /* BookViewModel.swift in Sources */,
 				667DA0B01DC94EEA003E55F9 /* VerticalSlideAnimationController.swift in Sources */,
 				66FD7F0C1DCD4142003218F7 /* EditScheduleView.swift in Sources */,
 				66FDEA541DD6E0510035D1FB /* AboutViewController.swift in Sources */,
@@ -543,7 +595,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66AE73E11DBFB73000BC1260 /* BiblioTests.swift in Sources */,
+				66008D811DEF57540015A982 /* BookViewModelTests.swift in Sources */,
+				66008D851DEF57D70015A982 /* DateFormatter.swift in Sources */,
+				66008D861DEF57DA0015A982 /* DateExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,11 +608,6 @@
 			isa = PBXTargetDependency;
 			target = 66AE73C41DBFB72F00BC1260 /* Bibliio */;
 			targetProxy = 667776661DDB65E600142E1E /* PBXContainerItemProxy */;
-		};
-		66AE73DE1DBFB73000BC1260 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 66AE73C41DBFB72F00BC1260 /* Bibliio */;
-			targetProxy = 66AE73DD1DBFB73000BC1260 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -705,7 +754,7 @@
 		};
 		66AE73E61DBFB73000BC1260 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7059F078BD4C3B716F92ED3A /* Pods-Bibliio.debug.xcconfig */;
+			baseConfigurationReference = B66FC06C7D26B4F641C44FEE /* Pods-Bibliio.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -723,7 +772,7 @@
 		};
 		66AE73E71DBFB73000BC1260 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 280771DCB5185D373F4C1048 /* Pods-Bibliio.release.xcconfig */;
+			baseConfigurationReference = 40F5A9C2D3AF552AB73087B5 /* Pods-Bibliio.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -741,6 +790,7 @@
 		};
 		66AE73E91DBFB73000BC1260 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 979CA9D50B61E2A11E19DDD7 /* Pods-BibliioTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -756,6 +806,7 @@
 		};
 		66AE73EA1DBFB73000BC1260 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4071BD0D8BC632578939EC1 /* Pods-BibliioTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

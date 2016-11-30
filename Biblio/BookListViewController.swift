@@ -126,7 +126,7 @@ extension BookListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let book = books[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookListCell.Identifier, for: indexPath) as! BookListCell
-        let viewModel = BookListCellViewModel(with: book)
+        let viewModel = BookViewModel(with: book)
         cell.configure(for: viewModel)
         cell.delegate = self
         //cell.book = book
