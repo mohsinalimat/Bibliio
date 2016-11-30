@@ -9,7 +9,7 @@
 import UIKit
 
 import RxSwift
-import RxRealm
+import RxCocoa
 
 struct BookListCellViewModel {
     
@@ -25,7 +25,7 @@ struct BookListCellViewModel {
     var image: Observable<UIImage?>!
         
     init(with book: Book) {
-        self.book = Observable.from(book)
+        self.book = Observable.from([book])
         title = self.book.map { (book) in
             return book.title
         }

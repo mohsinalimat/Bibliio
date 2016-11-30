@@ -25,7 +25,6 @@
 
 #include <realm/group_shared.hpp>
 #include <realm/lang_bind_helper.hpp>
-
 #include <algorithm>
 
 using namespace realm;
@@ -55,7 +54,7 @@ struct MarkDirtyMixin  {
     bool set_link(size_t c, size_t r, size_t, size_t, _impl::Instruction i) { return mark_dirty(r, c, i); }
     bool set_null(size_t c, size_t r, _impl::Instruction i, size_t) { return mark_dirty(r, c, i); }
 
-    bool add_int(size_t col, size_t row, int_fast64_t) { return mark_dirty(row, col); }
+    bool add_int(size_t col, size_t row, size_t) { return mark_dirty(row, col); }
     bool nullify_link(size_t col, size_t row, size_t) { return mark_dirty(row, col); }
     bool insert_substring(size_t col, size_t row, size_t, StringData) { return mark_dirty(row, col); }
     bool erase_substring(size_t col, size_t row, size_t, size_t) { return mark_dirty(row, col); }
@@ -793,7 +792,7 @@ public:
 namespace realm {
 namespace _impl {
 namespace transaction {
-void advance(SharedGroup& sg, BindingContext* context, SchemaMode schema_mode, VersionID version)
+void advance(SharedGroup& sg, BindingContext* context, SchemaMode schema_mode, SharedGroup::VersionID version)
 {
     TransactLogObserver(context, sg, [&](auto&&... args) {
         LangBindHelper::advance_read(sg, std::move(args)..., version);
@@ -830,7 +829,7 @@ void cancel(SharedGroup& sg, BindingContext* context)
 
 void advance(SharedGroup& sg,
              TransactionChangeInfo& info,
-             VersionID version)
+             SharedGroup::VersionID version)
 {
     if (!info.track_all && info.table_modifications_needed.empty() && info.lists.empty()) {
         LangBindHelper::advance_read(sg, version);

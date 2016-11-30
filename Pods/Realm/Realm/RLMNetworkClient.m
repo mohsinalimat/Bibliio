@@ -54,15 +54,15 @@ static NSRange RLM_rangeForErrorType(RLMServerHTTPErrorCodeType type) {
             pathComponent = @"logout";
             NSAssert(NO, @"logout endpoint isn't implemented yet, don't use it");
             break;
-        case RLMServerEndpointAddCredentials:
+        case RLMServerEndpointAddCredential:
             // TODO: fix this
-            pathComponent = @"addCredentials";
-            NSAssert(NO, @"add credentials endpoint isn't implemented yet, don't use it");
+            pathComponent = @"addCredential";
+            NSAssert(NO, @"add credential endpoint isn't implemented yet, don't use it");
             break;
-        case RLMServerEndpointRemoveCredentials:
+        case RLMServerEndpointRemoveCredential:
             // TODO: fix this
-            pathComponent = @"removeCredentials";
-            NSAssert(NO, @"remove credentials endpoint isn't implemented yet, don't use it");
+            pathComponent = @"removeCredential";
+            NSAssert(NO, @"remove credential endpoint isn't implemented yet, don't use it");
             break;
     }
     NSAssert(pathComponent != nil, @"Unrecognized value for RLMServerEndpoint enum");

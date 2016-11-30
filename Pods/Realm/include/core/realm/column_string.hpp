@@ -168,7 +168,7 @@ private:
 
     // Called by Array::bptree_insert().
     static ref_type leaf_insert(MemRef leaf_mem, ArrayParent&, size_t ndx_in_parent, Allocator&, size_t insert_ndx,
-                                BpTreeNode::TreeInsert<StringColumn>& state);
+                                Array::TreeInsert<StringColumn>& state);
 
     class EraseLeafElem;
     class CreateHandler;
@@ -188,7 +188,7 @@ private:
 
     void leaf_to_dot(MemRef, ArrayParent*, size_t ndx_in_parent, std::ostream&) const override;
 
-    friend class BpTreeNode;
+    friend class Array;
     friend class ColumnBase;
 };
 
@@ -215,8 +215,7 @@ inline size_t StringColumn::size() const noexcept
         return leaf->size();
     }
     // Non-leaf root
-    BpTreeNode* node = static_cast<BpTreeNode*>(m_array.get());
-    return node->get_bptree_size();
+    return m_array->get_bptree_size();
 }
 
 inline void StringColumn::add(StringData value)
@@ -326,8 +325,7 @@ inline size_t StringColumn::get_size_from_ref(ref_type root_ref, Allocator& allo
         // Big strings leaf
         return ArrayBigBlobs::get_size_from_header(root_header);
     }
-
-    return BpTreeNode::get_bptree_size_from_header(root_header);
+    return Array::get_bptree_size_from_header(root_header);
 }
 
 // Implementing pure virtual method of ColumnBase.

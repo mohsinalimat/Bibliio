@@ -21,7 +21,7 @@
 
 #include "impl/collection_change_builder.hpp"
 
-#include <realm/version_id.hpp>
+#include <realm/group_shared.hpp>
 
 #include <array>
 #include <atomic>
@@ -32,8 +32,6 @@
 
 namespace realm {
 class Realm;
-class SharedGroup;
-class Table;
 
 namespace _impl {
 struct ListChangeInfo {
@@ -49,18 +47,6 @@ struct TransactionChangeInfo {
     std::vector<ListChangeInfo> lists;
     std::vector<CollectionChangeBuilder> tables;
     bool track_all = false;
-
-#if __GNUC__ < 5
-    // GCC 4.9 does not support C++14 braced-init with NSDMIs
-    TransactionChangeInfo() {}
-    TransactionChangeInfo(std::vector<bool> table_modifications_needed,
-                          std::vector<bool> table_moves_needed,
-                          std::vector<ListChangeInfo> lists)
-    : table_modifications_needed(std::move(table_modifications_needed)),
-      table_moves_needed(std::move(table_moves_needed)),
-      lists(std::move(lists))
-    {}
-#endif
 };
 
 class DeepChangeChecker {
@@ -137,7 +123,7 @@ public:
 
     // Get the SharedGroup version which this collection can attach to (if it's
     // in handover mode), or can deliver to (if it's been handed over to the BG worker alredad)
-    VersionID version() const noexcept { return m_sg_version; }
+    SharedGroup::VersionID version() const noexcept { return m_sg_version; }
 
     // Release references to all core types
     // This is called on the worker thread to ensure that non-thread-safe things
@@ -150,7 +136,7 @@ public:
     // default-constructed version if this notifier has nothing to deliver to
     // this Realm (either due to being for a different Realm, or just because
     // nothing has changed since it last delivered).
-    VersionID package_for_delivery(Realm&);
+    SharedGroup::VersionID package_for_delivery(Realm&);
 
     // Deliver the new state to the target collection using the given SharedGroup
     virtual void deliver(SharedGroup&) { }
@@ -198,7 +184,7 @@ private:
     mutable std::mutex m_realm_mutex;
     std::shared_ptr<Realm> m_realm;
 
-    VersionID m_sg_version;
+    SharedGroup::VersionID m_sg_version;
     SharedGroup* m_sg = nullptr;
 
     bool m_error = false;
@@ -226,7 +212,7 @@ private:
 
     // Iteration variable for looping over callbacks
     // remove_callback() updates this when needed
-    size_t m_callback_index = -1;
+    size_t m_callback_index = npos;
 
     CollectionChangeCallback next_callback(bool has_changes, bool pre);
 };

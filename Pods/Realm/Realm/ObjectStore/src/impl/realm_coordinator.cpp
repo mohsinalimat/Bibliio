@@ -27,9 +27,9 @@
 #include "schema.hpp"
 
 #if REALM_ENABLE_SYNC
-#include "sync/sync_config.hpp"
-#include "sync/sync_manager.hpp"
-#include "sync/sync_session.hpp"
+#include "sync_config.hpp"
+#include "sync_manager.hpp"
+#include "sync_session.hpp"
 #endif
 
 #include <realm/group_shared.hpp>
@@ -125,8 +125,8 @@ void RealmCoordinator::set_config(const Realm::Config& config)
         }
 
         if (config.sync_config) {
-            if (m_config.sync_config->user != config.sync_config->user) {
-                throw MismatchedConfigException("Realm at path '%1' already opened with different sync user.", config.path);
+            if (m_config.sync_config->user_tag != config.sync_config->user_tag) {
+                throw MismatchedConfigException("Realm at path '%1' already opened with different sync user identifier.", config.path);
             }
             if (m_config.sync_config->realm_url != config.sync_config->realm_url) {
                 throw MismatchedConfigException("Realm at path '%1' already opened with different sync server URL.", config.path);
@@ -137,11 +137,9 @@ void RealmCoordinator::set_config(const Realm::Config& config)
         // Realm::update_schema() handles complaining about schema mismatches
     }
 
-#if REALM_ENABLE_SYNC
     if (config.sync_config) {
         create_sync_session();
     }
-#endif
 }
 
 std::shared_ptr<Realm> RealmCoordinator::get_realm(Realm::Config config)
@@ -290,13 +288,13 @@ void RealmCoordinator::send_commit_notifications(Realm& source_realm)
 #endif
 }
 
-void RealmCoordinator::pin_version(VersionID versionid)
+void RealmCoordinator::pin_version(uint_fast64_t version, uint_fast32_t index)
 {
-    REALM_ASSERT_DEBUG(!m_notifier_mutex.try_lock());
     if (m_async_error) {
         return;
     }
 
+    SharedGroup::VersionID versionid(version, index);
     if (!m_advancer_sg) {
         try {
             std::unique_ptr<Group> read_only_group;
@@ -332,7 +330,7 @@ void RealmCoordinator::register_notifier(std::shared_ptr<CollectionNotifier> not
     auto& self = Realm::Internal::get_coordinator(*notifier->get_realm());
     {
         std::lock_guard<std::mutex> lock(self.m_notifier_mutex);
-        self.pin_version(version);
+        self.pin_version(version.version, version.index);
         self.m_new_notifiers.push_back(std::move(notifier));
     }
 }
@@ -418,7 +416,7 @@ public:
 
     TransactionChangeInfo& current() const { return *m_current; }
 
-    bool advance_incremental(VersionID version)
+    bool advance_incremental(SharedGroup::VersionID version)
     {
         if (version != m_sg.get_version_of_current_transaction()) {
             transaction::advance(m_sg, *m_current, version);
@@ -432,7 +430,7 @@ public:
         return false;
     }
 
-    void advance_to_final(VersionID version)
+    void advance_to_final(SharedGroup::VersionID version)
     {
         if (!m_current) {
             transaction::advance(m_sg, nullptr, m_schema_mode, version);
@@ -502,7 +500,7 @@ void RealmCoordinator::run_async_notifiers()
         return;
     }
 
-    VersionID version;
+    SharedGroup::VersionID version;
 
     // Advance all of the new notifiers to the most recent version, if any
     auto new_notifiers = std::move(m_new_notifiers);
@@ -530,7 +528,7 @@ void RealmCoordinator::run_async_notifiers()
             notifier->attach_to(*m_advancer_sg);
             notifier->add_required_change_info(new_notifier_change_info.current());
         }
-        new_notifier_change_info.advance_to_final(VersionID{});
+        new_notifier_change_info.advance_to_final(SharedGroup::VersionID{});
 
         for (auto& notifier : new_notifiers) {
             notifier->detach();
@@ -597,7 +595,7 @@ void RealmCoordinator::open_helper_shared_group()
 }
 
 
-std::vector<std::shared_ptr<_impl::CollectionNotifier>> RealmCoordinator::notifiers_to_deliver(Realm& realm, VersionID& version)
+std::vector<std::shared_ptr<_impl::CollectionNotifier>> RealmCoordinator::notifiers_to_deliver(Realm& realm)
 {
     std::unique_lock<std::mutex> lock(m_notifier_mutex);
     decltype(m_notifiers) notifiers;
@@ -612,9 +610,8 @@ std::vector<std::shared_ptr<_impl::CollectionNotifier>> RealmCoordinator::notifi
 
     for (auto& notifier : m_notifiers) {
         auto notifier_version = notifier->package_for_delivery(realm);
-        if (notifier_version == VersionID{})
+        if (notifier_version == SharedGroup::VersionID{})
             continue;
-        version = notifier_version;
         notifiers.push_back(notifier);
     }
 
@@ -624,13 +621,13 @@ std::vector<std::shared_ptr<_impl::CollectionNotifier>> RealmCoordinator::notifi
 void RealmCoordinator::advance_to_ready(Realm& realm)
 {
     auto& sg = Realm::Internal::get_shared_group(realm);
-    VersionID version;
-    auto notifiers = notifiers_to_deliver(realm, version);
+    auto notifiers = notifiers_to_deliver(realm);
     if (notifiers.empty()) {
         transaction::advance(sg, realm.m_binding_context.get(), m_config.schema_mode);
         return;
     }
 
+    auto version = notifiers[0]->version();
     if (version <= sg.get_version_of_current_transaction())
         return;
 
@@ -645,12 +642,12 @@ void RealmCoordinator::advance_to_ready(Realm& realm)
 
 void RealmCoordinator::process_available_async(Realm& realm)
 {
-    VersionID version;
-    auto notifiers = notifiers_to_deliver(realm, version);
+    auto notifiers = notifiers_to_deliver(realm);
     if (notifiers.empty())
         return;
 
     auto& sg = Realm::Internal::get_shared_group(realm);
+    auto version = notifiers[0]->version();
     if (version != sg.get_version_of_current_transaction())
         return;
 

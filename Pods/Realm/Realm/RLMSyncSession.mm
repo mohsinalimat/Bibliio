@@ -16,96 +16,212 @@
 //
 ////////////////////////////////////////////////////////////////////////////
 
-#import "RLMSyncSession_Private.hpp"
+#import "RLMSyncSession_Private.h"
 
-#import "RLMSyncConfiguration_Private.hpp"
+#import "RLMAuthResponseModel.h"
+#import "RLMNetworkClient.h"
+#import "RLMRealmConfiguration+Sync.h"
+#import "RLMSyncConfiguration.h"
+#import "RLMSyncManager_Private.hpp"
+#import "RLMSyncSessionHandle.hpp"
 #import "RLMSyncUser_Private.hpp"
-#import "sync/sync_session.hpp"
+#import "RLMSyncUtil.h"
+#import "RLMTokenModels.h"
+#import "RLMUtil.hpp"
 
-using namespace realm;
+#import "sync_manager.hpp"
 
-@interface RLMSyncSession () {
-    std::weak_ptr<SyncSession> _session;
-}
+@implementation RLMSessionBindingPackage
 
-@end
-
-@implementation RLMSyncSession
-
-- (instancetype)initWithSyncSession:(std::shared_ptr<SyncSession>)session {
+- (instancetype)initWithFileURL:(NSURL *)fileURL
+                     syncConfig:(RLMSyncConfiguration *)syncConfig
+                     standalone:(BOOL)isStandalone
+                          block:(RLMSyncBasicErrorReportingBlock)block {
     if (self = [super init]) {
-        _session = session;
+        self.fileURL = fileURL;
+        self.syncConfig = syncConfig;
+        self.isStandalone = isStandalone;
+        self.block = block;
         return self;
     }
     return nil;
 }
 
-- (RLMSyncConfiguration *)configuration {
-    if (auto session = _session.lock()) {
-        if (session->is_valid()) {
-            return [[RLMSyncConfiguration alloc] initWithRawConfig:session->config()];
-        }
+@end
+
+@interface RLMSyncSession ()
+
+@property (nonatomic, readwrite) RLMSyncSessionState state;
+@property (nonatomic, readwrite) RLMSyncUser *parentUser;
+@property (nonatomic, readwrite) NSURL *realmURL;
+
+@property (nullable, nonatomic) RLMSyncSessionHandle *sessionHandle;
+
+@end
+
+@implementation RLMSyncSession
+
+- (instancetype)initWithFileURL:(NSURL *)fileURL realmURL:(NSURL *)realmURL {
+    if (self = [super init]) {
+        self.fileURL = fileURL;
+        self.realmURL = realmURL;
+        self.resolvedPath = nil;
+        self.deferredBindingPackage = nil;
+        _state = RLMSyncSessionStateUnbound;
+        return self;
     }
     return nil;
 }
 
-- (NSURL *)realmURL {
-    if (auto session = _session.lock()) {
-        if (auto url = session->full_realm_url()) {
-            return [NSURL URLWithString:@(url->c_str())];
-        }
+- (nullable RLMSyncConfiguration *)configuration {
+    RLMSyncUser *user = self.parentUser;
+    if (user && self.state != RLMSyncSessionStateInvalid) {
+        return [[RLMSyncConfiguration alloc] initWithUser:user realmURL:self.realmURL];
     }
     return nil;
 }
 
-- (RLMSyncUser *)parentUser {
-    if (auto session = _session.lock()) {
-        if (session->is_valid()) {
-            return [[RLMSyncUser alloc] initWithSyncUser:session->user()];
-        }
-    }
-    return nil;
+- (void)_logOut {
+    [self.sessionHandle logOut];
+    [self.refreshTimer invalidate];
+    _state = RLMSyncSessionStateLoggedOut;
 }
 
-- (RLMSyncSessionState)state {
-    if (auto session = _session.lock()) {
-        if (session->is_inactive()) {
-            return RLMSyncSessionStateInactive;
-        } else if (session->is_valid()) {
-            return RLMSyncSessionStateActive;
-        }
-    }
-    return RLMSyncSessionStateInvalid;
+- (void)_invalidate {
+    [self.refreshTimer invalidate];
+    _state = RLMSyncSessionStateInvalid;
+    self.sessionHandle = nil;
+    [self.parentUser _deregisterSessionWithRealmURL:self.realmURL];
+    self.parentUser = nil;
 }
 
-- (BOOL)waitForUploadCompletionOnQueue:(dispatch_queue_t)queue callback:(void(^)(void))callback {
-    if (auto session = _session.lock()) {
-        if (!session->is_valid()) {
-            return NO;
-        }
-        queue = queue ?: dispatch_get_main_queue();
-        session->wait_for_upload_completion([=](){
-            dispatch_async(queue, callback);
-        });
-        return YES;
-    }
-    return NO;
+#pragma mark - per-Realm access token API
+
+- (void)configureWithAccessToken:(RLMServerToken)token
+                          expiry:(NSTimeInterval)expiry
+                            user:(RLMSyncUser *)user
+                          handle:(RLMSyncSessionHandle *)handle {
+    self.parentUser = user;
+    self.accessToken = token;
+    self.accessTokenExpiry = expiry;
+    self.sessionHandle = handle;
+    [self _scheduleRefreshTimer];
 }
 
-- (BOOL)waitForDownloadCompletionOnQueue:(dispatch_queue_t)queue callback:(void(^)(void))callback {
-    if (auto session = _session.lock()) {
-        if (!session->is_valid()) {
-            return NO;
-        }
-        queue = queue ?: dispatch_get_main_queue();
-        session->wait_for_download_completion([=](){
-            dispatch_async(queue, ^{
-                callback();
-            });
-        });
-        return YES;
+- (void)_scheduleRefreshTimer {
+    static NSTimeInterval const refreshBuffer = 10;
+
+    [self.refreshTimer invalidate];
+    NSTimeInterval refreshTime = self.accessTokenExpiry - refreshBuffer;
+    NSTimer *timer = [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSince1970:refreshTime]
+                                              interval:1
+                                                target:self
+                                              selector:@selector(_refreshForTimer:)
+                                              userInfo:nil
+                                               repeats:NO];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    self.refreshTimer = timer;
+}
+
+- (void)_refreshForTimer:(__unused NSTimer *)timer {
+    [self _refresh];
+}
+
+- (void)_refresh {
+    RLMSyncUser *user = self.parentUser;
+    if (!user || !self.resolvedPath) {
+        return;
     }
-    return NO;
+    RLMServerToken refreshToken = user.refreshToken;
+
+    NSDictionary *json = @{
+                           kRLMSyncProviderKey: @"realm",
+                           kRLMSyncPathKey: self.resolvedPath,
+                           kRLMSyncDataKey: refreshToken,
+                           kRLMSyncAppIDKey: [RLMSyncManager sharedManager].appID,
+                           };
+
+    RLMSyncCompletionBlock handler = ^(NSError *error, NSDictionary *json) {
+        if (json && !error) {
+            RLMAuthResponseModel *model = [[RLMAuthResponseModel alloc] initWithDictionary:json
+                                                                        requireAccessToken:YES
+                                                                       requireRefreshToken:NO];
+            if (!model) {
+                // Malformed JSON
+                error = [NSError errorWithDomain:RLMSyncErrorDomain
+                                            code:RLMSyncErrorBadResponse
+                                        userInfo:@{kRLMSyncErrorJSONKey: json}];
+                [[RLMSyncManager sharedManager] _fireError:error];
+                return;
+            } else {
+                // Success
+                // For now, assume just one access token.
+                RLMTokenModel *tokenModel = model.accessToken;
+                self.accessToken = model.accessToken.token;
+                self.accessTokenExpiry = tokenModel.tokenData.expires;
+                [self _scheduleRefreshTimer];
+
+                [self refreshAccessToken:tokenModel.token serverURL:nil];
+            }
+        } else {
+            // Something else went wrong
+            NSError *syncError = [NSError errorWithDomain:RLMSyncErrorDomain
+                                                     code:RLMSyncErrorBadResponse
+                                                 userInfo:@{kRLMSyncUnderlyingErrorKey: error}];
+            [[RLMSyncManager sharedManager] _fireError:syncError];
+            // Certain errors should trigger a retry.
+            if (error.domain == NSURLErrorDomain) {
+                BOOL shouldRetry = NO;
+                switch (error.code) {
+                    case NSURLErrorCannotConnectToHost:
+                        shouldRetry = YES;
+                        // FIXME: 120 seconds is an arbitrarily chosen value, consider rationalizing it.
+                        self.accessTokenExpiry = [[NSDate dateWithTimeIntervalSinceNow:120] timeIntervalSince1970];
+                        break;
+                    case NSURLErrorNotConnectedToInternet:
+                    case NSURLErrorNetworkConnectionLost:
+                    case NSURLErrorTimedOut:
+                    case NSURLErrorDNSLookupFailed:
+                    case NSURLErrorCannotFindHost:
+                        shouldRetry = YES;
+                        // FIXME: 30 seconds is an arbitrarily chosen value, consider rationalizing it.
+                        self.accessTokenExpiry = [[NSDate dateWithTimeIntervalSinceNow:30] timeIntervalSince1970];
+                        break;
+                    default:
+                        break;
+                }
+                if (shouldRetry) {
+                    [self _scheduleRefreshTimer];
+                }
+            }
+        }
+    };
+    [RLMNetworkClient postRequestToEndpoint:RLMServerEndpointAuth
+                                     server:user.authenticationServer
+                                       JSON:json
+                                 completion:handler];
+}
+
+- (void)refreshAccessToken:(NSString *)token serverURL:(NSURL *)serverURL
+{
+    if ([self.sessionHandle refreshAccessToken:token serverURL:serverURL]) {
+        self.state = RLMSyncSessionStateActive;
+    }
+    else {
+        [self _invalidate];
+    }
+}
+
+- (void)setState:(RLMSyncSessionState)state {
+    // At all state transitions, check to see if the session should be invalidated.
+    if ([self.sessionHandle sessionIsInErrorState]) {
+        [self _invalidate];
+        return;
+    }
+    _state = state;
+    if (state == RLMSyncSessionStateActive) {
+        self.deferredBindingPackage = nil;
+    }
 }
 
 @end

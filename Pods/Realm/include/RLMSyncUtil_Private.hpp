@@ -20,7 +20,7 @@
 
 #import "RLMSyncConfiguration_Private.h"
 
-#import "sync/sync_manager.hpp"
+#import "sync_manager.hpp"
 
 namespace realm {
 
