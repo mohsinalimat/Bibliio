@@ -9,6 +9,9 @@ PODS:
   - Realm/Headers (2.0.2)
   - RealmSwift (2.0.2):
     - Realm (= 2.0.2)
+  - RxCocoa (3.0.1):
+    - RxSwift (~> 3.0)
+  - RxSwift (3.0.1)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
@@ -16,6 +19,8 @@ DEPENDENCIES:
   - HockeySDK
   - IQKeyboardManagerSwift
   - RealmSwift
+  - RxCocoa (~> 3.0)
+  - RxSwift (~> 3.0)
   - TTTAttributedLabel
 
 SPEC CHECKSUMS:
@@ -24,8 +29,10 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
   Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
   RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
+  RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
+  RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: caba3fcd3e7e6984da991c6804cf9d1302581ba2
+PODFILE CHECKSUM: 624c88df383a170c8b2aa415e9572e95a72238d3
 
 COCOAPODS: 1.2.0.beta.1
