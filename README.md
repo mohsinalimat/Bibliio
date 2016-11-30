@@ -4,7 +4,7 @@
 
 #Bibliio
 
-Bibliio is a simple tracker app for your reading habits. 
+Bibliio is a simple tracker app for your reading habits. [Download it on the App Store](https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1176316593&mt=8)
 
 ##Features
 
@@ -21,11 +21,6 @@ Bibliio is a simple tracker app for your reading habits.
     <img width="200" src="assets/screenshot-5.png"/>
 </p>
 <br/><br/>
-
-### App Store Status
-
-Bibliio is still in the submission process. As soon as it's uploaded, this will be updated.
-
 
 ### To Do
 

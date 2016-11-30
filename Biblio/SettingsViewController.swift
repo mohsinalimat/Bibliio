@@ -26,12 +26,17 @@ final class SettingsViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
             
-            if indexPath.row == 0 {
-                
-            } else if indexPath.row == 1 {
+            if indexPath.row == 1 {
                showEmailInput()
             } else if indexPath.row == 2 {
-                
+                if let path = URL(string:"https://itunes.apple.com/us/app/bibliio/id1176316593?ls=1&mt=8") {
+                    UIApplication.shared.open(path) {
+                        (didOpen:Bool) in
+                        if !didOpen {
+                            print("Error opening:\(path.absoluteString)")
+                        }
+                    }
+                }
             }
             
         } else {
