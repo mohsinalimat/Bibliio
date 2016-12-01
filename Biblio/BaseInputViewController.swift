@@ -16,7 +16,6 @@ public class BaseInputViewController: UIViewController {
     public var contentView = UIView()
     public var cancelButton = UIButton()
     public var saveButton = UIButton()
-    
     private var maskPath: UIBezierPath? = nil
     private let maskLayer = CAShapeLayer()
     

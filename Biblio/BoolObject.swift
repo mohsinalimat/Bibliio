@@ -8,7 +8,6 @@
 
 import RealmSwift
 
-// Wrapper object for bool primitive because Realm is dumb
 class BoolObject: Object {
     dynamic var value = false
     

@@ -30,6 +30,7 @@
 		66AE73D61DBFB72F00BC1260 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66AE73D41DBFB72F00BC1260 /* LaunchScreen.storyboard */; };
 		66AE73F01DBFBDF300BC1260 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AE73EF1DBFBDF300BC1260 /* Book.swift */; };
 		66BDFFE21DCB958F000F43CC /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BDFFE11DCB958F000F43CC /* BookDetailViewController.swift */; };
+		66C31C231DF0004300BC192F /* BookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C31C221DF0004300BC192F /* BookTests.swift */; };
 		66CB697D1DC3E4280054B5DE /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB697C1DC3E4280054B5DE /* TextField.swift */; };
 		66CB697F1DC3E7DB0054B5DE /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB697E1DC3E7DB0054B5DE /* BookListViewController.swift */; };
 		66CB69811DC3E8570054B5DE /* ArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CB69801DC3E8570054B5DE /* ArchiveViewController.swift */; };
@@ -92,6 +93,7 @@
 		66AE73E21DBFB73000BC1260 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66AE73EF1DBFBDF300BC1260 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		66BDFFE11DCB958F000F43CC /* BookDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
+		66C31C221DF0004300BC192F /* BookTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTests.swift; sourceTree = "<group>"; };
 		66CB697C1DC3E4280054B5DE /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		66CB697E1DC3E7DB0054B5DE /* BookListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListViewController.swift; sourceTree = "<group>"; };
 		66CB69801DC3E8570054B5DE /* ArchiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				66AE73E01DBFB73000BC1260 /* BiblioTests.swift */,
 				66AE73E21DBFB73000BC1260 /* Info.plist */,
 				66789D181DEF438C00A990E2 /* BookViewModelTests.swift */,
+				66C31C221DF0004300BC192F /* BookTests.swift */,
 			);
 			path = BiblioTests;
 			sourceTree = "<group>";
@@ -633,6 +636,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66C31C231DF0004300BC192F /* BookTests.swift in Sources */,
 				66008D811DEF57540015A982 /* BookViewModelTests.swift in Sources */,
 				66008D851DEF57D70015A982 /* DateFormatter.swift in Sources */,
 				66008D861DEF57DA0015A982 /* DateExtensions.swift in Sources */,
