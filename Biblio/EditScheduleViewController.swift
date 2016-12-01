@@ -17,27 +17,19 @@ protocol EditScheduleDelegate: NSObjectProtocol {
 class EditScheduleViewController: BaseInputViewController {
     
     weak var delegate: EditScheduleDelegate?
-
     var editScheduleView = EditScheduleView()
-    
     var book = Book() {
         didSet {
             updateUI()
         }
     }
-    
     let realm = try! Realm()
     
-    
     // MARK: - View Lifecyle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-    }
-    
-    func setup() {
-        saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
-        configureEditScheduleView()
     }
     
     // MARK: Target Action
@@ -45,6 +37,17 @@ class EditScheduleViewController: BaseInputViewController {
     func saveButtonPressed(_ sender: Any) {
         self.delegate?.editScheduleViewController(self, didSaveBook: book)
         let _ = navigationController?.popViewController(animated: true)
+    }
+    
+    func reminderSwitchValueChanged(_ sender: Any) {
+        book.remindersOn = editScheduleView.reminderSwitch.isOn
+    }
+    
+    // MARK: - Setup
+    
+    func setup() {
+        saveButton.addTarget(self, action: #selector(saveButtonPressed(_:)), for: .touchUpInside)
+        configureEditScheduleView()
     }
     
     func configureEditScheduleView() {
@@ -62,6 +65,8 @@ class EditScheduleViewController: BaseInputViewController {
         contentView.addConstraints([top, leading, trailing, bottom])
     }
     
+    // MARK: - Helpers 
+    
     func updateUI() {
         if let finishByDate = book.finishDate {
             editScheduleView.finishByCell.textLabel?.text = DateFormatter.shortString(forDate: finishByDate)
@@ -70,10 +75,6 @@ class EditScheduleViewController: BaseInputViewController {
         editScheduleView.scheduleCell.textLabel?.text = string(forDays: book.readingDays)
         editScheduleView.reminderSwitch.isOn = book.remindersOn
         editScheduleView.reminderSwitch.addTarget(self, action: #selector(reminderSwitchValueChanged(_:)), for: .valueChanged)
-    }
-    
-    func reminderSwitchValueChanged(_ sender: Any) {        
-        book.remindersOn = editScheduleView.reminderSwitch.isOn
     }
     
     func string(forDays days: List<BoolObject>) -> String {

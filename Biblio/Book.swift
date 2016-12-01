@@ -17,8 +17,17 @@ class Book: Object {
     
     dynamic var title: String = ""
     dynamic var author: String = ""
-   
-    dynamic var currentPageBacking: Int = 1
+    dynamic var totalPages: Int = 1
+    dynamic var startDate = Date()
+    dynamic var finishDate: Date? {
+        return estimatedFinishDate()
+    }
+    dynamic var lastRead: Date?
+    dynamic var pagesPerDayGoal = 20
+    let readingDays = List<BoolObject>()
+    dynamic var imageData: Data? = nil
+
+    private dynamic var currentPageBacking: Int = 1
     dynamic var currentPage: Int {
         get {
             return currentPageBacking
@@ -28,15 +37,6 @@ class Book: Object {
             updateLastRead()
         }
     }
-    
-    dynamic var totalPages: Int = 1
-    dynamic var startDate = Date()
-    dynamic var finishDate: Date? { return estimatedFinishDate() }
-    dynamic var lastRead: Date?
-    dynamic var pagesPerDayGoal = 20
-    let readingDays = List<BoolObject>()
-    dynamic var imageData: Data? = nil
-   
     private dynamic var remindersOnBacking: Bool = false
     dynamic var remindersOn: Bool {
         get {
@@ -47,13 +47,11 @@ class Book: Object {
             enableReminders(remindersOnBacking)
         }
     }
-    
     var percentCompleted: CGFloat {
         get {
             return CGFloat(currentPage)/CGFloat(totalPages)
         }
     }
-
     var isFinished: Bool {
         get {
            return currentPage == totalPages
@@ -71,19 +69,8 @@ class Book: Object {
         self.readingDays.append(objectsIn: [BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true)])
     }
     
-    // MARK: - Overrides
-    
-    override static func ignoredProperties() -> [String] {
-        return ["remindersOn"]
-    }
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-    
     // MARK: - Public
     
-    //I'd rather have a didSet on finishDate, but crashes app
     func configureSchedule(for date: Date) {
         guard let days = Date.daysBetween(firstDate: Date(), secondDate: date)
             else { return }
@@ -95,6 +82,16 @@ class Book: Object {
         let pagesPerDay = ceil(CGFloat(pagesLeft)/CGFloat(daysUntilGoal))
         let _ = readingDays.map { $0.value = true }
         pagesPerDayGoal = Int(pagesPerDay)
+    }
+    
+    // MARK: - Overrides
+    
+    override static func ignoredProperties() -> [String] {
+        return ["remindersOn"]
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
     
     // MARK: - Private

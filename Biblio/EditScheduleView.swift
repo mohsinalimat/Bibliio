@@ -21,6 +21,8 @@ class EditScheduleView: UIView {
     var pickerView = UIDatePicker()
     private var tableViewHeightConstraint: NSLayoutConstraint!
     
+    // MARK: - View Lifecycle
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -31,6 +33,13 @@ class EditScheduleView: UIView {
         setup()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        tableViewHeightConstraint.constant = tableView.contentSize.height
+    }
+    
+    // MARK: - Setup
+    
     private func setup() {
         backgroundColor = UIColor.white
         configureTableView()
@@ -38,11 +47,6 @@ class EditScheduleView: UIView {
         configureReadingGoalCell()
         configureScheduleCell()
         configureReminderCell()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        tableViewHeightConstraint.constant = tableView.contentSize.height
     }
     
     private func configureTableView() {

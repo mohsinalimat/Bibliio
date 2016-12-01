@@ -16,9 +16,7 @@ protocol DatePickerDelegate: NSObjectProtocol {
 class DatePickerViewController: BaseInputViewController {
     
     weak var delegate: DatePickerDelegate?
-    
     var datePicker = UIDatePicker()
-    
     var book = Book() {
         didSet {
             updateUI()

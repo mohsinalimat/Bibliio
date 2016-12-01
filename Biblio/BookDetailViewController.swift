@@ -19,7 +19,6 @@ class BookDetailViewController: BaseInputViewController {
         }
     }
     var tempBook = Book()
-    
     let realm = try! Realm()
     
     // MARK: - View Lifecycle
@@ -29,7 +28,7 @@ class BookDetailViewController: BaseInputViewController {
         setup()
     }
     
-    // MARK: - Set up
+    // MARK: - Setup
     
     func setup() {
         saveButton.backgroundColor = UIColor.deepBlue()

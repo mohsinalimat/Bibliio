@@ -9,8 +9,10 @@
 import UIKit
 
 public class NavigationController: UINavigationController {
-
-   public override func viewDidLoad() {
+    
+    // MARK: - View Lifecycle
+    
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         self.delegate = self
@@ -18,6 +20,8 @@ public class NavigationController: UINavigationController {
 }
 
 extension NavigationController: UINavigationControllerDelegate {
+    
+    // MARK: - UINavigationControllerDelegate
     
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         

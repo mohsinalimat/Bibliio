@@ -12,7 +12,6 @@ import RealmSwift
 protocol DayPickerDelegate: NSObjectProtocol {
     
     func dayPickerViewController(_ dayPickerViewController: DayPickerViewController, selectedDays: List<BoolObject>?)
-    
 }
 
 class DayPickerViewController: BaseInputViewController {
@@ -85,6 +84,8 @@ class DayPickerViewController: BaseInputViewController {
 
 extension DayPickerViewController: UITableViewDataSource {
     
+    // MARK: - UITableViewDataSource
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 7
     }
@@ -101,6 +102,8 @@ extension DayPickerViewController: UITableViewDataSource {
 
 extension DayPickerViewController: UITableViewDelegate {
     
+    // MARK: - UITableViewDelegate
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.accessoryType = .checkmark

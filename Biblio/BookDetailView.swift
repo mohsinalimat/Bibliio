@@ -22,6 +22,8 @@ class BookDetailView: UIView {
     var finishByCell = UITableViewCell(style: .value1, reuseIdentifier: "TableViewCell")
     private var tableViewHeightConstraint: NSLayoutConstraint!
     
+    // MARK: - View Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -38,6 +40,8 @@ class BookDetailView: UIView {
         tableViewHeightConstraint.constant = tableView.contentSize.height
     }
     
+    // MARK: - Setup
+
     func setup() {
         backgroundColor = .white
         configureTopView()
