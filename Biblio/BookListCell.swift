@@ -8,18 +8,13 @@
 
 import UIKit
 import RxSwift
-
-protocol BookListCellDelegate: NSObjectProtocol {
-    
-    func moreButtonPressed(cell: BookListCell) -> ()
-    
-}
+import RxCocoa
 
 class BookListCell: UICollectionViewCell {
     
     static let Identifier = "BookListCell"
     
-    weak open var delegate: BookListCellDelegate?
+    weak open var delegate: UIViewController?
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var progressView: CircularProgressView!
@@ -40,12 +35,6 @@ class BookListCell: UICollectionViewCell {
     
     private let letterLabel = UILabel()
     
-    weak var book: Book? {
-        didSet {
-            updateAppearance()
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
@@ -56,22 +45,32 @@ class BookListCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        //Bad, find a better place to do this
         maskPath = UIBezierPath.init(roundedRect: topView.bounds, byRoundingCorners: [.topRight, .topLeft], cornerRadii: CGSize(width: 16, height: 16))
         maskLayer.path = maskPath!.cgPath;
         topView.layer.mask = maskLayer;
     }
     
     func configure(for viewModel: BookViewModel) {
-    
+        titleLabel.text = viewModel.title
+        pagesReadLabel.text = viewModel.currentPage
+        lastReadLabel.text = viewModel.lastRead
+        finishByLabel.text = viewModel.finishBy
+        moreButton.rx.tap.subscribe(onNext: { [unowned self] in
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let cancelAction = UIAlertAction(title: Constants.Action.Cancel, style: .cancel) { [unowned self] (action) in
+                 self.delegate?.dismiss(animated: true, completion: nil)
+            }
+            let destroyAction = UIAlertAction(title: Constants.Action.Delete, style: .destructive) { (action) in
+                viewModel.delete() // not proper MVVM. View should not know what ViewModel does
+            }
+            alertController.addAction(cancelAction)
+            alertController.addAction(destroyAction)
+            self.delegate?.present(alertController, animated: true)
+        }).addDisposableTo(disposeBag)
     }
     
     func setup() {
-        layer.masksToBounds = false
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 1, height: 3)
-        layer.shadowOpacity = 0.3
-        layer.shadowRadius = 1
         readLabel.font = UIFont.titleLabelFont()
         pagesReadLabel.font = UIFont.valueLabelFont()
         lastReadTitleLabel.font = UIFont.titleLabelFont()
@@ -80,56 +79,12 @@ class BookListCell: UICollectionViewCell {
         finishByLabel.font = UIFont.valueLabelFont()
     }
     
-    //MARK: - IBAction
-    
-    @IBAction func moreButtonPressed(_ sender: Any) {
-        self.delegate?.moreButtonPressed(cell: self)
-    }
-    
     // MARK: - UI
     
-    func updateAppearance() {
-        guard let book = self.book
-            else { return }
-        
-        //titleLabel.text = book.title
-        pagesReadLabel.text = "\(book.currentPage) of \(book.totalPages)"
-        
-        if let lastReadDate = book.lastRead {
-            lastReadLabel.text = "\(DateFormatter.shortString(forDate: lastReadDate))"
-        } else {
-            lastReadLabel.text = "Not read yet"
-        }
-        
-        if book.isFinished {
-            couldFinishLabel.text = "Finished on"
-        }
-        
-        if let finishByDate = book.finishDate {
-            finishByLabel.text = "\(DateFormatter.shortString(forDate: finishByDate))"
-        } else {
-            finishByLabel.text = ""
-        }
-        
-        if let imageData = book.imageData {
-            let image = UIImage(data: imageData)
-            progressView.image = image
-        } else {
-            letterLabel.font = UIFont.systemFont(ofSize: 50)
-            letterLabel.textColor = UIColor.gray
-            let firstLetter: Character = book.title.uppercased().characters.first!
-            letterLabel.text = String(firstLetter)
-            letterLabel.sizeToFit()
-            progressView.fillColor = UIColor.separator()
-            progressView.centralView = letterLabel
-        }
-    }
-    
     func animateProgress() {
-        DispatchQueue.main.async { [unowned self] in
-            guard let book = self.book
-                else { return }
-            self.progressView.setProgress(value: book.percentCompleted, animated: true, duration: 1, completion: nil)
+        DispatchQueue.main.async {
+            //How should this work? 
+            //self.progressView.setProgress(value: book.percentCompleted, animated: true, duration: 1, completion: nil)
         }
     }
 }

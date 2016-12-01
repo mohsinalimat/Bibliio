@@ -17,9 +17,13 @@ struct BookViewModel {
     var title: String {
         return book.title
     }
-    
+
     var pagesRead: String {
         return String(book.currentPage)
+    }
+    
+    var currentPage: String {
+        return pagesRead + " of " + totalPages
     }
     
     var totalPages: String {
@@ -27,7 +31,9 @@ struct BookViewModel {
     }
     
     var lastRead: String {
-        return ""
+        guard let lastRead = book.lastRead
+            else { return "Not read yet" }
+        return DateFormatter.shortString(forDate: lastRead)
     }
     
     var finishBy: String {
@@ -36,13 +42,20 @@ struct BookViewModel {
         return DateFormatter.shortString(forDate: finishDate)
     }
     
-    var image: String {
-        return ""
+    var image: Data? {
+        return book.imageData
     }
-    
     
     init(with book: Book) {
         self.book = book
     }
     
+    /* This is not proper MVVM but I'm not yet sure how to subscribe to the events that trigger saves and deletes */
+    public func save() {
+        
+    }
+    
+    public func delete() {
+        
+    }
 }

@@ -98,31 +98,6 @@ extension ArchiveViewController: DZNEmptyDataSetSource {
     }
 }
 
-extension ArchiveViewController: BookListCellDelegate {
-    
-    // MARK: - BookListCellDelegate
-    
-    func moreButtonPressed(cell: BookListCell) {
-        let indexPath = collectionView.indexPath(for: cell)!
-        let book = books[indexPath.row]
-        
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: Constants.Action.Cancel, style: .cancel) { [unowned self] (action) in
-            self.dismiss(animated: true, completion: nil)
-        }
-        let destroyAction = UIAlertAction(title: Constants.Action.Delete, style: .destructive) { [unowned self] (action) in
-            self.realm.beginWrite()
-            self.realm.delete(book)
-            try! self.realm.commitWrite()
-            self.collectionView.reloadEmptyDataSet()
-        }
-        alertController.addAction(cancelAction)
-        alertController.addAction(destroyAction)
-        present(alertController, animated: true)
-    }
-    
-}
-
 extension ArchiveViewController: UICollectionViewDataSource {
     
     // MARK: - UICollectionViewDataSource
@@ -132,11 +107,11 @@ extension ArchiveViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let book = books[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookListCell.Identifier, for: indexPath) as! BookListCell
-        
+        let book = books[indexPath.row]
+        let viewModel = BookViewModel(with: book)
+        cell.configure(for: viewModel)
         cell.delegate = self
-        cell.book = book
         cell.animateProgress()
         
         return cell
