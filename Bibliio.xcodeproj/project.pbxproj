@@ -11,7 +11,6 @@
 		66008D851DEF57D70015A982 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664538101DD112E300DB4E5B /* DateFormatter.swift */; };
 		66008D861DEF57DA0015A982 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E384001DD6702F0002DA09 /* DateExtensions.swift */; };
 		6619254B1DDA2495001BDB90 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6619254A1DDA2495001BDB90 /* Constants.swift */; };
-		662A66B31DDE3FBB008C87F4 /* BookListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662A66B21DDE3FBB008C87F4 /* BookListViewModel.swift */; };
 		663C00321DD0EF0700AF5B17 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663C00311DD0EF0700AF5B17 /* Device.swift */; };
 		664538111DD112E300DB4E5B /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664538101DD112E300DB4E5B /* DateFormatter.swift */; };
 		6667A4F81DD6B28F007F10E8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6667A4F71DD6B28F007F10E8 /* SettingsViewController.swift */; };
@@ -65,7 +64,6 @@
 		29A3AE4AE5E5B3C561A23223 /* Pods_Bibliio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bibliio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40F5A9C2D3AF552AB73087B5 /* Pods-Bibliio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bibliio.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bibliio/Pods-Bibliio.release.xcconfig"; sourceTree = "<group>"; };
 		6619254A1DDA2495001BDB90 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		662A66B21DDE3FBB008C87F4 /* BookListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListViewModel.swift; sourceTree = "<group>"; };
 		663C00311DD0EF0700AF5B17 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		664538101DD112E300DB4E5B /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		6667A4F71DD6B28F007F10E8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -141,13 +139,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		663BB5501DCF9AB80029AD9B /* ViewModel */ = {
+		66008D881DEFBC830015A982 /* Add Book */ = {
 			isa = PBXGroup;
 			children = (
-				662A66B21DDE3FBB008C87F4 /* BookListViewModel.swift */,
+				66A22CEC1DCBEBAC008A8077 /* AddBookView.swift */,
+				66AE73CA1DBFB72F00BC1260 /* AddBookViewController.swift */,
+			);
+			name = "Add Book";
+			sourceTree = "<group>";
+		};
+		66008D891DEFBC9E0015A982 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				66FDEA531DD6E0510035D1FB /* AboutViewController.swift */,
+				6667A4F71DD6B28F007F10E8 /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		66008D8A1DEFBCA70015A982 /* Book List */ = {
+			isa = PBXGroup;
+			children = (
+				66CB697E1DC3E7DB0054B5DE /* BookListViewController.swift */,
 				66789D1B1DEF448A00A990E2 /* BookViewModel.swift */,
 			);
-			name = ViewModel;
+			name = "Book List";
+			sourceTree = "<group>";
+		};
+		66008D8B1DEFBCB30015A982 /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				66CB69801DC3E8570054B5DE /* ArchiveViewController.swift */,
+			);
+			name = Archive;
+			sourceTree = "<group>";
+		};
+		66008D8C1DEFBCC80015A982 /* Book Detail */ = {
+			isa = PBXGroup;
+			children = (
+				66FD7F011DCCF968003218F7 /* BookDetailView.swift */,
+				66BDFFE11DCB958F000F43CC /* BookDetailViewController.swift */,
+			);
+			name = "Book Detail";
+			sourceTree = "<group>";
+		};
+		66008D8E1DEFBD630015A982 /* Edit Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				66FD7F0B1DCD4142003218F7 /* EditScheduleView.swift */,
+				667B9BA11DD2879D00E8D4A7 /* DatePickerViewController.swift */,
+				667B9BA31DD2899800E8D4A7 /* DayPickerViewController.swift */,
+				66FD7F091DCD4120003218F7 /* EditScheduleViewController.swift */,
+			);
+			name = "Edit Schedule";
 			sourceTree = "<group>";
 		};
 		667776621DDB65E600142E1E /* BibliioUITests */ = {
@@ -185,10 +229,10 @@
 		66AE73C71DBFB72F00BC1260 /* Bibliio */ = {
 			isa = PBXGroup;
 			children = (
-				66D7F0E11DC818100098AD2D /* Resources */,
-				66AE73EB1DBFBDA300BC1260 /* Model */,
-				663BB5501DCF9AB80029AD9B /* ViewModel */,
+				66AE73EB1DBFBDA300BC1260 /* Models */,
+				66AE73EC1DBFBDA900BC1260 /* View Controllers */,
 				66AE73ED1DBFBDB000BC1260 /* Views */,
+				66D7F0E11DC818100098AD2D /* Resources */,
 				66AE73EE1DBFBDBE00BC1260 /* Supporting Files */,
 			);
 			name = Bibliio;
@@ -205,30 +249,27 @@
 			path = BiblioTests;
 			sourceTree = "<group>";
 		};
-		66AE73EB1DBFBDA300BC1260 /* Model */ = {
+		66AE73EB1DBFBDA300BC1260 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				66AE73EF1DBFBDF300BC1260 /* Book.swift */,
 				66D8CEE11DD401C1003EA577 /* BoolObject.swift */,
 			);
-			name = Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		66AE73EC1DBFBDA900BC1260 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				66AE73CC1DBFB72F00BC1260 /* Main.storyboard */,
-				66AE73CA1DBFB72F00BC1260 /* AddBookViewController.swift */,
-				6667A4F71DD6B28F007F10E8 /* SettingsViewController.swift */,
-				66CB697E1DC3E7DB0054B5DE /* BookListViewController.swift */,
-				66CB69801DC3E8570054B5DE /* ArchiveViewController.swift */,
-				66BDFFE11DCB958F000F43CC /* BookDetailViewController.swift */,
 				66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */,
-				66FD7F091DCD4120003218F7 /* EditScheduleViewController.swift */,
 				66FD7F0D1DCD4BAB003218F7 /* NavigationController.swift */,
-				667B9BA11DD2879D00E8D4A7 /* DatePickerViewController.swift */,
-				667B9BA31DD2899800E8D4A7 /* DayPickerViewController.swift */,
-				66FDEA531DD6E0510035D1FB /* AboutViewController.swift */,
+				66008D8E1DEFBD630015A982 /* Edit Schedule */,
+				66008D8C1DEFBCC80015A982 /* Book Detail */,
+				66008D8B1DEFBCB30015A982 /* Archive */,
+				66008D8A1DEFBCA70015A982 /* Book List */,
+				66008D891DEFBC9E0015A982 /* Settings */,
+				66008D881DEFBC830015A982 /* Add Book */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -236,14 +277,10 @@
 		66AE73ED1DBFBDB000BC1260 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				66AE73EC1DBFBDA900BC1260 /* View Controllers */,
 				66CB69821DC3F1E50054B5DE /* Cells */,
 				66D7F0D91DC7C8050098AD2D /* CircularProgressView.swift */,
 				66CB697C1DC3E4280054B5DE /* TextField.swift */,
-				66A22CEC1DCBEBAC008A8077 /* AddBookView.swift */,
-				66FD7F011DCCF968003218F7 /* BookDetailView.swift */,
 				66FD7F031DCCF9FB003218F7 /* SeparatorView.swift */,
-				66FD7F0B1DCD4142003218F7 /* EditScheduleView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -560,7 +597,6 @@
 				664538111DD112E300DB4E5B /* DateFormatter.swift in Sources */,
 				6619254B1DDA2495001BDB90 /* Constants.swift in Sources */,
 				66AE73F01DBFBDF300BC1260 /* Book.swift in Sources */,
-				662A66B31DDE3FBB008C87F4 /* BookListViewModel.swift in Sources */,
 				66A22CED1DCBEBAC008A8077 /* AddBookView.swift in Sources */,
 				66FD7F101DCD4C4B003218F7 /* HorizontalSlideAnimationController.swift in Sources */,
 				663C00321DD0EF0700AF5B17 /* Device.swift in Sources */,
