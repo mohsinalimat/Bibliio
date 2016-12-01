@@ -64,7 +64,6 @@ class BookListViewController: UIViewController {
         navigationController.modalPresentationStyle = .custom
         navigationController.transitioningDelegate = self
         present(navigationController, animated: true, completion: nil)
-        
     }
     
     // MARK: - Setup
@@ -124,12 +123,10 @@ extension BookListViewController: UICollectionViewDataSource {
     // MARK: - UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let book = books[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookListCell.Identifier, for: indexPath) as! BookListCell
-        let viewModel = BookViewModel(with: book)
-        cell.configure(for: viewModel)
+        let book = books[indexPath.row]
         cell.delegate = self
-        //cell.book = book
+        cell.book = book
         cell.animateProgress()
         return cell
     }
