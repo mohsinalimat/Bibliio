@@ -14,6 +14,7 @@ Bibliio is a simple tracker app for your reading habits. [You can download it on
 ![Screenshot](https://raw.githubusercontent.com/atecle/Bibliio/master/assets/screenshot.png)
 
 ### To Do
+Will finish writing unit tests in the next week or so.
 
 I'm trying to completely refactor this to use MVVM & RxSwift as a learning excercise for myself and as a future reference for others. So far it's going ~slowly~ but progress is being made in branch `refactor-mvvm`.
 
