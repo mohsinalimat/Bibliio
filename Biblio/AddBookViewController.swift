@@ -56,6 +56,10 @@ final class AddBookViewController: BaseInputViewController {
         present(actionSheet, animated: true, completion: nil)
     }
     
+    @objc private func scanBarcodeButtonPressed(_ sender: Any) {
+        
+    }
+    
     // MARK: - Set up
     
     private func setup() {
@@ -70,7 +74,7 @@ final class AddBookViewController: BaseInputViewController {
         addBookView.currentPageTextField.delegate = self
         addBookView.totalPagesTextField.delegate = self
         addBookView.imagePickerButton.addTarget(self, action: #selector(imagePickerButtonPressed(_:)), for: .touchUpInside)
-        
+        addBookView.scanBarcodeButton.addTarget(self, action: #selector(scanBarcodeButtonPressed(_:)), for: .touchUpInside)
         addBookView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(addBookView)
         

@@ -80,10 +80,12 @@ public class AddBookView: UIView {
     
     func configureScanBarcodeButton() {
         scanBarcodeButton.translatesAutoresizingMaskIntoConstraints = false
+        scanBarcodeButton.setImage(UIImage(named:"barcode"), for: .normal)
+        scanBarcodeButton.contentMode = .scaleAspectFit
         addSubview(scanBarcodeButton)
         
         let centerY = NSLayoutConstraint(item: scanBarcodeButton, attribute: .centerY, relatedBy: .equal, toItem: imagePickerButton, attribute: .centerY, multiplier: 1, constant: 0)
-        let leading = NSLayoutConstraint(item: scanBarcodeButton, attribute: .leading, relatedBy: .equal, toItem: imagePickerButton, attribute: .leading, multiplier: 1, constant: 14)
+        let leading = NSLayoutConstraint(item: scanBarcodeButton, attribute: .leading, relatedBy: .equal, toItem: imagePickerButton, attribute: .trailing, multiplier: 1, constant: 14)
         
         addConstraints([centerY, leading])
     }
