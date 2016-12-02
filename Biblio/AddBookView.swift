@@ -16,6 +16,10 @@ public class AddBookView: UIView {
     public var authorTextField = TextField()
     public var currentPageTextField = TextField()
     public var totalPagesTextField = TextField()
+    public var scanBarcodeButton = UIButton()
+    
+    
+    // MARK: - View Lifecycle
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,19 +31,22 @@ public class AddBookView: UIView {
         setup()
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        imagePickerButton.layer.cornerRadius = imagePickerButton.frame.width / 2.0
+    }
+    
+    // MARK: - Setup
+    
     func setup() {
         backgroundColor = .white
         configureHeaderLabel()
         configureImagePickerButton()
+        configureScanBarcodeButton()
         configureTitleTextField()
         configureAuthorTextField()
         configureCurrentPageTextField()
         configureTotalPagesTextField()
-    }
-    
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        imagePickerButton.layer.cornerRadius = imagePickerButton.frame.width / 2.0
     }
     
     func configureHeaderLabel() {
@@ -69,6 +76,16 @@ public class AddBookView: UIView {
         let height = NSLayoutConstraint(item: imagePickerButton, attribute: .height, relatedBy: .equal, toItem: imagePickerButton, attribute: .width, multiplier: 1, constant: 0)
         
         addConstraints([top, centerX, width, height])
+    }
+    
+    func configureScanBarcodeButton() {
+        scanBarcodeButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(scanBarcodeButton)
+        
+        let centerY = NSLayoutConstraint(item: scanBarcodeButton, attribute: .centerY, relatedBy: .equal, toItem: imagePickerButton, attribute: .centerY, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint(item: scanBarcodeButton, attribute: .leading, relatedBy: .equal, toItem: imagePickerButton, attribute: .leading, multiplier: 1, constant: 14)
+        
+        addConstraints([centerY, leading])
     }
     
     func configureTitleTextField() {

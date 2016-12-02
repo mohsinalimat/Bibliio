@@ -834,7 +834,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 905B43CE6CFC29CBA09EF8B1 /* Pods-BibliioTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 3GR96D7Z4R;
 				INFOPLIST_FILE = BiblioTests/Info.plist;
@@ -850,7 +850,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 065D9DCB643334783E748A68 /* Pods-BibliioTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 3GR96D7Z4R;
 				INFOPLIST_FILE = BiblioTests/Info.plist;
