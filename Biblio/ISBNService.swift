@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Keys
 
 protocol PropertyListReadable {
     func propertyListRepresentation() -> Dictionary<String, String>
@@ -25,7 +26,9 @@ struct ISBNService {
         let defaults = UserDefaults.standard
         
         guard let data = defaults.object(forKey: Constants.ISBNService.CachedAuthenticatedAPIClientKey) as? Data else {
-            let key = "PLACEHOLDER"
+            guard let key = BibliioKeys().iSBNAPIKey() else {
+                return nil
+            }
             let client = ISBNService.init(key)
             let dictionaryRepresentation = client.propertyListRepresentation()
             let archivedData = NSKeyedArchiver.archivedData(withRootObject: dictionaryRepresentation)

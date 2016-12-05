@@ -18,7 +18,7 @@ end
 plugin 'cocoapods-keys', {
   :project => "Bibliio",
   :keys => [
-    "BibliioISBNAPIKey"
+    "ISBNAPIKey"
   ]}
 
 target 'Bibliio' do
