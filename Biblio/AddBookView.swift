@@ -18,7 +18,6 @@ public class AddBookView: UIView {
     public var totalPagesTextField = TextField()
     public var scanBarcodeButton = UIButton()
     
-    
     // MARK: - View Lifecycle
     
     public override init(frame: CGRect) {
@@ -43,7 +42,9 @@ public class AddBookView: UIView {
         configureHeaderLabel()
         configureImagePickerButton()
         configureTitleTextField()
-        configureScanBarcodeButton()
+        #if !(TARGET_IPHONE_SIMULATOR)
+            configureScanBarcodeButton()
+        #endif
         configureAuthorTextField()
         configureCurrentPageTextField()
         configureTotalPagesTextField()
@@ -140,7 +141,7 @@ public class AddBookView: UIView {
         let leading = NSLayoutConstraint(item: currentPageTextField, attribute: .leading, relatedBy: .equal, toItem: authorTextField, attribute: .leading, multiplier: 1, constant: 0)
         let width = NSLayoutConstraint(item: currentPageTextField, attribute: .width, relatedBy: .equal, toItem: authorTextField, attribute: .width, multiplier: 0.4, constant: 0)
         let bottom = NSLayoutConstraint(item: currentPageTextField, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -40)
-
+        
         addConstraints([top, leading, width, bottom])
     }
     
@@ -158,7 +159,7 @@ public class AddBookView: UIView {
         let top = NSLayoutConstraint(item: totalPagesTextField, attribute: .top, relatedBy: .equal, toItem: currentPageTextField, attribute: .top, multiplier: 1, constant: 0)
         let trailing = NSLayoutConstraint(item: totalPagesTextField, attribute: .trailing, relatedBy: .equal, toItem: authorTextField, attribute: .trailing, multiplier: 1, constant: 0)
         let width = NSLayoutConstraint(item: totalPagesTextField, attribute: .width, relatedBy: .equal, toItem: currentPageTextField, attribute: .width, multiplier: 1, constant: 0)
-    
+        
         addConstraints([top, trailing, width])
     }
 }

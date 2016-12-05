@@ -15,6 +15,12 @@ def app_pods
   pod 'HockeySDK'
 end
 
+plugin 'cocoapods-keys', {
+  :project => "Bibliio",
+  :keys => [
+    "BibliioISBNAPIKey"
+  ]}
+
 target 'Bibliio' do
   shared_pods
   app_pods

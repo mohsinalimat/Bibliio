@@ -25,5 +25,8 @@ struct Constants {
         static let Delete = "Delete"
     }
     
+    struct ISBNService {
+        static let CachedAuthenticatedAPIClientKey = "ISBNServiceAPIClientKey"
+    }
     
 }

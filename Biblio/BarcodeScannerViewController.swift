@@ -11,6 +11,7 @@ import AVFoundation
 
 enum BarcodeScannerError: Error {
     case deviceError
+    case invalidBarcode
 }
 
 protocol BarcodeScannerDelegate: NSObjectProtocol {
@@ -20,16 +21,17 @@ protocol BarcodeScannerDelegate: NSObjectProtocol {
 }
 
 class BarcodeScannerViewController: UIViewController {
-
+    
     weak var delegate: BarcodeScannerDelegate?
     var session: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    var ISBNClient = ISBNService.authenticatedISBNClient()
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureCancelButton()
         
         do {
@@ -74,7 +76,7 @@ class BarcodeScannerViewController: UIViewController {
         session = AVCaptureSession()
         
         let videoCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-
+        
         let videoInput: AVCaptureInput?
         
         do {
@@ -84,7 +86,7 @@ class BarcodeScannerViewController: UIViewController {
         }
         
         guard session.canAddInput(videoInput) else {
-           throw BarcodeScannerError.deviceError
+            throw BarcodeScannerError.deviceError
         }
         session.addInput(videoInput)
         
@@ -93,7 +95,7 @@ class BarcodeScannerViewController: UIViewController {
         let metadataOutput = AVCaptureMetadataOutput()
         
         guard session.canAddOutput(metadataOutput) else {
-             throw BarcodeScannerError.deviceError
+            throw BarcodeScannerError.deviceError
         }
         session.addOutput(metadataOutput)
         metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
@@ -106,15 +108,37 @@ class BarcodeScannerViewController: UIViewController {
         
         session.startRunning()
     }
-
+    
+    // MARK: - Helper
+    
+    func parseBarcode(_ code: String) {
+        
+        let trimmedCode = code.trimmingCharacters(in: CharacterSet.whitespaces)
+        
+        ISBNClient?.search(trimmedCode, completion: nil)
+    }
 }
 
 extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     
     // MARK: - AVCaptureMetadataOutputObjectsDelegate
-
+    
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
-        print("success")
+        
+        if let barcodeData = metadataObjects.first {
+            
+            let barcodeReadable = barcodeData as? AVMetadataMachineReadableCodeObject;
+            
+            if let readableCode = barcodeReadable {
+                print(readableCode.stringValue)
+                parseBarcode(readableCode.stringValue);
+            }
+            
+            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            
+            session.stopRunning()
+        }
+        
         self.delegate?.barcodeScanner(self, didSucceedWith: Book())
         dismiss(animated: true, completion: nil)
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
