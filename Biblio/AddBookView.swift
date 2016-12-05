@@ -42,8 +42,8 @@ public class AddBookView: UIView {
         backgroundColor = .white
         configureHeaderLabel()
         configureImagePickerButton()
-        configureScanBarcodeButton()
         configureTitleTextField()
+        configureScanBarcodeButton()
         configureAuthorTextField()
         configureCurrentPageTextField()
         configureTotalPagesTextField()
@@ -78,18 +78,6 @@ public class AddBookView: UIView {
         addConstraints([top, centerX, width, height])
     }
     
-    func configureScanBarcodeButton() {
-        scanBarcodeButton.translatesAutoresizingMaskIntoConstraints = false
-        scanBarcodeButton.setImage(UIImage(named:"barcode"), for: .normal)
-        scanBarcodeButton.contentMode = .scaleAspectFit
-        addSubview(scanBarcodeButton)
-        
-        let centerY = NSLayoutConstraint(item: scanBarcodeButton, attribute: .centerY, relatedBy: .equal, toItem: imagePickerButton, attribute: .centerY, multiplier: 1, constant: 0)
-        let leading = NSLayoutConstraint(item: scanBarcodeButton, attribute: .leading, relatedBy: .equal, toItem: imagePickerButton, attribute: .trailing, multiplier: 1, constant: 14)
-        
-        addConstraints([centerY, leading])
-    }
-    
     func configureTitleTextField() {
         titleTextField.translatesAutoresizingMaskIntoConstraints = false
         titleTextField.lineColor = .darkGray
@@ -105,6 +93,18 @@ public class AddBookView: UIView {
         let trailing = NSLayoutConstraint(item: titleTextField, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -20)
         
         addConstraints([top, leading , trailing])
+    }
+    
+    func configureScanBarcodeButton() {
+        scanBarcodeButton.translatesAutoresizingMaskIntoConstraints = false
+        scanBarcodeButton.setImage(UIImage(named:"barcode"), for: .normal)
+        scanBarcodeButton.contentMode = .scaleAspectFit
+        addSubview(scanBarcodeButton)
+        
+        let centerY = NSLayoutConstraint(item: scanBarcodeButton, attribute: .centerY, relatedBy: .equal, toItem: titleTextField, attribute: .centerY, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: scanBarcodeButton, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -20)
+        
+        addConstraints([centerY, trailing])
     }
     
     func configureAuthorTextField() {

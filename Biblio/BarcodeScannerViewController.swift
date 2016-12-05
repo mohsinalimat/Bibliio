@@ -30,6 +30,8 @@ class BarcodeScannerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureCancelButton()
+        
         do {
             try configureCaptureSession()
         } catch {
@@ -54,14 +56,25 @@ class BarcodeScannerViewController: UIViewController {
         }
     }
     
+    // MARK: - Target Action
+    
+    func cancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - Setup
+    
+    func configureCancelButton() {
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
+        self.navigationItem.leftBarButtonItem = cancelButton
+    }
     
     func configureCaptureSession() throws {
         
         session = AVCaptureSession()
         
         let videoCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-        
+
         let videoInput: AVCaptureInput?
         
         do {
@@ -103,5 +116,7 @@ extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         print("success")
         self.delegate?.barcodeScanner(self, didSucceedWith: Book())
+        dismiss(animated: true, completion: nil)
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
 }

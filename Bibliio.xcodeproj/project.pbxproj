@@ -38,7 +38,7 @@
 		66D7F0DF1DC7C8A30098AD2D /* BookListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D7F0DD1DC7C8A30098AD2D /* BookListCell.swift */; };
 		66D7F0E01DC7C8A30098AD2D /* BookListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66D7F0DE1DC7C8A30098AD2D /* BookListCell.xib */; };
 		66D8CEE21DD401C1003EA577 /* BoolObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D8CEE11DD401C1003EA577 /* BoolObject.swift */; };
-		66DD14441DF2217300A9959B /* ScanBarcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD14431DF2217300A9959B /* ScanBarcodeViewController.swift */; };
+		66DD14441DF2217300A9959B /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD14431DF2217300A9959B /* BarcodeScannerViewController.swift */; };
 		66DD14471DF2219300A9959B /* ISBNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DD14461DF2219300A9959B /* ISBNService.swift */; };
 		66E384011DD6702F0002DA09 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E384001DD6702F0002DA09 /* DateExtensions.swift */; };
 		66EAB75F1DCBD9B800E9192D /* BaseInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */; };
@@ -104,7 +104,7 @@
 		66D7F0DD1DC7C8A30098AD2D /* BookListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListCell.swift; sourceTree = "<group>"; };
 		66D7F0DE1DC7C8A30098AD2D /* BookListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookListCell.xib; sourceTree = "<group>"; };
 		66D8CEE11DD401C1003EA577 /* BoolObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolObject.swift; sourceTree = "<group>"; };
-		66DD14431DF2217300A9959B /* ScanBarcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanBarcodeViewController.swift; sourceTree = "<group>"; };
+		66DD14431DF2217300A9959B /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		66DD14461DF2219300A9959B /* ISBNService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISBNService.swift; sourceTree = "<group>"; };
 		66E384001DD6702F0002DA09 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		66EAB75E1DCBD9B800E9192D /* BaseInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseInputViewController.swift; sourceTree = "<group>"; };
@@ -342,7 +342,7 @@
 		66DD14421DF2215000A9959B /* Scan Barcode */ = {
 			isa = PBXGroup;
 			children = (
-				66DD14431DF2217300A9959B /* ScanBarcodeViewController.swift */,
+				66DD14431DF2217300A9959B /* BarcodeScannerViewController.swift */,
 			);
 			name = "Scan Barcode";
 			sourceTree = "<group>";
@@ -637,7 +637,7 @@
 				667B9BA41DD2899800E8D4A7 /* DayPickerViewController.swift in Sources */,
 				66CB697D1DC3E4280054B5DE /* TextField.swift in Sources */,
 				66EAB75F1DCBD9B800E9192D /* BaseInputViewController.swift in Sources */,
-				66DD14441DF2217300A9959B /* ScanBarcodeViewController.swift in Sources */,
+				66DD14441DF2217300A9959B /* BarcodeScannerViewController.swift in Sources */,
 				66D7F0DF1DC7C8A30098AD2D /* BookListCell.swift in Sources */,
 				66D8CEE21DD401C1003EA577 /* BoolObject.swift in Sources */,
 				66AE73C91DBFB72F00BC1260 /* AppDelegate.swift in Sources */,

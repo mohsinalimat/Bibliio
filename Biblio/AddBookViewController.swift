@@ -57,7 +57,12 @@ final class AddBookViewController: BaseInputViewController {
     }
     
     @objc private func scanBarcodeButtonPressed(_ sender: Any) {
-        
+        let vc = BarcodeScannerViewController()
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.navigationBar.tintColor = .white
+        navigationController.navigationBar.barTintColor = UIColor.deepBlue()
+        navigationController.navigationBar.isTranslucent = false
+        present(navigationController, animated: true, completion: nil)
     }
     
     // MARK: - Set up
