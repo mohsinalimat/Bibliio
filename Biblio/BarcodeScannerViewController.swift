@@ -25,7 +25,7 @@ class BarcodeScannerViewController: UIViewController {
     weak var delegate: BarcodeScannerDelegate?
     var session: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    var ISBNClient = ISBNService.authenticatedISBNClient()
+    var client = APIClient.authenticatedAPIClient()
     
     // MARK: - View Lifecycle
     
@@ -115,7 +115,7 @@ class BarcodeScannerViewController: UIViewController {
         
         let trimmedCode = code.trimmingCharacters(in: CharacterSet.whitespaces)
         print(trimmedCode)
-        ISBNClient?.search(trimmedCode, completion: nil)
+        client?.search(trimmedCode, success: nil, failure: nil)
     }
 }
 
