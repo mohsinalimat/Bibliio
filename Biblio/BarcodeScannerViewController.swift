@@ -114,7 +114,7 @@ class BarcodeScannerViewController: UIViewController {
     func parseBarcode(_ code: String) {
         
         let trimmedCode = code.trimmingCharacters(in: CharacterSet.whitespaces)
-        
+        print(trimmedCode)
         ISBNClient?.search(trimmedCode, completion: nil)
     }
 }
@@ -130,7 +130,6 @@ extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
             let barcodeReadable = barcodeData as? AVMetadataMachineReadableCodeObject;
             
             if let readableCode = barcodeReadable {
-                print(readableCode.stringValue)
                 parseBarcode(readableCode.stringValue);
             }
             

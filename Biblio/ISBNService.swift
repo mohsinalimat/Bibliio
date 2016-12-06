@@ -41,9 +41,10 @@ struct ISBNService {
         return client
     }
     
-    func search(_ code: String, completion: (() -> ())?) {
+    func search(_ code: String, completion: ((_ book: Book) -> ())?) {
         
-        completion?()
+        
+        completion?(Book())
     }
 }
 
