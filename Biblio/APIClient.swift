@@ -27,7 +27,7 @@ struct APIClient {
     var APIKey = ""
     
     private var baseURL: URL? {
-        return URL(string: "https://www.googleapis.com/books/v1/volumes?q=isbn:")
+        return URL(string: "https://www.googleapis.com/books/v1/")
     }
     
     init(_ key: String) {
@@ -60,15 +60,18 @@ struct APIClient {
             return
         }
         
-        guard let url = URL(string: "\(code)&key=\(self.APIKey)", relativeTo: baseURL) else {
+        guard let url = URL(string: "volumes?q=isbn:\(code)&key=\(self.APIKey)", relativeTo: baseURL) else {
             return
         }
         
         let request = URLRequest(url: url)
         
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request, completionHandler: {
+            (data, response, error) in
+            
             let httpResponse = response as! HTTPURLResponse
             let code = httpResponse.statusCode
+           
             if code >= 200 && code <= 300 {
             
                 guard let unwrappedData = data else {
@@ -79,15 +82,20 @@ struct APIClient {
                 }
                 
                 do {
-                    let responseDictionary = try JSONSerialization.data(withJSONObject: unwrappedData, options: [])
-                } catch {
-                    
+                    let responseDictionary = try JSONSerialization.jsonObject(with: unwrappedData, options: [])
+                    print(responseDictionary)
+                } catch let e {
+                    print("\(e.localizedDescription)")
                 }
                 
             } else if code >= 400 && code < 500 {
-                
+                DispatchQueue.main.async {
+                    failure?(APIClientError.invalidCredentials)
+                }
             } else {
-                
+                DispatchQueue.main.async {
+                    
+                }
             }
         })
         
