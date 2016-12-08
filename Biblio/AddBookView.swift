@@ -12,10 +12,13 @@ public class AddBookView: UIView {
     
     public var headerLabel = UILabel()
     public var imagePickerButton = UIButton()
-    public var titleTextField = TextField()
+    public var titleTextField = InsetTextField()
     public var authorTextField = TextField()
     public var currentPageTextField = TextField()
     public var totalPagesTextField = TextField()
+    public var scanBarcodeButton = UIButton()
+    
+    // MARK: - View Lifecycle
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,19 +30,24 @@ public class AddBookView: UIView {
         setup()
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        imagePickerButton.layer.cornerRadius = imagePickerButton.frame.width / 2.0
+    }
+    
+    // MARK: - Setup
+    
     func setup() {
         backgroundColor = .white
         configureHeaderLabel()
         configureImagePickerButton()
         configureTitleTextField()
+        #if !(TARGET_IPHONE_SIMULATOR)
+            configureScanBarcodeButton()
+        #endif
         configureAuthorTextField()
         configureCurrentPageTextField()
         configureTotalPagesTextField()
-    }
-    
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        imagePickerButton.layer.cornerRadius = imagePickerButton.frame.width / 2.0
     }
     
     func configureHeaderLabel() {
@@ -88,6 +96,18 @@ public class AddBookView: UIView {
         addConstraints([top, leading , trailing])
     }
     
+    func configureScanBarcodeButton() {
+        scanBarcodeButton.translatesAutoresizingMaskIntoConstraints = false
+        scanBarcodeButton.setImage(UIImage(named:"barcode"), for: .normal)
+        scanBarcodeButton.contentMode = .scaleAspectFit
+        addSubview(scanBarcodeButton)
+        
+        let centerY = NSLayoutConstraint(item: scanBarcodeButton, attribute: .centerY, relatedBy: .equal, toItem: titleTextField, attribute: .centerY, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint(item: scanBarcodeButton, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -20)
+        
+        addConstraints([centerY, trailing])
+    }
+    
     func configureAuthorTextField() {
         authorTextField.translatesAutoresizingMaskIntoConstraints = false
         authorTextField.lineColor = .darkGray
@@ -121,7 +141,7 @@ public class AddBookView: UIView {
         let leading = NSLayoutConstraint(item: currentPageTextField, attribute: .leading, relatedBy: .equal, toItem: authorTextField, attribute: .leading, multiplier: 1, constant: 0)
         let width = NSLayoutConstraint(item: currentPageTextField, attribute: .width, relatedBy: .equal, toItem: authorTextField, attribute: .width, multiplier: 0.4, constant: 0)
         let bottom = NSLayoutConstraint(item: currentPageTextField, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -40)
-
+        
         addConstraints([top, leading, width, bottom])
     }
     
@@ -139,7 +159,7 @@ public class AddBookView: UIView {
         let top = NSLayoutConstraint(item: totalPagesTextField, attribute: .top, relatedBy: .equal, toItem: currentPageTextField, attribute: .top, multiplier: 1, constant: 0)
         let trailing = NSLayoutConstraint(item: totalPagesTextField, attribute: .trailing, relatedBy: .equal, toItem: authorTextField, attribute: .trailing, multiplier: 1, constant: 0)
         let width = NSLayoutConstraint(item: totalPagesTextField, attribute: .width, relatedBy: .equal, toItem: currentPageTextField, attribute: .width, multiplier: 1, constant: 0)
-    
+        
         addConstraints([top, trailing, width])
     }
 }

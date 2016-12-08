@@ -34,7 +34,7 @@ final class AddBookViewController: BaseInputViewController {
             save()
             dismiss(animated: true, completion: nil)
         } else {
-            showAlert()
+            showAlert("Fill in at least the title and the number of pages!")
         }
     }
     
@@ -56,6 +56,16 @@ final class AddBookViewController: BaseInputViewController {
         present(actionSheet, animated: true, completion: nil)
     }
     
+    @objc private func scanBarcodeButtonPressed(_ sender: Any) {
+        let vc = BarcodeScannerViewController()
+        vc.delegate = self
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.navigationBar.tintColor = .white
+        navigationController.navigationBar.barTintColor = UIColor.deepBlue()
+        navigationController.navigationBar.isTranslucent = false
+        present(navigationController, animated: true, completion: nil)
+    }
+    
     // MARK: - Set up
     
     private func setup() {
@@ -70,7 +80,7 @@ final class AddBookViewController: BaseInputViewController {
         addBookView.currentPageTextField.delegate = self
         addBookView.totalPagesTextField.delegate = self
         addBookView.imagePickerButton.addTarget(self, action: #selector(imagePickerButtonPressed(_:)), for: .touchUpInside)
-        
+        addBookView.scanBarcodeButton.addTarget(self, action: #selector(scanBarcodeButtonPressed(_:)), for: .touchUpInside)
         addBookView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(addBookView)
         
@@ -84,8 +94,8 @@ final class AddBookViewController: BaseInputViewController {
     
     // MARK: - UI
     
-    func showAlert() {
-        let alert = UIAlertController(title: "Oops", message: "Fill in at least the title and the number of pages!", preferredStyle: .alert)
+    func showAlert(_ message: String) {
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: Constants.Action.OK, style: .default, handler: nil)
         alert.addAction(okButton)
         present(alert, animated: true, completion: nil)
@@ -132,6 +142,19 @@ final class AddBookViewController: BaseInputViewController {
         }
         
         return true
+    }
+}
+
+extension AddBookViewController: BarcodeScannerDelegate {
+    
+    func barcodeScanner(_ viewController: BarcodeScannerViewController, didFailWith error: Error) {
+        showAlert("Couldn't find this book 😳")
+    }
+    
+    func barcodeScanner(_ viewController: BarcodeScannerViewController, didSucceedWith book: Book) {
+        addBookView.titleTextField.text = book.title
+        addBookView.authorTextField.text = book.author
+        addBookView.totalPagesTextField.text = String(book.totalPages)
     }
 }
 

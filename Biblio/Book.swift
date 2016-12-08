@@ -26,7 +26,7 @@ class Book: Object {
     dynamic var pagesPerDayGoal = 20
     let readingDays = List<BoolObject>()
     dynamic var imageData: Data? = nil
-
+    
     private dynamic var currentPageBacking: Int = 1
     dynamic var currentPage: Int {
         get {
@@ -54,7 +54,7 @@ class Book: Object {
     }
     var isFinished: Bool {
         get {
-           return currentPage == totalPages
+            return currentPage == totalPages
         }
     }
     
@@ -65,6 +65,26 @@ class Book: Object {
         self.title = title
         self.author = author
         self.currentPage = currentPage
+        self.totalPages = totalPages
+        self.readingDays.append(objectsIn: [BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true)])
+    }
+    
+    convenience init?(_ json: [String: Any]) {
+        self.init()
+        guard let title = json["title"] as? String else {
+            return nil
+        }
+        guard let authors = json["authors"] as? [Any] else {
+            return nil
+        }
+        guard let author = authors.first as? String else {
+            return nil
+        }
+        guard let totalPages = json["pageCount"] as? Int else {
+            return nil
+        }
+        self.title = title
+        self.author = author
         self.totalPages = totalPages
         self.readingDays.append(objectsIn: [BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true), BoolObject(bool: true)])
     }
@@ -105,7 +125,7 @@ class Book: Object {
         var daysLeft = 0
         var pagesSum = currentPage
         var currentDay = today.dayNumberOfWeek()! - 1
-    
+        
         while (pagesSum <= totalPages) {
             if readingDays[currentDay].value {
                 pagesSum = pagesSum + pagesPerDayGoal
@@ -135,7 +155,7 @@ class Book: Object {
             }
         }
     }
-
+    
 }
 
 extension Book: NSCopying {
