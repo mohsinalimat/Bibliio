@@ -16,13 +16,14 @@ enum BarcodeScannerError: Error {
 
 protocol BarcodeScannerDelegate: NSObjectProtocol {
     
-    func barcodeScanner(_ viewController: BarcodeScannerViewController, didFailWith: BarcodeScannerError)
+    func barcodeScanner(_ viewController: BarcodeScannerViewController, didFailWith: Error)
     func barcodeScanner(_ viewController: BarcodeScannerViewController, didSucceedWith: Book)
 }
 
 class BarcodeScannerViewController: UIViewController {
     
     weak var delegate: BarcodeScannerDelegate?
+    fileprivate var processingBarcode = false
     var session: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var client = APIClient.authenticatedAPIClient()
@@ -111,11 +112,23 @@ class BarcodeScannerViewController: UIViewController {
     
     // MARK: - Helper
     
-    func parseBarcode(_ code: String) {
+    func handleBarcode(_ code: String) {
         
         let trimmedCode = code.trimmingCharacters(in: CharacterSet.whitespaces)
-        print(trimmedCode)
-        client?.search(trimmedCode, success: nil, failure: nil)
+        
+        let work = { [unowned self] in
+            self.session.stopRunning()
+            self.dismiss(animated: true, completion: nil)
+            self.processingBarcode = false
+        }
+        
+        client?.search(trimmedCode, success: { [unowned self] (book) in
+            self.delegate?.barcodeScanner(self, didSucceedWith: book)
+            work()
+        }, failure: { (error) in
+            self.delegate?.barcodeScanner(self, didFailWith: error)
+            work()
+        })
     }
 }
 
@@ -125,21 +138,18 @@ extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
+        if processingBarcode == true {
+            return
+        }
         if let barcodeData = metadataObjects.first {
             
             let barcodeReadable = barcodeData as? AVMetadataMachineReadableCodeObject;
             
             if let readableCode = barcodeReadable {
-                parseBarcode(readableCode.stringValue);
+                processingBarcode = true
+                AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+                handleBarcode(readableCode.stringValue);
             }
-            
-            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            
-            session.stopRunning()
         }
-        
-        self.delegate?.barcodeScanner(self, didSucceedWith: Book())
-        dismiss(animated: true, completion: nil)
-        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
 }

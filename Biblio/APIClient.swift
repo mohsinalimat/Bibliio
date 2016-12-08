@@ -10,6 +10,7 @@ import Foundation
 import Keys
 
 enum APIClientError: Error {
+    case nilOptional
     case jsonError
     case serverError
     case invalidContentType
@@ -66,26 +67,64 @@ struct APIClient {
         
         let request = URLRequest(url: url)
         
-        let task = URLSession.shared.dataTask(with: request, completionHandler: {
-            (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             
             let httpResponse = response as! HTTPURLResponse
             let code = httpResponse.statusCode
-           
-            if code >= 200 && code <= 300 {
             
+            if code >= 200 && code <= 300 {
+                
                 guard let unwrappedData = data else {
                     DispatchQueue.main.async {
                         failure?(APIClientError.jsonError)
                     }
                     return
                 }
+
+                guard let wrappedDictionary = try? JSONSerialization.jsonObject(with: unwrappedData, options: []) as? [String:Any] else {
+                    DispatchQueue.main.async {
+                        failure?(APIClientError.jsonError)
+                    }
+                    return
+                }
                 
-                do {
-                    let responseDictionary = try JSONSerialization.jsonObject(with: unwrappedData, options: [])
-                    print(responseDictionary)
-                } catch let e {
-                    print("\(e.localizedDescription)")
+                guard let responseDictionary = wrappedDictionary else {
+                    DispatchQueue.main.async {
+                        failure?(APIClientError.nilOptional)
+                    }
+                    return
+                }
+                
+                guard let contentArray = responseDictionary["items"] as? [Any] else {
+                    DispatchQueue.main.async {
+                        failure?(APIClientError.nilOptional)
+                    }
+                    return
+                }
+                
+                guard let contentDict = contentArray.first as? [String: Any] else {
+                    DispatchQueue.main.async {
+                        failure?(APIClientError.nilOptional)
+                    }
+                    return
+                }
+                
+                guard let volumeInfo = contentDict["volumeInfo"] as? [String: Any] else {
+                    DispatchQueue.main.async {
+                        failure?(APIClientError.nilOptional)
+                    }
+                    return
+                }
+                
+                guard let book = Book(volumeInfo) else {
+                    DispatchQueue.main.async {
+                        failure?(APIClientError.nilOptional)
+                    }
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    success?(book)
                 }
                 
             } else if code >= 400 && code < 500 {
@@ -94,13 +133,14 @@ struct APIClient {
                 }
             } else {
                 DispatchQueue.main.async {
-                    
+                    failure?(APIClientError.serverError)
                 }
             }
         })
         
         task.resume()
     }
+
 }
 
 extension APIClient: PropertyListReadable {
