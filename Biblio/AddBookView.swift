@@ -12,7 +12,7 @@ public class AddBookView: UIView {
     
     public var headerLabel = UILabel()
     public var imagePickerButton = UIButton()
-    public var titleTextField = TextField()
+    public var titleTextField = InsetTextField()
     public var authorTextField = TextField()
     public var currentPageTextField = TextField()
     public var totalPagesTextField = TextField()

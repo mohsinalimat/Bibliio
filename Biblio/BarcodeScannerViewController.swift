@@ -16,8 +16,8 @@ enum BarcodeScannerError: Error {
 
 protocol BarcodeScannerDelegate: NSObjectProtocol {
     
-    func barcodeScanner(_ viewController: BarcodeScannerViewController, didFailWith: Error)
-    func barcodeScanner(_ viewController: BarcodeScannerViewController, didSucceedWith: Book)
+    func barcodeScanner(_ viewController: BarcodeScannerViewController, didFailWith error: Error)
+    func barcodeScanner(_ viewController: BarcodeScannerViewController, didSucceedWith book: Book)
 }
 
 class BarcodeScannerViewController: UIViewController {
@@ -123,11 +123,11 @@ class BarcodeScannerViewController: UIViewController {
         }
         
         client?.search(trimmedCode, success: { [unowned self] (book) in
+            work()
             self.delegate?.barcodeScanner(self, didSucceedWith: book)
-            work()
         }, failure: { (error) in
-            self.delegate?.barcodeScanner(self, didFailWith: error)
             work()
+            self.delegate?.barcodeScanner(self, didFailWith: error)
         })
     }
 }
