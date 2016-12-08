@@ -10,9 +10,6 @@ PODS:
   - Realm/Headers (2.0.2)
   - RealmSwift (2.0.2):
     - Realm (= 2.0.2)
-  - RxCocoa (3.0.1):
-    - RxSwift (~> 3.0)
-  - RxSwift (3.0.1)
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
@@ -21,8 +18,6 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - Keys (from `Pods/CocoaPodsKeys`)
   - RealmSwift
-  - RxCocoa (~> 3.0)
-  - RxSwift (~> 3.0)
   - TTTAttributedLabel
 
 EXTERNAL SOURCES:
@@ -36,10 +31,8 @@ SPEC CHECKSUMS:
   Keys: 9c35bf00f612ee1d48556f4a4b9b4551e224e90f
   Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
   RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
-  RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
-  RxSwift: af5680055c4ad04480189c52d28385b1029493a6
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: c784eef973bdfbb40f0a0fc5ee84a8a2d9e7cda3
+PODFILE CHECKSUM: 135c41bd8276f05186c80c6472ffe9d2eafbe17b
 
 COCOAPODS: 1.2.0.beta.1

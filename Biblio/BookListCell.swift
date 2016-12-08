@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxSwift
 
 protocol BookListCellDelegate: NSObjectProtocol {
     
@@ -35,8 +34,6 @@ class BookListCell: UICollectionViewCell {
     @IBOutlet weak var lastReadTitleLabel: UILabel!
     var maskPath: UIBezierPath? = nil
     let maskLayer = CAShapeLayer()
-    
-    let disposeBag = DisposeBag()
     
     private let letterLabel = UILabel()
     

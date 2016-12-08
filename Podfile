@@ -4,8 +4,6 @@ use_frameworks!
 
 def shared_pods
   pod 'RealmSwift'
-  pod 'RxSwift',  '~> 3.0'
-  pod 'RxCocoa',  '~> 3.0'
 end
 
 def app_pods
