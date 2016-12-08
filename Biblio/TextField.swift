@@ -28,6 +28,8 @@ import UIKit
     
     private let lineTopMargin: CGFloat = 5.0
     
+    // MARK: - Overrides
+    
     override open func draw(_ rect: CGRect) {
         drawLine()
     }
