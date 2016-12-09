@@ -89,7 +89,7 @@ class BookListCell: UICollectionViewCell {
         guard let book = self.book
             else { return }
         
-        //titleLabel.text = book.title
+        titleLabel.text = book.title
         pagesReadLabel.text = "\(book.currentPage) of \(book.totalPages)"
         
         if let lastReadDate = book.lastRead {
