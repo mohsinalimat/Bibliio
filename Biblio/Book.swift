@@ -141,6 +141,7 @@ class Book: Object {
         return calendar.date(byAdding: components, to: today)
     }
     
+    //This doesn't work or belong here. Just a reminder to myself so I'll keep grimacing when I see this, and hopefully, eventually, do something. when i have at least 1 user, I'll fix this, promise.
     private func enableReminders(_ enable: Bool) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
         if enable == true {
